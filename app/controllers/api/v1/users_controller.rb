@@ -1,8 +1,9 @@
 class Api::V1::UsersController < ApplicationController
   respond_to :json, :html
+  before_action :get_current_user, only: :update
 
   def show
-    respond_with User.find(params[:id])
+    respond_with user = User.find(params[:id])
   end
 
   def create
@@ -15,12 +16,10 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-    user = User.find(params[:id])
-
-    if user.update(user_params)
-      render json: user, status: 200, location: [:api, user]
+    if current_user.update(user_params)
+      render json: current_user, status: 200, location: [:api, current_user]
     else
-      render json: { errors: user.errors }, status: 422
+      render json: { errors: current_user.errors }, status: 422
     end
   end
 
@@ -33,5 +32,10 @@ class Api::V1::UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation)
+  end
+
+  def get_current_user
+    raise "no permit" unless current_user
+
   end
 end
