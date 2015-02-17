@@ -35,7 +35,6 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def get_current_user
-    raise "no permit" unless current_user
-
+    raise Api::Unauthorized unless current_user
   end
 end
