@@ -48,6 +48,6 @@ end
 
 group :test do
   gem "factory_girl_rails"
-  gem "ffaker"
+  gem "faker"
   gem "shoulda-matchers"
 end

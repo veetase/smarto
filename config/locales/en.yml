@@ -21,3 +21,6 @@
 
 en:
   hello: "Hello world"
+  faker:
+    weather:
+      tag: ["Very hot", "Nice weather", "Cool", "Windy", "Rainning"]

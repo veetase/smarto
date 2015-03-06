@@ -14,6 +14,11 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
+  def authenticate_with_token
+    raise Api::Unauthorized unless current_user
+  end
+  
   def not_found
     render json: { errors: I18n.t("not_found")}, status: :not_found
   end

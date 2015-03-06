@@ -1,6 +1,6 @@
 class Api::V1::UsersController < ApplicationController
   respond_to :json, :html
-  before_action :get_current_user, only: :update
+  before_action :authenticate_with_token, only: :update
 
   def show
     respond_with user = User.find(params[:id])
@@ -32,9 +32,5 @@ class Api::V1::UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation)
-  end
-
-  def get_current_user
-    raise Api::Unauthorized unless current_user
   end
 end

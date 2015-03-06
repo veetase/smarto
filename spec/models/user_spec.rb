@@ -30,4 +30,6 @@ RSpec.describe User, :type => :model do
       expect(@user.auth_token).not_to eql existing_user.auth_token
     end
   end  
+
+  
 end
