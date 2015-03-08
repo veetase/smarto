@@ -17,9 +17,10 @@ class Api::V1::SpotsController < ApplicationController
 	    spot = current_user.spots.find(params[:id])
 	   	spot.destroy
 	    head 204
-	end	
+	end
 
 	def around
+		# max_distance units is meters when location data stored as geoJSON
 		spots = Spot.geo_near([params[:x].to_i, params[:y].to_i]).max_distance(params[:distance].to_i).spherical
 		render json: spots
 	end
@@ -27,7 +28,7 @@ class Api::V1::SpotsController < ApplicationController
 	private
 	def spot_params
 	  attr = params.require(:spot).permit!
-	  attr["location"] = attr["location"].collect{|x| x.to_i} if attr["location"]
+	  attr["location"]["coordinates"] = attr["location"]["coordinates"].collect{|x| x.to_i} if attr["location"]
 	  return attr
 	end
 end
