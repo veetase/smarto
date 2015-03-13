@@ -1,13 +1,13 @@
 development:
   sessions:
     default:
-      database: smarto_dev
+      database: smarto_develop
       hosts:
         - localhost:27017
 test:
   sessions:
     default:
-      database: smarto_test
+      database: test
       hosts:
         - localhost:27017
 # Tell Mongoid which environment this configuration is for.

@@ -1,9 +1,9 @@
 class Api::V1::UsersController < ApplicationController
-  respond_to :json, :html
+  respond_to :json
   before_action :authenticate_with_token, only: :update
 
   def show
-    respond_with user = User.find(params[:id])
+    respond_with user = User.find(params[:id]).as_json(only: :avatar)
   end
 
   def create

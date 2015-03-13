@@ -20,7 +20,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  exception:
+    not_found: Not Found
+    request_format_must_be_json: requst must use format json
+    permission_denied: Permission Denied
+    invalid_value: invalid Value
   faker:
     weather:
       tag: ["Very hot", "Nice weather", "Cool", "Windy", "Rainning"]

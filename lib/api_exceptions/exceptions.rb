@@ -1,6 +1,6 @@
 module Api
 	class NotFound < StandardError
-  	end
+  end
 
 	class Unauthorized < StandardError
 	end

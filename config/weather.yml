@@ -1,0 +1,17 @@
+# config/application.yml
+defaults: &defaults
+  weather_cn:
+    url: "http://open.weather.com.cn/data/"
+    app_id: "e670784a4724e520"
+    app_id_param: "e67078"
+    private_key: "f67601_SmartWeatherAPI_e7122db"
+    cache_peroid: 1800
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

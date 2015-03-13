@@ -10,5 +10,5 @@ class Spot
 
   validates :location, :picture, :env_info, :user, presence: true
 
-  index({ location: "2dsphere" }, { min: -200, max: 200, background: true})
+  index({ location: "2dsphere" })
 end

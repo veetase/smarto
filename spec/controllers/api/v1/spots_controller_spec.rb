@@ -67,17 +67,26 @@ RSpec.describe Api::V1::SpotsController, :type => :controller do
 
   describe "GET #around" do
     before(:each) do
-      5.times do
-        FactoryGirl.create(:spot, location: [51, 50])
+      2.times do
+        FactoryGirl.create(:spot, location: {type: "Point", coordinates: [-110, 32]})
       end
 
-      get :around, { x: 50, y: 50, distance: 1 }
+      3.times do
+        FactoryGirl.create(:spot, location: {type: "Point", coordinates: [-100, 32]})
+      end
+
+      get :around, { coordinate: [-111, 30], distance: 245, area_id: "101010100" }
     end
 
     it "return 5 spots around" do
       spots_response = json_response
-      expect(spots_response.count).to eql 5
-    end   
+      expect(spots_response[:spots].count).to eql 2
+    end
+
+    it "should get weather info" do
+      spots_response = json_response
+      expect(spots_response[:weather_cn]).not_to eql nil
+    end
 
     it { should respond_with 200 }
   end
