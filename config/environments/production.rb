@@ -91,4 +91,5 @@ Rails.application.configure do
     user_name: "wangguangxing@bixuange.com",
     password: "aa0.0.0."
   }
+  #config.active_record.dump_schema_after_migration = false
 end
