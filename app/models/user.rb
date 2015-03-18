@@ -46,7 +46,7 @@ class User
       begin
         self.auth_token = Devise.friendly_token
       end while self.class.where(auth_token: auth_token).exists?
-      self.auth_token_expire_at = Config.user.login_expire_days.days.from_now
+      self.auth_token_expire_at = BxgConfig.user.login_expire_days.days.from_now
     end
   end
 end

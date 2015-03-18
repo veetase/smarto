@@ -7,6 +7,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
+    logger.info("#{request.subdomain}")
     user = User.new(user_params)
     if user.save
       render json: user, status: 201, location: [:api, user]
