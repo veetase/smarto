@@ -1,6 +1,5 @@
 require 'constraints/api_constraints'
 Rails.application.routes.draw do
-  root 'bixuange#index'
   devise_for :users, :controllers => {:confirmations => "confirmations"}
   resources :subscribers
   
