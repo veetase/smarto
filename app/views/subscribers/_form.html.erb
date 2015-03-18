@@ -1,0 +1,14 @@
+<%= form_for @subscriber do |f| %>
+ 
+  <% if @subscriber.errors.any? %>
+ 
+    <% @subscriber.errors.full_messages.each do |msg| %>
+      <p><%= msg %></p>
+    <% end %>
+    
+  <% end %>	
+    
+    <input type="text" name="subscriber[email]" id="subscriber_email"  placeholder="please input your email">
+    <%= f.submit %>
+
+<% end %>

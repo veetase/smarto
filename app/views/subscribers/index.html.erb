@@ -1,0 +1,21 @@
+<h1>Listing subscribers</h1>
+ 
+<table class="table table-striped">
+  <tr>
+    <th>Email</th>
+    <th>edit subscriber</th>
+    <th>delete subscriber</th>
+  </tr>
+ 
+  <% @subscribers.each do |subscriber| %>
+    <tr>
+      <td><%= subscriber.email %></td>
+	  <td><%= link_to 'Edit', edit_subscriber_path(subscriber) %></td>
+	  <td><%= link_to 'Destroy', subscriber_path(subscriber),
+                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+
+</table>
+
+<%= link_to 'New subscriber', new_subscriber_path %>
