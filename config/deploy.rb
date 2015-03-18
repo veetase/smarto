@@ -12,7 +12,7 @@ require 'mina/rvm'    # for rvm support. (http://rvm.io)
 
 set :domain, 'bixuange.com'
 set :deploy_to, '/alidata/www/api'
-set :repository, 'git@github.com:veetase/smarto.git'
+set :repository, 'git@github.com:Bixuange/server.git'
 set :branch, 'dev'
 
 # For system-wide RVM install.
