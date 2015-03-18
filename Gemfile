@@ -16,7 +16,11 @@ gem "responders"
 gem "devise"
 gem "httparty"
 # Use SCSS for stylesheets
-# gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 5.0'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.1.0'
+gem 'jquery-rails'
+gem 'turbolinks'
 # Use Uglifier as compressor for JavaScript assets
 # Use CoffeeScript for .coffee assets and views
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -31,6 +35,7 @@ gem 'jbuilder'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'settingslogic'
 gem 'puma'
+gem 'mina'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

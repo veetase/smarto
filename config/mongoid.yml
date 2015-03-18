@@ -29,43 +29,43 @@ production:
       # provide the authentication details.
       username: user
       password: password
-    # This defines a secondary session at a replica set.
-    replica_set:
-      # This configuration is a 3 node replica set.
-      hosts:
-        - dedicated1.myapp.com:27017
-        - dedicated2.myapp.com:27017
-        - dedicated3.myapp.com:27017
-      database: mongoid
-      # We can set session specific options, like reads executing
-      # on secondary nodes, and defaulting the session to safe mode.
-      options:
-        consistency: :eventual
-        safe: true
-    # This defines a tertiary session at a Mongos fronted shard.
-    shard:
-      # This configuration is a Mongos shard server.
-      hosts:
-        - mongos.myapp.com:27017
-      database: mongoid
-    # This configuration shows an authenticated replica set via a uri.
-    another:
-      uri: mongodb://user:pass@59.1.22.1:27017,59.1.22.2:27017/mongoid
-  # Here we put the Mongoid specific configuration options. These are explained
-  # in more detail next.
-  options:
-    allow_dynamic_fields: false
-    identity_map_enabled: true
-    include_root_in_json: true
-    include_type_for_serialization: true
-    # Note this can also be true if you want to preload everything, but this is
-    # almost never necessary. Most of the time set this to false.
-    preload_models:
-      - Canvas
-      - Browser
-      - Firefox
-    scope_overwrite_exception: true
-    raise_not_found_error: false
-    skip_version_check: false
-    use_activesupport_time_zone: false
-    use_utc: true
+  #   # This defines a secondary session at a replica set.
+  #   replica_set:
+  #     # This configuration is a 3 node replica set.
+  #     hosts:
+  #       - dedicated1.myapp.com:27017
+  #       - dedicated2.myapp.com:27017
+  #       - dedicated3.myapp.com:27017
+  #     database: mongoid
+  #     # We can set session specific options, like reads executing
+  #     # on secondary nodes, and defaulting the session to safe mode.
+  #     options:
+  #       consistency: :eventual
+  #       safe: true
+  #   # This defines a tertiary session at a Mongos fronted shard.
+  #   shard:
+  #     # This configuration is a Mongos shard server.
+  #     hosts:
+  #       - mongos.myapp.com:27017
+  #     database: mongoid
+  #   # This configuration shows an authenticated replica set via a uri.
+  #   another:
+  #     uri: mongodb://user:pass@59.1.22.1:27017,59.1.22.2:27017/mongoid
+  # # Here we put the Mongoid specific configuration options. These are explained
+  # # in more detail next.
+  # options:
+  #   allow_dynamic_fields: false
+  #   identity_map_enabled: true
+  #   include_root_in_json: true
+  #   include_type_for_serialization: true
+  #   # Note this can also be true if you want to preload everything, but this is
+  #   # almost never necessary. Most of the time set this to false.
+  #   preload_models:
+  #     - Canvas
+  #     - Browser
+  #     - Firefox
+  #   scope_overwrite_exception: true
+  #   raise_not_found_error: false
+  #   skip_version_check: false
+  #   use_activesupport_time_zone: false
+  #   use_utc: true

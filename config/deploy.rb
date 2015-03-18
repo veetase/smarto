@@ -12,8 +12,9 @@ require 'mina/rvm'    # for rvm support. (http://rvm.io)
 
 set :domain, 'bixuange.com'
 set :deploy_to, '/alidata/www/api'
-set :repository, 'git@github.com:veetase/smarto.git'
+set :repository, 'git@github.com:Bixuange/server.git'
 set :branch, 'dev'
+set :term_mode, nil
 
 # For system-wide RVM install.
 #   set :rvm_path, '/usr/local/rvm/bin/rvm'
@@ -23,7 +24,8 @@ set :branch, 'dev'
 set :shared_paths, ['config/mongoid.yml', 'log']
 
 # Optional settings:
-#   set :user, 'foobar'    # Username in the server to SSH to.
+set :user, 'root'    # Username in the server to SSH to.
+set :rvm_path, '/usr/local/rvm/scripts/rvm'
 #   set :port, '30000'     # SSH port number.
 #   set :forward_agent, true     # SSH forward_agent.
 
@@ -35,7 +37,7 @@ task :environment do
   # invoke :'rbenv:load'
 
   # For those using RVM, use this to load an RVM version@gemset.
-  invoke :'rvm:use[ruby 2.0.0p598@default]'
+  invoke :'rvm:use[ruby 2.0@default]'
 end
 
 # Put any custom mkdir's in here for when `mina setup` is ran.
@@ -74,7 +76,6 @@ task :deploy => :environment do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
-    invoke :'rake db:mongoid:create_indexes'
     invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup'
 
