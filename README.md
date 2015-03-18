@@ -2,7 +2,7 @@
 ===============
 ###历史修改
 姓名 | 版本 | 备注 | 时间 
------|
+-----|------|------|--------
 王广星 | 0.1 | 第一版，供内测 | 2015-03-16 
 
 ###描述
@@ -16,7 +16,7 @@
 http header中需带有以下参数:
 
 描述  |  key  |  value  |  可空
-------|
+------|-------|---------|----------
 身份验证 | Authorization | auth_token | true
 接口版本 | Accept        | application/vnd.smarto.v1 | true
 格式    | Content-type  | application/json  | false
