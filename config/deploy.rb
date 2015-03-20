@@ -2,6 +2,7 @@ require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'
 require 'mina_sidekiq/tasks'
+require 'mina/unicorn'
 # require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
 require 'mina/rvm'    # for rvm support. (http://rvm.io)
 # Basic settings:
@@ -12,7 +13,7 @@ require 'mina/rvm'    # for rvm support. (http://rvm.io)
 
 set :domain, 'bixuange.com'
 set :deploy_to, '/alidata/www/api'
-set :repository, 'git@github.com:Bixuange/server.git'
+set :repository, 'git@github.com:Bixuange/ShengMaoDou-server.git'
 set :branch, 'dev'
 set :term_mode, nil
 

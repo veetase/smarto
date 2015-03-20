@@ -103,6 +103,7 @@ GEM
       rake
     mina-sidekiq (0.3.1)
       mina
+    mina-unicorn (0.1.0)
     mini_portile (0.6.2)
     minitest (5.5.1)
     mongoid (4.0.1)
@@ -266,6 +267,7 @@ DEPENDENCIES
   jquery-rails
   mina
   mina-sidekiq
+  mina-unicorn
   mongoid
   mongoid-tree
   puma
