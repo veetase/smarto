@@ -42,11 +42,10 @@ class User
   index({ email: 1, auth_token: 1 }, { unique: true })
   #to ensure auto token is unique
   def generate_authentication_token!
-    unless self.auth_token && self.auth_token_expire_at && self.auth_token_expire_at > Time.now
-      begin
-        self.auth_token = Devise.friendly_token
-      end while self.class.where(auth_token: auth_token).exists?
-      self.auth_token_expire_at = Config.user.login_expire_days.days.from_now
-    end
+    byebug
+    begin
+      self.auth_token = Devise.friendly_token
+    end while self.class.where(auth_token: auth_token).exists?
+    self.auth_token_expire_at = Config.user.login_expire_days.days.from_now
   end
 end

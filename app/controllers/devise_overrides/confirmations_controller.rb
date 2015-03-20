@@ -1,4 +1,4 @@
-class ConfirmationsController < Devise::ConfirmationsController
+class DeviseOverrides::ConfirmationsController < Devise::ConfirmationsController
   def new
     super
   end
