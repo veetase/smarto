@@ -1,9 +1,9 @@
 require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'
+require 'mina_sidekiq/tasks'
 # require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
 require 'mina/rvm'    # for rvm support. (http://rvm.io)
-
 # Basic settings:
 #   domain       - The hostname to SSH to.
 #   deploy_to    - Path to deploy into.
@@ -67,23 +67,40 @@ task :setup => :environment do
   # log/puma.stderr.log
   queue! %[touch "#{deploy_to}/shared/log/puma.stderr.log"]
   queue  %[echo "-----> Be sure to edit 'shared/log/puma.stderr.log'."]
+
+  # sidekiq needs a place to store its pid file and log file
+  queue! %[mkdir -p "#{deploy_to}/shared/pids/"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/pids"]
 end
+
 desc "Deploys the current version to the server."
 task :deploy => :environment do
   deploy do
     # Put things that will set up an empty directory into a fully set-up
     # instance of your project.
+    # stop accepting new workers
+    invoke :'sidekiq:quiet'
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
     invoke :'rails:assets_precompile'
+    invoke :'custom_deploy:create_indexes'
     invoke :'deploy:cleanup'
 
     to :launch do
+      invoke :'sidekiq:restart'
+      invoke :'unicorn:restart'
       queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
       queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
     end
   end
+end
+
+namespace :custom_deploy do
+  desc 'create mongodb indexes'
+  task :create_indexes do
+    queue %[cd #{deploy_to!} && rake db:mongoid:create_indexes]
+  end 
 end
 
 # For help in making your deploy script, see the Mina documentation:

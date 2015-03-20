@@ -39,6 +39,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'settingslogic'
 gem 'puma'
 gem 'mina'
+gem 'mina-sidekiq', :require => false
+gem 'mina-unicorn', :require => false
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
