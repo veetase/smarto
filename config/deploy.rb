@@ -100,7 +100,7 @@ end
 namespace :custom_deploy do
   desc 'create mongodb indexes'
   task :create_indexes do
-    queue %[cd #{deploy_to!} && rake db:mongoid:create_indexes]
+    queue %[cd #{deploy_to}/#{current_path} && bundle exec rake db:mongoid:create_indexes]
   end 
 end
 
