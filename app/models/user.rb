@@ -17,7 +17,10 @@ class User
 
   ## Recoverable
   field :reset_password_token,    type: String
-  field :reset_password_sent_at,  type: Time
+  field :reset_password_send_at,  type: Time
+  field :reset_password_expire_at,  type: Time
+
+  ## Lockable
 
   ## Confirmable
   field :confirmation_token,      type: String, default: ""
@@ -45,6 +48,17 @@ class User
     begin
       self.auth_token = Devise.friendly_token
     end while self.class.where(auth_token: auth_token).exists?
-    self.auth_token_expire_at = Config.user.login_expire_days.days.from_now
+    self.auth_token_expire_at = BxgConfig.user.login_expire_days.days.from_now
+  end
+
+  def reset_password
+    #generate a random code
+    code = [*"A".."Z", *"0".."9"].sample(6).join
+    self.reset_password_token = code
+    self.reset_password_send_at = Time.now
+    peroid = BxgConfig.user.reset_password_expire_secondes
+    self.reset_password_expire_at = self.reset_password_send_at.since(peroid)
+
+    UserMailer.send_identify_code(self.email, code).deliver_now if self.save
   end
 end

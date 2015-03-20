@@ -2,6 +2,7 @@
 defaults: &defaults
   user:
     login_expire_days: 30
+    reset_password_expire_secondes: 600
 
 development:
   <<: *defaults

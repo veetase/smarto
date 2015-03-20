@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "wuxiaaotongdemm@163.com"
+  default from: "wangguangxing@bixuange.com"
 
   def send_email(comment)
     @comment = comment
@@ -13,4 +13,8 @@ class UserMailer < ActionMailer::Base
     users.each{ |user| UserMailer.send_email(comment).deliver_now}
   end
 
+  def send_identify_code(email, code)
+    @code = code
+    mail(to: email, subject: I18n.t('mail.reset_password'))
+  end
 end

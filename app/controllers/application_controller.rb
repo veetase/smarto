@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   rescue_from Api::NotFound, ActionController::RoutingError, Mongoid::Errors::DocumentNotFound, with: :not_found
   rescue_from ActionController::UnknownFormat, with: :invalid_format
   rescue_from Api::Unauthorized, with: :unauth
-  rescue_from Mongoid::Errors::InvalidValue, with: :invalid_value
+  rescue_from ActionController::ParameterMissing, Mongoid::Errors::InvalidValue, with: :invalid_value
 
   protected
 
