@@ -2,7 +2,7 @@ require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'
 require 'mina_sidekiq/tasks'
-require 'mina/unicorn'
+require 'mina/puma'
 # require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
 require 'mina/rvm'    # for rvm support. (http://rvm.io)
 # Basic settings:
@@ -90,7 +90,7 @@ task :deploy => :environment do
 
     to :launch do
       invoke :'sidekiq:restart'
-      invoke :'unicorn:restart'
+      invoke :'puma:phased_restart'
       queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
       queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
     end
