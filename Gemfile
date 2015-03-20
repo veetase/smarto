@@ -40,7 +40,7 @@ gem 'settingslogic'
 gem 'puma'
 gem 'mina'
 gem 'mina-sidekiq', :require => false
-gem 'mina-unicorn', :require => false
+gem 'mina-puma', :require => false
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
