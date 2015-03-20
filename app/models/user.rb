@@ -42,7 +42,6 @@ class User
   index({ email: 1, auth_token: 1 }, { unique: true })
   #to ensure auto token is unique
   def generate_authentication_token!
-    byebug
     begin
       self.auth_token = Devise.friendly_token
     end while self.class.where(auth_token: auth_token).exists?
