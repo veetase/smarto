@@ -3,7 +3,7 @@
 ###历史修改
 姓名 | 版本 | 备注 | 时间 
 -----|------|------|--------
-王广星 | 0.1 | 第一版，供内测 | 2015-03-23 
+王广星 | 0.1 | 第一版，供内测 | 2015-03-24 
 
 ###描述
 - 为iOS客户端提供接口
@@ -142,17 +142,6 @@ http请求方式（以下简称方式）：POST
 
 ##### 失败
 状态码：500， 422 等非 201
-示例：
-
-```javascript
-{
-    "errors": "Invalid email or password"
-}
-```
-
-返回内容含义：
-
-* errors 键对应的值: 失败的原因
 
 
 ## 登出（退出登录）
@@ -225,13 +214,6 @@ http请求方式（以下简称方式）：POST
 
 ##### 失败
 状态码：非201
-示例：
-
-```javascript
-{
-    "errors": "invalid Value"
-}
-```
 
 返回内容含义：
 
@@ -266,7 +248,8 @@ http请求方式（以下简称方式）：POST
 示例：
 
 ```javascript
-{
+
+  	{
     "spots": [
         {
             "_id": {
@@ -400,18 +383,6 @@ http请求方式（以下简称方式）：POST
 
 ##### 失败
 状态码：非200
-示例：
-
-```javascript
-{
-    "errors": "invalid Value"
-}
-```
-
-返回内容含义：
-
-* errors 键对应的值: 失败的原因
-
 
 ##  忘记密码
 ### 请求
@@ -442,19 +413,46 @@ http请求方式（以下简称方式）：POST
 
 ##### 失败
 状态码：非201
+
+
+## 修改用户信息
+### 请求
+方式：PUT
+
+地址：/users/\(user_id)}.json
+
+身份验证: 否
+
 示例：
 
+请求链接：http://api.bixuange.com/users/5510085f6c6f630683000000.json
+
+参数：
+
 ```javascript
-{
-    "errors": "invalid Value"
-}
+
+	{
+  		"user":{
+    		"email": "734569969@qq.sbb.com",
+    		"nick_name": "ssssssbddddbbbb",
+    		"gender": 1,
+    		"body_condition": {
+      			"height": 170,
+      			"weight": 60,
+      			"tags": ["nice", "healthy"]
+    		}
+  		}
+	}
 ```
 
-返回内容含义：
+### 返回：
 
-* errors 键对应的值: 失败的原因
+##### 成功
+状态码：200
+内容为更新后的用户信息
 
-
+##### 失败
+状态码：非200
 
 
 
