@@ -1,7 +1,9 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
-  has_many :spots
+  #has_many :spots
+  embeds_one :body_condition
+  accepts_nested_attributes_for :body_condition
   before_create :generate_authentication_token!
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -13,14 +15,14 @@ class User
   field :encrypted_password,      type: String, default: ""
   field :auth_token,              type: String, default: ""
   field :auth_token_expire_at,    type: Time
+  field :nick_name,               type: String, default: ""
   field :avatar,                  type: String, default: ""
+  field :gender,                  type: Integer, default: 0
 
   ## Recoverable
   field :reset_password_token,    type: String
   field :reset_password_send_at,  type: Time
   field :reset_password_expire_at,  type: Time
-
-  ## Lockable
 
   ## Confirmable
   field :confirmation_token,      type: String, default: ""
@@ -35,12 +37,17 @@ class User
   field :sign_in_count,           type: Integer, default: 0
   field :current_sign_in_at,      type: Time
   field :last_sign_in_at,         type: Time
-  field :current_sign_in_ip,      type: String
-  field :last_sign_in_ip,         type: String
 
-  validates :email, presence: true, uniqueness: true
-  validates :encrypted_password, presence: true
-  validates :confirmation_token, :auth_token, uniqueness: true
+  module Gender
+    UNDEFINED = 0
+    MALE      = 1
+    FEMALE    = 2
+  end
+
+
+  validates :auth_token, uniqueness: true
+  validates_numericality_of :gender, only_integer: true, greater_than: -1, less_than: 3
+  
   
   index({ email: 1, auth_token: 1 }, { unique: true })
   #to ensure auto token is unique
@@ -60,5 +67,30 @@ class User
     self.reset_password_expire_at = self.reset_password_send_at.since(peroid)
 
     UserMailer.send_identify_code(self.email, code).deliver_now if self.save
+  end
+end
+
+class BodyCondition
+  include Mongoid::Document
+  embedded_in :user
+  #include height, weight, and tags
+  field :height, type: Integer
+  field :weight, type: Integer
+  field :tags,   type: Array
+
+  validates_numericality_of :height, greater_than: 0, less_than: 300
+  validates_numericality_of :weight, greater_than: 0, less_than: 500
+  validate :body_condition_format
+
+  #avoid to create object_id field
+  def identify    
+  end
+
+  private
+  def body_condition_format
+    self.errors.add(:tags, 'body condition tags count at most 2') if tags.count > 2
+    tags.each do |tag|
+      self.errors.add(:tags, 'tag is too long, max length is 20') if tag && tag.length > 20
+    end
   end
 end
