@@ -1,7 +1,7 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
-  #has_many :spots
+  has_many :spots
   embeds_one :body_condition
   accepts_nested_attributes_for :body_condition
   before_create :generate_authentication_token!

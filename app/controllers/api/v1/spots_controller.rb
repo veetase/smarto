@@ -7,7 +7,6 @@ class Api::V1::SpotsController < ApplicationController
 
 	def create
 		spot = current_user.spots.build(spot_params)
-
 		if spot.save
       		render json: {result: "success"}, status: 201, location: [:api, spot]
     	else
@@ -33,13 +32,13 @@ class Api::V1::SpotsController < ApplicationController
 			weather = weather_cn.fetch_weather
 		end
 
-		render json: {spots: spots, weather_cn: weather}
+		render json: {spots: spots.as_json(include: { user: { only: [:_id, :avatar, :gender, :nick_name]} }, except: [:is_public, :user_id]), weather_cn: weather}
 	end
 
 	private
 	def spot_params
 	  attr = params.require(:spot).permit!
-	  attr["location"]["coordinates"] = attr["location"]["coordinates"].collect{|x| x.to_i} if attr["location"]
+	  attr["location"]["coordinates"] = attr["location"]["coordinates"].collect{|x| x.to_f} if attr["location"]
 	  return attr
 	end
 end
