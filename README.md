@@ -174,25 +174,37 @@ http请求方式（以下简称方式）：POST
 
 ```javascript
 {
-	"spot": {
-      "location": {
-        "type": "Point",
-        "coordinates": [50, 50]
-      },
-	  "perception": {"tags": ["Nice day", "windy", "Hot", "Cold"], "comment": "good for walk"},
-      "picture": {"crude": "www.baidu.com", "shaped": "www.baidu.com"},
-      "env_info": {
-        "temperature": 19
-      }
-	}
+  "spot":{
+    "perception_value": 40,
+    "perception_tags": ["nihao", "bucuo"],
+    "comment": "hahahahaha",
+    "avg_temperature": 15,
+    "mid_temperature": 15.5,
+    "min_temperature": 10.2,
+    "max_temperature": 20.8,
+    "start_measure_time": "2015-03-26 16:28:47 +0800",
+    "measure_duration": 60,
+    "image": "http://pan.baidu.com/test.jpg",
+    "image_shaped": "http://pan.baidu.com/test.jpg",
+    "location": {
+      "type": "Point",
+      "coordinates": [50.11, 50.25]
+    }
+    
+  }
 }
 ```
 参数含义：
 
 - location: 位置信息。 type: 位置类型（包括点，线，形状）这里表示用户所在点； coordinates：坐标，经度在前，纬度在后。
-- perception: 主管感受信息。tags：用户选定的表达自己想法的标签。comment: 用户自己编辑的评论，想法。
-- picture：图片地址。 crude: 原始图片地址， shaped：处理后的图片地址（切图？ 压缩？）
-- env_info: 客观环境信息。temperature 表示温度。
+- perception_value: 主管感受值。
+- perception_tags：用户选定的表达自己想法的标签。
+- comment: 用户自己编辑的评论，想法。
+- image：图片地址。 
+- image_shaped: 处理后的图片地址（切图？ 压缩？）
+- temperature: 温度信息, 分别代表最高温度，最低温度，温度中值，和平均温度，单位：摄氏度。
+- start_measure_time: 开始测量的时间点。
+- measure_duration: 测量时长，单位：秒。
 
 
 ### 返回：
