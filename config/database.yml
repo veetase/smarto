@@ -1,0 +1,22 @@
+development:
+  adapter: postgresql
+  encoding: utf8
+  database: smarto_development
+  pool: 5
+  username: postgres
+  password: 123456
+
+test:
+  adapter: postgresql
+  encoding: utf8
+  database: smarto_test
+  pool: 5
+  username: postgres
+  password: 123456
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: smarto_production
+  pool: 5 
+  username: postgres
+  password: 123456
