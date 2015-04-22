@@ -62,7 +62,6 @@ class WeatherCn
   def persist_temperature(forecast)
     err = nil
     begin
-      byebug
       max_temperature = forecast["f"]["f1"][0]["fc"]
       min_temperature = forecast["f"]["f1"][0]["fd"]
       publish_time = forecast["f"]["f0"]

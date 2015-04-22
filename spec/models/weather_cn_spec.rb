@@ -5,8 +5,6 @@ RSpec.describe WeatherCn, :type => :model do
 
   subject { @weather }
 
-  it { should respond_to(:index_f) }
-  it { should respond_to(:forecast_f) }
   it { should respond_to(:index_v) }
   it { should respond_to(:forecast_v) }
 
@@ -14,8 +12,7 @@ RSpec.describe WeatherCn, :type => :model do
     it "should return correct data" do
       ["index_v", "forecast_v"].each do |t|
         ret = @weather.send(t.to_sym)
-        expect(ret.code).to eql 200
-        expect(ret.parsed_response).not_to eql "data error" 
+        expect(ret).not_to eql nil
       end
     end
   end  

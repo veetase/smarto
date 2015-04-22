@@ -8,45 +8,45 @@ RSpec.describe Api::V1::UsersController, :type => :controller do
     end
 
     it "returns the information about a reporter on a hash" do
-      expect(json_response[:email]).to eql @user.email
+      expect(json_response[:nick_name]).to eql @user.nick_name
     end
 
     it { should respond_with 200 }
   end
 
-  describe "POST #create" do
-    context "when is successfully created" do
-      before(:each) do
-        @user_attributes = FactoryGirl.attributes_for :user
-        post :create, { user: @user_attributes }
-      end
+  # describe "POST #create" do
+  #   context "when is successfully created" do
+  #     before(:each) do
+  #       @user_attributes = FactoryGirl.attributes_for :user
+  #       post :create, { user: @user_attributes }
+  #     end
 
-      it "renders the json representation for the user record just created" do
-        expect(json_response[:email]).to eql @user_attributes[:email]
-      end
+  #     it "renders the json representation for the user record just created" do
+  #       expect(json_response[:email]).to eql @user_attributes[:email]
+  #     end
 
-      it { should respond_with 201 }
-    end
+  #     it { should respond_with 201 }
+  #   end
 
-    context "when is not created" do
-      before(:each) do
-        #notice I'm not including the email
-        @invalid_user_attributes = { password: "12345678",
-                                     password_confirmation: "12345678" }
-        post :create, { user: @invalid_user_attributes }
-      end
+  #   context "when is not created" do
+  #     before(:each) do
+  #       #notice I'm not including the email
+  #       @invalid_user_attributes = { password: "12345678",
+  #                                    password_confirmation: "12345678" }
+  #       post :create, { user: @invalid_user_attributes }
+  #     end
 
-      it "renders an errors json" do
-        expect(json_response).to have_key(:errors)
-      end
+  #     it "renders an errors json" do
+  #       expect(json_response).to have_key(:errors)
+  #     end
 
-      it "renders the json errors on whye the user could not be created" do
-        expect(json_response[:errors][:email]).to include "can't be blank"
-      end
+  #     it "renders the json errors on whye the user could not be created" do
+  #       expect(json_response[:errors][:email]).to include "can't be blank"
+  #     end
 
-      it { should respond_with 422 }
-    end
-  end
+  #     it { should respond_with 422 }
+  #   end
+  # end
 
   describe "PUT/PATCH #update" do
 
@@ -55,11 +55,11 @@ RSpec.describe Api::V1::UsersController, :type => :controller do
         @user = FactoryGirl.create :user
         api_authorization_header @user.auth_token
         patch :update, { id: @user.id,
-                         user: { email: "newmail@example.com" } }
+                         user: { nick_name: "new_name" } }
       end
 
       it "renders the json representation for the updated user" do
-        expect(json_response[:email]).to eql "newmail@example.com"
+        expect(json_response[:nick_name]).to eql "new_name"
       end
 
       it { should respond_with 200 }
@@ -70,29 +70,14 @@ RSpec.describe Api::V1::UsersController, :type => :controller do
         @user = FactoryGirl.create :user
         api_authorization_header @user.auth_token
         patch :update, { id: @user.id,
-                         user: { email: "bademail.com" } }
+                         user: { nick_name: "new_namenew_namenew_namenew_namenew_name" } }
       end
 
       it "renders an errors json" do
         expect(json_response).to have_key(:errors)
       end
 
-      it "renders the json errors on whye the user could not be created" do
-        expect(json_response[:errors][:email]).to include "is invalid"
-      end
-
       it { should respond_with 422 }
     end
-  end
-
-  describe "DELETE #destroy" do
-    before(:each) do
-      @user = FactoryGirl.create :user
-      api_authorization_header @user.auth_token
-      delete :destroy, { id: @user.id }
-    end
-
-    it { should respond_with 204 }
-
   end
 end

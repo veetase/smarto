@@ -43,7 +43,7 @@ RSpec.describe Api::V1::SessionsController, :type => :controller do
       @user = FactoryGirl.create :user
       #sign_in @user, store: false
       @request.env["devise.mapping"] = Devise.mappings[:user]
-      delete :destroy, {id: @user.id}
+      delete :logout
     end
 
     it { should respond_with 204 }

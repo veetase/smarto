@@ -21,11 +21,11 @@ class Api::V1::SpotsController < ApplicationController
 	end
 
 	def around
-		# max_distance units is meters when location data stored as geoJSON
-		coordinate = params.require(:coordinate).collect{|x| x.to_i}
-		distance = params[:distance].to_f || 1.0
+		distance = params[:distance].to_i
+		longitude = params[:lon].to_f
+		latitude = params[:lat].to_f
 
-		spots = Spot.geo_near(coordinate).max_distance(distance / 6371).spherical
+		spots = Spot.near(longitude, latitude, distance).limit(10)
 		weather = nil
 		if area_id = params[:area_id]
 			weather_cn = WeatherCn.new(area_id)
@@ -38,7 +38,5 @@ class Api::V1::SpotsController < ApplicationController
 	private
 	def spot_params
 	  attr = params.require(:spot).permit!
-	  attr["location"]["coordinates"] = attr["location"]["coordinates"].collect{|x| x.to_f} if attr["location"]
-	  return attr
 	end
 end

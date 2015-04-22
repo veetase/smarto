@@ -12,7 +12,7 @@ FactoryGirl.define do
     image_shaped {Faker::Avatar.image}
     is_public true
     perception_value {rand * 100}
-    location {{type: "Point", coordinates: [Faker::Address.longitude.to_f, Faker::Address.latitude.to_f] }}
+    location "POINT(#{Faker::Address.longitude.to_f} #{Faker::Address.latitude.to_f})"
     user
   end
 end

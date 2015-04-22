@@ -8,8 +8,10 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json}, path: '/'  do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
-      resources :passwords
-      resources :users, :only => [:update]
+      resources :passwords, :only => [:create] do
+        put 'reset', on: :collection
+      end
+      resources :users, :only => [:update, :show]
       resources :sessions, :only => [:create] do
         collection do
           delete 'logout'
@@ -17,7 +19,7 @@ Rails.application.routes.draw do
       end
       resources :spots do
       	collection do
-      	  get 'around'
+      	  get 'around/:area_id/:lon/:lat/:distance', :action => 'around', :constraints => {:lon => /\-*\d+.\d+/ , :lat => /\-*\d+.\d+/}
       	end
       end
     end

@@ -18,7 +18,6 @@ RSpec.describe User, :type => :model do
   it { should respond_to(:auth_token) }
   it { should respond_to(:nick_name) }
   it { should respond_to(:gender) }
-  it { should respond_to(:body_condition) }
 
 
   describe "generate_authentication_token" do
@@ -35,26 +34,42 @@ RSpec.describe User, :type => :model do
     end
 
     it "should be invalid when set a invalid height" do
-      @user.body_condition = FactoryGirl.attributes_for(:body_condition, height: 1000)
+      @user.height = 1000
       expect(@user.save).to be false
       expect(@user.errors.count).to be > 0
-      expect(@user.body_condition.errors[:height]).to include "must be less than 300"
+      expect(@user.errors[:height]).to include "must be less than 300"
     end
 
     it "should be invalid when set a invalid weight" do
-      @user.body_condition = FactoryGirl.attributes_for(:body_condition, weight: 1000)
+      @user.weight = 1000
       expect(@user.save).to be false
       expect(@user.errors.count).to be > 0
-      expect(@user.body_condition.errors[:weight]).to include "must be less than 500"
+      expect(@user.errors[:weight]).to include "must be less than 700"
     end
 
-    it "should be invalid when set a invalid body_condition" do
-      @user.body_condition = FactoryGirl.attributes_for(:body_condition, tags: ["tag1", "tag1", "tag13 and this tag length is greater than 20. la la la "]) 
+    context "tags validation" do
+      it "should be invalid when tags is not array" do
+        #@user.tags = FactoryGirl.attributes_for(:body_condition, tags: ["tag1", "tag1", "tag13 and this tag length is greater than 20. la la la "]) 
+        @user.tags = 1
+        expect(@user.save).to be false
+        expect(@user.errors[:tags].count).to be > 0
+      end
 
-      expect(@user.save).to be false
-      expect(@user.body_condition.errors[:tags].count).to be > 1
-      expect(@user.body_condition.errors[:tags]).to include "body condition tags count at most 2"
-      expect(@user.body_condition.errors[:tags]).to include "tag is too long, max length is 20"
+      it "should be invalid when tag is too long" do
+        #@user.tags = FactoryGirl.attributes_for(:body_condition, tags: ["tag1", "tag1", "tag13 and this tag length is greater than 20. la la la "]) 
+        @user.tags = ["one tags is too longggggggggggggggggggggggggggggg"]
+        expect(@user.save).to be false
+        expect(@user.errors[:tags].count).to be > 0
+        expect(@user.errors[:tags]).to include "is invalid"
+      end
+
+      it "should be invalid when tags is too many" do
+        #@user.tags = FactoryGirl.attributes_for(:body_condition, tags: ["tag1", "tag1", "tag13 and this tag length is greater than 20. la la la "]) 
+        @user.tags = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven"]
+        expect(@user.save).to be false
+        expect(@user.errors[:tags].count).to be > 0
+        expect(@user.errors[:tags]).to include "is invalid"
+      end
     end
   end
 

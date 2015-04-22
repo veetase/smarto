@@ -5,7 +5,7 @@ class Api::V1::SessionsController < ApplicationController
     user_email = session_params[:email]
     user = user_email.present? && User.find_by(email: user_email)
     if user.valid_password? user_password
-     # sign_in user, store: false if user
+     # sign_in :user, store: false if user
       user.generate_authentication_token!
       user.save
       render json: user.as_json(only: [:_id, :auth_token, :avatar]), status: 200
@@ -18,6 +18,7 @@ class Api::V1::SessionsController < ApplicationController
     if user = current_user
       user.generate_authentication_token!
       user.save
+     # sign_out :user
     end
     head 204    
   end

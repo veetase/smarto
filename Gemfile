@@ -5,13 +5,14 @@ source 'https://ruby.taobao.org/'
 gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
-
+gem 'activerecord-postgis-adapter', '3.0.0.beta2'
 gem 'redis'
 gem 'redis-namespace'
 gem 'redis-rails'
 
 gem "responders"
 gem "devise"
+gem "devise-async"
 gem "httparty"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

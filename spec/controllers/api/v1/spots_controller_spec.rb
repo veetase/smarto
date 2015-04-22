@@ -9,7 +9,7 @@ RSpec.describe Api::V1::SpotsController, :type => :controller do
 
     it "returns the information about a reporter on a hash" do
       spot_response = json_response
-      expect(spot_response[:picture]).to eql @spot.picture
+      expect(spot_response[:image]).to eql @spot.image
     end
 
     it { should respond_with 200 }
@@ -68,14 +68,14 @@ RSpec.describe Api::V1::SpotsController, :type => :controller do
   describe "GET #around" do
     before(:each) do
       2.times do
-        FactoryGirl.create(:spot, location: {type: "Point", coordinates: [-110, 32]})
+        FactoryGirl.create(:spot, location: "POINT(-110 30)")
       end
 
       3.times do
-        FactoryGirl.create(:spot, location: {type: "Point", coordinates: [-100, 32]})
+        FactoryGirl.create(:spot, location: "POINT(-100 30)")
       end
 
-      get :around, { coordinate: [-111, 30], distance: 245, area_id: "101010100" }
+      get :around, { lon: -111, lat: 30, distance: 1060000, area_id: "101010100" }
     end
 
     it "return 5 spots around" do
