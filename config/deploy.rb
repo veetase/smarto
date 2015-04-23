@@ -14,7 +14,7 @@ require 'mina/rvm'    # for rvm support. (http://rvm.io)
 set :domain, 'bixuange.com'
 set :deploy_to, '/alidata/www/api'
 set :repository, 'git@github.com:Bixuange/ShengMaoDou-server.git'
-set :branch, 'dev'
+set :branch, 'postgresql'
 set :term_mode, nil
 
 # For system-wide RVM install.
@@ -22,7 +22,7 @@ set :term_mode, nil
 
 # Manually create these paths in shared/ (eg: shared/config/mongoid.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
-set :shared_paths, ['config/mongoid.yml', 'log']
+set :shared_paths, ['config/database.yml', 'log']
 
 # Optional settings:
 set :user, 'root'    # Username in the server to SSH to.
@@ -38,7 +38,7 @@ task :environment do
   # invoke :'rbenv:load'
 
   # For those using RVM, use this to load an RVM version@gemset.
-  invoke :'rvm:use[ruby 2.0@default]'
+  invoke :'rvm:use[ruby 2.2@default]'
 end
 
 # Put any custom mkdir's in here for when `mina setup` is ran.
@@ -84,8 +84,8 @@ task :deploy => :environment do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
+    invoke :'rails:db_migrate'
     invoke :'rails:assets_precompile'
-    invoke :'custom_deploy:create_indexes'
     invoke :'deploy:cleanup'
 
     to :launch do
@@ -97,12 +97,12 @@ task :deploy => :environment do
   end
 end
 
-namespace :custom_deploy do
-  desc 'create mongodb indexes'
-  task :create_indexes do
-    queue %[cd #{deploy_to}/#{current_path} && bundle exec rake db:mongoid:create_indexes]
-  end 
-end
+# namespace :custom_deploy do
+#   desc 'create mongodb indexes'
+#   task :create_indexes do
+#     queue %[cd #{deploy_to}/#{current_path} && bundle exec rake db:mongoid:create_indexes]
+#   end 
+# end
 
 # For help in making your deploy script, see the Mina documentation:
 #
