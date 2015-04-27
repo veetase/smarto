@@ -7,7 +7,7 @@ class Spot < ActiveRecord::Base
   validates :image, :image_shaped, length: { maximum: 100 }
   validates :avg_temperature, :mid_temperature, :max_temperature, :min_temperature, numericality: { greater_than: -100, less_than: 1000} # todo..  curracy the value
   validates :measure_duration, numericality: { greater_than: 0}
-  validates :location, :image, :image_shaped, :mid_temperature, :avg_temperature, :max_temperature, :min_temperature, :user, :start_measure_time, :perception_value, :perception_tags, presence: true
+  validates :location, :image, :image_shaped, :mid_temperature, :avg_temperature, :max_temperature, :min_temperature, :start_measure_time, :perception_value, :perception_tags, presence: true
   validate :validate_tags
 
   scope :near, lambda { |longitude, latitude, distance|

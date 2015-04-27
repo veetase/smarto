@@ -1,12 +1,17 @@
 require 'grab/weather_cn'
 class Api::V1::SpotsController < ApplicationController
-	before_action :authenticate_with_token, only: [:create, :destroy]
+	before_action :authenticate_with_token, only: [:destroy]
 	def show
 		respond_with spot = Spot.find(params[:id])
 	end
 
 	def create
-		spot = current_user.spots.build(spot_params)
+	    if current_user
+		    spot = current_user.spots.build(spot_params)
+		else
+		    spot = Spot.new(spot_params)
+		end
+		
 		if spot.save
       		render json: {result: "success"}, status: 201, location: [:api, spot]
     	else
