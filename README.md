@@ -186,11 +186,8 @@ http请求方式（以下简称方式）：POST
     "measure_duration": 60,
     "image": "http://pan.baidu.com/test.jpg",
     "image_shaped": "http://pan.baidu.com/test.jpg",
-    "location": {
-      "type": "Point",
-      "coordinates": [50.11, 50.25]
-    }
-    
+    "is_public": true,
+    "location": "POINT(50.55 50.55)"
   }
 }
 ```
@@ -236,20 +233,21 @@ http请求方式（以下简称方式）：POST
 ### 请求
 方式：GET
 
-地址：/spots.json
+地址：/spots/around/:area_id/:longitude/:latitude/:distance.json
 
 身份验证: 否
 
 示例：
 
 ```javascript
-	http://api.bixuange.com/spots/around.json?distance=1&area_id=101010100&coordinate[]=50&coordinate[]=50
+	http://api.bixuange.com/spots/around/101010100/50.55/50.55/1000.json
 ```
 参数含义：
 
-- distance: 可空， 表示距离用户当前点的距离，单位为千米。
+- distance: 表示距离用户当前点的距离，单位为米。
 - area_id: 用户所在位置在weather_cn中对应的area_id，area_id与城市对应表请参考weather cn的《常规数据接口区域ID(areaid)》表。
-- corrdinate：用户当前位置坐标，经度在前纬度在后。
+- longitude: 经度。
+- latitude: 纬度。
 
 
 ### 返回：
@@ -264,37 +262,26 @@ http请求方式（以下简称方式）：POST
   	{
     "spots": [
         {
-            "_id": {
-                "$oid": "55069d606c6f630781000000"
-            },
-            "created_at": "2015-03-16T09:07:44.253Z",
-            "env_info": {
-                "temperature": 19
-            },
-            "geo_near_distance": 0,
-            "location": {
-                "type": "Point",
-                "coordinates": [
-                    50,
-                    50
-                ]
-            },
-            "perception": {
-                "tags": [
-                    "Nice day",
-                    "windy",
-                    "Hot",
-                    "Cold"
-                ],
-                "comment": "good for walk"
-            },
-            "picture": {
-                "crude": "www.baidu.com",
-                "shaped": "www.baidu.com"
-            },
-            "updated_at": "2015-03-16T09:07:44.253Z",
-            "user_id": {
-                "$oid": "5502b4866c6f63327c040000"
+            "id": 1,
+            "perception_value": 40,
+            "perception_tags": [
+                "nihao",
+                "bucuo"
+            ],
+            "comment": "hahahahaha",
+            "avg_temperature": 15,
+            "mid_temperature": 15,
+            "max_temperature": 15,
+            "min_temperature": 15,
+            "start_measure_time": "2015-03-26T08:28:47.000Z",
+            "measure_duration": 60,
+            "image": "http://pan.baidu.com/test.jpg",
+            "image_shaped": "http://pan.baidu.com/test.jpg",
+            "location": "POINT (50.55 50.55)",
+            "user": {
+                "nick_name": "",
+                "avatar": "",
+                "gender": null
             }
         }
     ],
@@ -426,6 +413,41 @@ http请求方式（以下简称方式）：POST
 ##### 失败
 状态码：非201
 
+##重置密码
+### 请求
+方式：POST
+
+地址：//passwords/reset.json
+
+身份验证: 否
+
+示例：
+
+```javascript
+{
+  "user":{
+    "email": "734569969@qq.com",
+    "password": "88888888",
+    "password_confirmation": "88888888",
+    "reset_password_token": "QLTWYX"
+  }
+}
+```
+参数含义：
+
+- email: 用户邮箱。
+- password, password_confirmation: 密码和确认密码
+- reset_password_token: 校验码，在忘了密码流程里发往用户邮箱，在重置密码用于验证。
+
+
+### 返回：
+
+##### 成功
+状态码：201
+
+##### 失败
+状态码：非201
+
 
 ## 修改用户信息
 ### 请求
@@ -437,7 +459,7 @@ http请求方式（以下简称方式）：POST
 
 示例：
 
-请求链接：http://api.bixuange.com/users/5510085f6c6f630683000000.json
+请求链接：http://api.bixuange.com/users/2.json
 
 参数：
 
@@ -448,11 +470,10 @@ http请求方式（以下简称方式）：POST
     		"email": "734569969@qq.sbb.com",
     		"nick_name": "ssssssbddddbbbb",
     		"gender": 1,
-    		"body_condition": {
-      			"height": 170,
-      			"weight": 60,
-      			"tags": ["nice", "healthy"]
-    		}
+      		"height": 170,
+      		"weight": 60,
+      		"tags": ["nice", "healthy"]
+
   		}
 	}
 ```
