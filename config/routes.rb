@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       	  get 'around/:area_id/:lon/:lat/:distance', :action => 'around', :constraints => {:lon => /\-*\d+.\d+/ , :lat => /\-*\d+.\d+/}
       	end
       end
+      get 'qiniu_token/:bucket', to: 'qiniu_token#create'
     end
   end
 end
