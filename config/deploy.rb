@@ -22,7 +22,7 @@ set :term_mode, nil
 
 # Manually create these paths in shared/ (eg: shared/config/mongoid.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
-set :shared_paths, ['config/database.yml', 'log']
+set :shared_paths, ['.env', 'log', 'config/puma.rb']
 
 # Optional settings:
 set :user, 'root'    # Username in the server to SSH to.
@@ -46,13 +46,10 @@ end
 # all releases.
 task :setup => :environment do
   queue! %[mkdir -p "#{deploy_to}/#{shared_path}/log"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/log"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared
 
-  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/config"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/config"]
-
-  queue! %[touch "#{deploy_to}/#{shared_path}/config/mongoid.yml"]
-  queue  %[echo "-----> Be sure to edit '#{deploy_to}/#{shared_path}/config/mongoid.yml'."]
+  queue! %[touch "#{deploy_to}/#{shared_path}/.env"]
+  queue  %[echo "-----> Be sure to edit '#{deploy_to}/#{shared_path}/.env'."]
  # puma.rb
   queue! %[touch "#{deploy_to}/shared/config/puma.rb"]
   queue  %[echo "-----> Be sure to edit 'shared/config/puma.rb'."]
@@ -101,7 +98,7 @@ end
 #   desc 'create mongodb indexes'
 #   task :create_indexes do
 #     queue %[cd #{deploy_to}/#{current_path} && bundle exec rake db:mongoid:create_indexes]
-#   end 
+#   end
 # end
 
 # For help in making your deploy script, see the Mina documentation:
@@ -110,4 +107,3 @@ end
 #  - http://nadarei.co/mina/tasks
 #  - http://nadarei.co/mina/settings
 #  - http://nadarei.co/mina/helpers
-
