@@ -487,6 +487,33 @@ http请求方式（以下简称方式）：POST
 ##### 失败
 状态码：非200
 
+## 获取七牛upload token
+### 请求
+方式：GET
+
+地址：/qiniu_token/\(bucket_name)}.json
+
+身份验证: 否
+
+示例：
+
+请求链接：http://api.bixuange.com/qiniu_token/avatar.json
+
+参数：bucket_name
+
+### 返回：
+
+##### 成功
+状态码：200
+
+{
+    "qiniu_token": qiniu_upload_token,
+    "expire_at": unix time(upload token的过期时间，默认为20个小时)
+}
+
+##### 失败
+状态码：非200
+
 
 
 
