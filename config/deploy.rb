@@ -11,7 +11,7 @@ require 'mina/rvm'    # for rvm support. (http://rvm.io)
 #   repository   - Git repo to clone from. (needed by mina/git)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
-set :domain, 'bixuange.com'
+set :domain, 'www.bixuange.com'
 set :deploy_to, '/alidata/www/api'
 set :repository, 'git@github.com:Bixuange/ShengMaoDou-server.git'
 set :branch, 'postgresql'
@@ -22,7 +22,7 @@ set :term_mode, nil
 
 # Manually create these paths in shared/ (eg: shared/config/mongoid.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
-set :shared_paths, ['.env', 'log', 'config/puma.rb']
+set :shared_paths, ['.env', 'log', 'config/puma.rb', 'public/uploads', 'tmp/pids']
 
 # Optional settings:
 set :user, 'root'    # Username in the server to SSH to.
@@ -46,7 +46,7 @@ end
 # all releases.
 task :setup => :environment do
   queue! %[mkdir -p "#{deploy_to}/#{shared_path}/log"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}"]
 
   queue! %[touch "#{deploy_to}/#{shared_path}/.env"]
   queue  %[echo "-----> Be sure to edit '#{deploy_to}/#{shared_path}/.env'."]
@@ -67,8 +67,12 @@ task :setup => :environment do
   queue  %[echo "-----> Be sure to edit 'shared/log/puma.stderr.log'."]
 
   # sidekiq needs a place to store its pid file and log file
-  queue! %[mkdir -p "#{deploy_to}/shared/pids/"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/pids"]
+  queue! %[mkdir -p "#{deploy_to}/shared/tmp/pids"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/tmp/pids"]
+
+  # puma bind sock file place
+  queue! %[mkdir -p "#{deploy_to}/shared/tmp/sockets"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/tmp/sockets"]
 end
 
 desc "Deploys the current version to the server."
