@@ -1,9 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::UsersController, :type => :controller do
+  before(:each) do
+    @user = FactoryGirl.create :user
+  end
+
   describe "GET #show" do
     before(:each) do
-      @user = FactoryGirl.create :user
       get :show, id: @user.id
     end
 
@@ -49,30 +52,73 @@ RSpec.describe Api::V1::UsersController, :type => :controller do
   # end
 
   describe "PUT/PATCH #update" do
-
-    context "when is successfully updated" do
-      before(:each) do
-        @user = FactoryGirl.create :user
-        api_authorization_header @user.auth_token
-        patch :update, { id: @user.id,
+    before(:each) do
+      api_authorization_header @user.auth_token
+      patch :update, { id: @user.id,
                          user: { nick_name: "new_name" } }
-      end
+    end
 
+    describe "when is successfully updated" do
       it "renders the json representation for the updated user" do
         expect(json_response[:nick_name]).to eql "new_name"
       end
 
       it { should respond_with 200 }
     end
+  end
 
-    context "when is not created" do
-      before(:each) do
-        @user = FactoryGirl.create :user
-        api_authorization_header @user.auth_token
-        patch :update, { id: @user.id,
+  describe "when is not created" do
+    before(:each) do
+      api_authorization_header @user.auth_token
+      patch :update, { id: @user.id,
                          user: { nick_name: "new_namenew_namenew_namenew_namenew_name" } }
+    end
+
+    it "renders an errors json" do
+      expect(json_response).to have_key(:errors)
+    end
+
+    it { should respond_with 422 }
+  end
+
+  describe "GET #change_phone" do
+    before(:each) do
+      api_authorization_header @user.auth_token
+      allow(:user).to receive(:random_code){"1234"}
+      get :change_phone
+    end
+
+    it "should set the user confirmation_token" do
+      expect(@user.confirmation_token.to eql "1234")
+    end
+
+    it { should respond_with 200 }
+  end
+
+  describe "PUT/PATCH #reset_phone" do
+    before(:each) do
+      @user = FactoryGirl.create :user, confirmation_token: "1234", confirmation_expire_at: Time.now.since(600)
+      api_authorization_header @user.auth_token
+    end
+
+    describe "when is successfully updated" do
+      before(:each) do
+        patch :reset_phone, {user: { confirm_token: "1234", phone: "18789898989" } }
+      end
+      it "should change the user's phone number to the new one" do
+        expect(@user.phone.to eql "18789898989")
+        expect(@user.confirmation_token.to eql nil)
+        expect(@user.confirmation_expire_at.to eql nil)
       end
 
+      it { should respond_with 204 }
+    end
+
+    describe "when is not created" do
+      before(:each) do
+        patch :reset_phone, {user: { confirm_token: "4321", phone: "18789898989" } }
+      end
+      
       it "renders an errors json" do
         expect(json_response).to have_key(:errors)
       end

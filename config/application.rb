@@ -38,6 +38,7 @@ module Smarto
       g.helper = false
     end
 
+    config.active_record.raise_in_transactional_callbacks = true
     config.autoload_paths += %W(\#{config.root}/lib)
     config.filter_parameters += [:password, :password_confirmation]
     config.active_job.queue_adapter = :sidekiq

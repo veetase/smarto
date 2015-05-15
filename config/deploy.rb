@@ -11,7 +11,7 @@ require 'mina/rvm'    # for rvm support. (http://rvm.io)
 #   repository   - Git repo to clone from. (needed by mina/git)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
-set :domain, 'www.bixuange.com'
+set :domain, 'bixuange.com'
 set :deploy_to, '/alidata/www/api'
 set :repository, 'git@github.com:Bixuange/ShengMaoDou-server.git'
 set :branch, 'postgresql'

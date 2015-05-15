@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150414045803) do
+ActiveRecord::Schema.define(version: 20150515075827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20150414045803) do
     t.boolean   "is_public",                                                                   default: true
     t.geography "location",           limit: {:srid=>4326, :type=>"point", :geographic=>true},                null: false
     t.integer   "user_id"
+    t.integer   "type",               limit: 2
   end
 
   add_index "spots", ["location"], name: "index_spots_on_location", using: :gist
@@ -48,10 +49,7 @@ ActiveRecord::Schema.define(version: 20150414045803) do
     t.string   "nick_name",                          default: ""
     t.string   "avatar",                             default: ""
     t.integer  "gender",                   limit: 2
-    t.float    "height"
-    t.float    "weight"
     t.string   "tags",                                                         array: true
-    t.string   "email",                              default: "", null: false
     t.string   "encrypted_password",                 default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -66,11 +64,20 @@ ActiveRecord::Schema.define(version: 20150414045803) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.datetime "reset_password_expire_at"
+    t.string   "phone"
+    t.integer  "dou_id"
+    t.integer  "figure"
+    t.integer  "age"
+    t.integer  "failed_attempts",                    default: 0,  null: false
+    t.string   "unlock_token"
+    t.datetime "locked_at"
+    t.datetime "confirmation_expire_at"
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["dou_id"], name: "index_users_on_dou_id", unique: true, using: :btree
+  add_index "users", ["phone"], name: "index_users_on_phone", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "weather_station_spots", force: :cascade do |t|
