@@ -18,6 +18,7 @@ RSpec.describe Spot, :type => :model do
   it { should respond_to(:comment) }
   it { should respond_to(:start_measure_time) }
   it { should respond_to(:measure_duration) }
+  it { should respond_to(:category) }
 
   it { should be_valid }
 end

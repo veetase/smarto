@@ -11,17 +11,17 @@ class User < ActiveRecord::Base
     FEMALE    = 2
   end
 
+
   #Validates
   validates_presence_of    :password, :on=>:create
-  validates_length_of    :password, :within => Devise.password_length, :allow_blank => true
   validates :auth_token, :phone, uniqueness: true
-  validates :password, length: { is: 4}
+  validates :password, length: { is: 4}, :on=>:create
   validates :phone, format: { with: /\A1[3, 5, 8]\d{9}\z/i}
   validates :nick_name, length: { maximum: 20 }
   validates :avatar, length: { maximum: 100 }
   validates :gender, inclusion: { in: [Gender::UNDEFINED, Gender::MALE, Gender::FEMALE]}, :allow_nil => true
-  validates :figure, numericality: { greater_than: -10, less_than: 50} #The heaviest man ever lived in the world is 635
-  validates :age, numericality: { greater_than: 0, less_than: 130} #The heaviest man ever lived in the world is 635
+  validates :figure, numericality: { greater_than: -10, less_than: 50}, :allow_nil => true #The heaviest man ever lived in the world is 635
+  validates :age, numericality: { greater_than: 0, less_than: 130}, :allow_nil => true #The heaviest man ever lived in the world is 635
   validate :validate_tags
   #to ensure auto token is unique
   def generate_authentication_token!
@@ -39,7 +39,8 @@ class User < ActiveRecord::Base
     peroid = BxgConfig.user.reset_password_expire_secondes
     self.reset_password_expire_at = self.reset_password_sent_at.since(peroid)
     sms = UcSms.new
-    sms.delay.send_sms(sms.reset_password_sms(user.phone, code))
+    UcSmsJob.perform_async(self.phone, code)
+    self.save
     #UserMailer.send_identify_code(self.email, code).deliver_later if self.save
   end
 
@@ -50,7 +51,8 @@ class User < ActiveRecord::Base
     peroid = BxgConfig.user.confirmation_expire_secondes
     self.confirmation_expire_at = self.confirmation_sent_at.since(peroid)
     sms = UcSms.new
-    sms.delay.send_sms(sms.reset_password_sms(user.phone, code))
+    UcSmsJob.perform_async(self.phone, code)
+    self.save
   end
 
   def valid_confirm_token?(token)
@@ -74,6 +76,6 @@ class User < ActiveRecord::Base
   end
 
   def random_code
-    code = [*"A".."Z", *"0".."9"].sample(4).join
+    code = [*"0".."9"].sample(4).join
   end
 end

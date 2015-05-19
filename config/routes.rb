@@ -3,14 +3,19 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
-  #devise_for :users, :controllers => {:confirmations => "devise_overrides/confirmations", :registrations=> "devise_overrides/registrations"}
+  devise_for :users, :controllers => {:confirmations => "devise_overrides/confirmations", :registrations=> "devise_overrides/registrations"}
   resources :subscribers
   namespace :api, defaults: {format: :json}, path: '/'  do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       resources :passwords, :only => [:create] do
         put 'reset', on: :collection
       end
-      resources :users, :only => [:update, :show]
+      resources :users, :only => [:update, :show] do
+        collection do
+          get 'change_phone'
+          put 'reset_phone'
+        end
+      end
       resources :sessions, :only => [:create] do
         collection do
           delete 'logout'

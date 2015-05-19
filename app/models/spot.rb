@@ -1,15 +1,20 @@
 class Spot < ActiveRecord::Base
   belongs_to :user
+  module Category
+    INDOOR  = 0
+    OUTDOOR = 1
+    BODY    = 2
+  end
   set_rgeo_factory_for_column(:location,
                                   RGeo::Geographic.spherical_factory(:srid => 4326))
-  validates :perception_value, numericality: { greater_than: －50, less_than: 50}
+  validates :perception_value, numericality: { greater_than: -50, less_than: 50}
   validates :comment, length: { maximum: 200 }
   validates :image, :image_shaped, length: { maximum: 100 }
   validates :avg_temperature, :mid_temperature, :max_temperature, :min_temperature, numericality: { greater_than: -100, less_than: 1000} # todo..  curracy the value
   validates :measure_duration, numericality: { greater_than: 0}
   validates :location, :image, :image_shaped, :mid_temperature, :avg_temperature, :max_temperature, :min_temperature, :start_measure_time, :perception_value, :perception_tags, presence: true
   validate :validate_tags
-  validate :type, numericality: { greater_than: 0, less_than: 10}
+  validates :category, numericality: { greater_than: 0, less_than: 10}
 
   scope :near, lambda { |longitude, latitude, distance|
     where("ST_Distance(location,

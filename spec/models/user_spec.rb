@@ -1,5 +1,6 @@
 require 'rails_helper'
-
+require 'sidekiq/testing'
+Sidekiq::Testing.fake!
 RSpec.describe User, :type => :model do
   before { @user = FactoryGirl.build(:user) }
 
@@ -23,6 +24,22 @@ RSpec.describe User, :type => :model do
       Devise.stub(:friendly_token).and_return("auniquetoken123")
       @user.generate_authentication_token!
       expect(@user.auth_token).to eql "auniquetoken123"
+    end
+  end
+
+  describe "reset password" do
+    it "should change the user reset_password_token" do
+      allow_any_instance_of(User).to receive(:random_code).and_return("1234")
+      @user.reset_password
+      expect(@user.reset_password_token).to eql "1234"
+    end
+
+    it "should create a sms job" do
+      assert_equal 1, UcSmsJob.jobs.size
+    end
+
+    it "should increment the count" do
+      expect{@user.reset_password}.to change{UcSmsJob.jobs.size}.by(1)
     end
   end
 

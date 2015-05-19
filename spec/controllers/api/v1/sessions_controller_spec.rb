@@ -10,7 +10,7 @@ RSpec.describe Api::V1::SessionsController, :type => :controller do
 
       before(:each) do
         @request.env["devise.mapping"] = Devise.mappings[:user]
-        credentials = { email: @user.email, password: "12345678" }
+        credentials = { phone: @user.phone, password: "1234" }
         post :create, { session: credentials }
       end
 
@@ -25,7 +25,7 @@ RSpec.describe Api::V1::SessionsController, :type => :controller do
     context "when the credentials are incorrect" do
 
       before(:each) do
-        credentials = { email: @user.email, password: "invalidpassword" }
+        credentials = { email: @user.phone, password: "4321" }
         post :create, { session: credentials }
       end
 

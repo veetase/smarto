@@ -84,12 +84,12 @@ RSpec.describe Api::V1::UsersController, :type => :controller do
   describe "GET #change_phone" do
     before(:each) do
       api_authorization_header @user.auth_token
-      allow(:user).to receive(:random_code){"1234"}
+      allow_any_instance_of(User).to receive(:random_code).and_return("1234")
       get :change_phone
     end
 
     it "should set the user confirmation_token" do
-      expect(@user.confirmation_token.to eql "1234")
+      expect(assigns[:user].confirmation_token).to eql "1234"
     end
 
     it { should respond_with 200 }
@@ -97,18 +97,18 @@ RSpec.describe Api::V1::UsersController, :type => :controller do
 
   describe "PUT/PATCH #reset_phone" do
     before(:each) do
-      @user = FactoryGirl.create :user, confirmation_token: "1234", confirmation_expire_at: Time.now.since(600)
+      @user = FactoryGirl.create :user, phone: "15966946698", confirmation_token: "1234", confirmation_expire_at: Time.now.since(600)
       api_authorization_header @user.auth_token
     end
 
     describe "when is successfully updated" do
       before(:each) do
-        patch :reset_phone, {user: { confirm_token: "1234", phone: "18789898989" } }
+        patch :reset_phone, {user: { confirm_token: "1234", phone: "13888888888" } }
       end
       it "should change the user's phone number to the new one" do
-        expect(@user.phone.to eql "18789898989")
-        expect(@user.confirmation_token.to eql nil)
-        expect(@user.confirmation_expire_at.to eql nil)
+        expect(assigns[:user].phone).to eql "13888888888"
+        expect(assigns[:user].confirmation_token).to eql nil
+        expect(assigns[:user].confirmation_expire_at).to eql nil
       end
 
       it { should respond_with 204 }
@@ -118,7 +118,7 @@ RSpec.describe Api::V1::UsersController, :type => :controller do
       before(:each) do
         patch :reset_phone, {user: { confirm_token: "4321", phone: "18789898989" } }
       end
-      
+
       it "renders an errors json" do
         expect(json_response).to have_key(:errors)
       end

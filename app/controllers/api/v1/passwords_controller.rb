@@ -1,7 +1,7 @@
 class Api::V1::PasswordsController < ApplicationController
   respond_to :json
   def create
-    user = password_params[:email].present? && User.where(email: password_params[:email]).first
+    user = password_params[:phone].present? && User.where(phone: password_params[:phone]).first
     if user
       user.reset_password
       head 201
@@ -11,11 +11,10 @@ class Api::V1::PasswordsController < ApplicationController
   end
 
   def reset
-    user = User.where(email: password_params[:email], reset_password_token: password_params[:reset_password_token]).first
+    user = User.where(phone: password_params[:phone], reset_password_token: password_params[:reset_password_token]).first
     if user
       if user.reset_password_expire_at > Time.now
         user.password = password_params[:password]
-        user.password_confirmation = password_params[:password_confirmation]
         if user.save
           head 201
         else
@@ -31,6 +30,6 @@ class Api::V1::PasswordsController < ApplicationController
 
   private
   def password_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :reset_password_token)
+    params.require(:user).permit(:phone, :password, :reset_password_token)
   end
 end

@@ -11,8 +11,9 @@ FactoryGirl.define do
     image {Faker::Avatar.image}
     image_shaped {Faker::Avatar.image}
     is_public true
-    perception_value {rand * 100}
+    perception_value 0
     location "POINT(#{Faker::Address.longitude.to_f} #{Faker::Address.latitude.to_f})"
+    category 1
     user
   end
 end
