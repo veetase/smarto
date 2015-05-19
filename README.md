@@ -46,13 +46,12 @@ http请求方式（以下简称方式）：POST
 ```javascript
 {
 	"user": {
-		"email": "734569969@qq.com",
-		"password" : "12345678",
-		"password_confirmation" : "12345678"
+		"phone": "734569969@qq.com",
+		"password" : "1234"
 	}
 }	
 ```
-参数含义：email: 默认的账户类型（之后会添加微信等其它登录方式），password：密码，password_confirmation：密码确认。
+参数含义：email: 默认的账户类型（之后会添加微信等其它登录方式），password：密码。
 
 
 ### 返回：
@@ -68,14 +67,14 @@ http请求方式（以下简称方式）：POST
     "auth_token_expire_at": "2015-04-15T08:18:16.284Z",
     "avatar": "",
     "created_at": "2015-03-16T08:18:16.283Z",
-    "email": "734569969@vib.qq.com",
+    "phone": "18888888888",
     "updated_at": "2015-03-16T08:18:16.283Z"
 }	
 ```
 
 返回内容含义：
 
-* email: 账号
+* phone: 手机号
 * auth_token: 用于验证用户信息
 * created_at: 用户创建时间
 * avatar: 用户头像地址（用户未上传头像之前的默认头像）
@@ -98,8 +97,8 @@ http请求方式（以下简称方式）：POST
 
 返回内容含义：
 
-* email, password: 导致失败的字段
-* email键对应的值: 失败的原因
+* phone, password: 导致失败的字段
+* phone键对应的值: 失败的原因
 
 
 ## 登录
@@ -113,12 +112,12 @@ http请求方式（以下简称方式）：POST
 ```javascript
 {
 	"session": {
-		"email": "734569969@qq.com",
-		"password" : "12345678"
+		"phone": "734569969@qq.com",
+		"password" : "1234"
 	}
 }	
 ```
-参数含义：email: 默认的账户类型（之后会添加微信等其它登录方式），password：密码。
+参数含义：phone: 默认的账户类型（之后会添加微信等其它登录方式），password：密码。
 
 
 ### 返回：
@@ -187,7 +186,8 @@ http请求方式（以下简称方式）：POST
     "image": "http://pan.baidu.com/test.jpg",
     "image_shaped": "http://pan.baidu.com/test.jpg",
     "is_public": true,
-    "location": "POINT(50.55 50.55)"
+    "location": "POINT(50.55 50.55)",
+    "type": 1
   }
 }
 ```
@@ -202,6 +202,7 @@ http请求方式（以下简称方式）：POST
 - temperature: 温度信息, 分别代表最高温度，最低温度，温度中值，和平均温度，单位：摄氏度。
 - start_measure_time: 开始测量的时间点。
 - measure_duration: 测量时长，单位：秒。
+- type: 类型，int值。indoor：0，outdoor：1，body：2
 
 
 ### 返回：
@@ -396,13 +397,13 @@ http请求方式（以下简称方式）：POST
 ```javascript
 {
   "user":{
-    "email": "734569969@qq.com"
+    "phone": "734569969@qq.com"
   }
 }
 ```
 参数含义：
 
-- email: 用户邮箱，重置密码时用来接收系统发送的验证码。
+- phone: 用户手机号，重置密码时用来接收系统发送的验证码。
 
 
 ### 返回：
@@ -426,17 +427,16 @@ http请求方式（以下简称方式）：POST
 ```javascript
 {
   "user":{
-    "email": "734569969@qq.com",
+    "phone": "734569969@qq.com",
     "password": "88888888",
-    "password_confirmation": "88888888",
     "reset_password_token": "QLTWYX"
   }
 }
 ```
 参数含义：
 
-- email: 用户邮箱。
-- password, password_confirmation: 密码和确认密码
+- phone: 用户手机号。
+- password: 新密码
 - reset_password_token: 校验码，在忘了密码流程里发往用户邮箱，在重置密码用于验证。
 
 
@@ -467,11 +467,10 @@ http请求方式（以下简称方式）：POST
 
 	{
   		"user":{
-    		"email": "734569969@qq.sbb.com",
+    		"phone": "734569969@qq.sbb.com",
     		"nick_name": "ssssssbddddbbbb",
     		"gender": 1,
-      		"height": 170,
-      		"weight": 60,
+      		"figure": 2,
       		"tags": ["nice", "healthy"]
 
   		}
