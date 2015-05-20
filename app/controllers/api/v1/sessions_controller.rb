@@ -8,7 +8,7 @@ class Api::V1::SessionsController < ApplicationController
      # sign_in :user, store: false if user
       user.generate_authentication_token!
       user.save
-      render json: user.as_json(only: [:_id, :auth_token, :avatar]), status: 200
+      render json: user.as_json, status: 200
     else
       render json: { errors: "Invalid email or password" }, status: 422
     end
