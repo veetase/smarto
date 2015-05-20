@@ -4,4 +4,7 @@ module Api
 
 	class Unauthorized < StandardError
 	end
+
+	class ParameterInvalid < StandardError
+	end
 end

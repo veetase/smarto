@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   include Authenticable
 
   rescue_from Api::NotFound, ActionController::RoutingError, ActiveRecord::RecordNotFound, with: :not_found
-  rescue_from ActionController::UnknownFormat, with: :invalid_format
+  rescue_from ActionController::UnknownFormat, Api::ParameterInvalid, with: :invalid_format
   rescue_from Api::Unauthorized, with: :unauth
   rescue_from ActionController::ParameterMissing, ActiveRecord::RecordInvalid, with: :invalid_value
 

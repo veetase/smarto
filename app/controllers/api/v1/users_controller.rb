@@ -1,9 +1,25 @@
+require 'uti/uc_sms'
 class Api::V1::UsersController < ApplicationController
   respond_to :json
   before_action :authenticate_with_token, only: [:update, :change_phone, :reset_phone]
 
   def show
     respond_with user = User.find(params[:id]).json_show_to_others
+  end
+
+  def check_phone
+    phone = params[:phone]
+    raise Api::ParameterInvalid unless phone.present? && User.valid_phone_format.match(phone)
+    sign = nil
+    if User.where(phone: phone).first
+      registed = true
+    else
+      registed = false
+      sms = UcSms.new
+      sign = sms.create_sign(phone)
+    end
+
+    render json: { registed: registed, sign: sign }
   end
 
   # def create

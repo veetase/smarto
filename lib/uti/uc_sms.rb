@@ -8,6 +8,7 @@ class UcSms
     @soft_version = BxgConfig.uc_sms.soft_version
     @account_sid = BxgConfig.uc_sms.account_sid
     @auth_token = ENV['SMS_AUTH_TOKEN']
+    @smart_key = ENV['SMS_SMART_KEY']
     @app_id = BxgConfig.uc_sms.app_id
   end
 
@@ -41,11 +42,17 @@ class UcSms
     reset_password_sms
   end
 
+  def create_sign(phone)
+    sign_consist = "#{@account_sid}#{@app_id}#{phone}#{@smart_key}"
+    sign = md5_hexdigest(sign_consist)
+    sign
+  end
+
+
+  private
   def create_sig_parameter(time)
     sig_params_consist = "#{@account_sid}#{@auth_token}#{time}"
-    md5 = Digest::MD5.new
-    md5 << sig_params_consist
-    md5.hexdigest.upcase
+    md5_hexdigest(sig_params_consist).upcase
   end
 
   def create_auth_string(time)
@@ -55,5 +62,11 @@ class UcSms
 
   def create_http_headers(auth_string)
     headers = { "Authorization"=> auth_string, "Accept"=> "application/json", "Content-Type" => "application/json;charset=utf-8" }
+  end
+
+  def md5_hexdigest(str)
+    md5 = Digest::MD5.new
+    md5 << str
+    md5.hexdigest
   end
 end

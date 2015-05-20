@@ -1,5 +1,7 @@
 require 'uti/uc_sms'
 class User < ActiveRecord::Base
+  self.sequence_name = "dou_id_seq"
+  before_create :next_seq
   has_many :spots
   before_create :generate_authentication_token!
   devise :database_authenticatable, :async, :registerable,
@@ -16,7 +18,7 @@ class User < ActiveRecord::Base
   validates_presence_of    :password, :on=>:create
   validates :auth_token, :phone, uniqueness: true
   validates :password, length: { is: 4}, :on=>:create
-  validates :phone, format: { with: /\A1[3, 5, 8]\d{9}\z/i}
+  validates :phone, format: { with: /\A1[3, 5, 7, 8]\d{9}\z/i}
   validates :nick_name, length: { maximum: 20 }
   validates :avatar, length: { maximum: 100 }
   validates :gender, inclusion: { in: [Gender::UNDEFINED, Gender::MALE, Gender::FEMALE]}, :allow_nil => true
@@ -38,7 +40,6 @@ class User < ActiveRecord::Base
     self.reset_password_sent_at = Time.now
     peroid = BxgConfig.user.reset_password_expire_secondes
     self.reset_password_expire_at = self.reset_password_sent_at.since(peroid)
-    sms = UcSms.new
     UcSmsJob.perform_async(self.phone, code)
     self.save
     #UserMailer.send_identify_code(self.email, code).deliver_later if self.save
@@ -50,7 +51,6 @@ class User < ActiveRecord::Base
     self.confirmation_sent_at = Time.now
     peroid = BxgConfig.user.confirmation_expire_secondes
     self.confirmation_expire_at = self.confirmation_sent_at.since(peroid)
-    sms = UcSms.new
     UcSmsJob.perform_async(self.phone, code)
     self.save
   end
@@ -67,6 +67,10 @@ class User < ActiveRecord::Base
     self.as_json(only: [:id, :auth_token, :auth_token_expire_at, :phone, :nick_name, :gender, :avatar, :height, :weight, :tags])
   end
 
+  def self.valid_phone_format
+    /\A1[3, 5, 7, 8]\d{9}\z/i
+  end
+
   private
   def validate_tags
     return true if tags.nil?
@@ -77,5 +81,10 @@ class User < ActiveRecord::Base
 
   def random_code
     code = [*"0".."9"].sample(4).join
+  end
+
+  def next_seq
+    result = User.connection.execute("SELECT nextval('dou_id_seq')")
+    self.id = result[0]['nextval']
   end
 end

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
         collection do
           get 'change_phone'
           put 'reset_phone'
+          get 'check_phone/:phone', :action => 'check_phone'
         end
       end
       resources :sessions, :only => [:create] do

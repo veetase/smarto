@@ -65,9 +65,8 @@ ActiveRecord::Schema.define(version: 20150518062919) do
     t.datetime "confirmation_sent_at"
     t.datetime "reset_password_expire_at"
     t.string   "phone"
-    t.integer  "dou_id"
-    t.integer  "figure"
     t.integer  "age"
+    t.integer  "figure"
     t.integer  "failed_attempts",                    default: 0,  null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
@@ -76,7 +75,6 @@ ActiveRecord::Schema.define(version: 20150518062919) do
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
-  add_index "users", ["dou_id"], name: "index_users_on_dou_id", unique: true, using: :btree
   add_index "users", ["phone"], name: "index_users_on_phone", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
