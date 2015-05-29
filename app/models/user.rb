@@ -60,11 +60,11 @@ class User < ActiveRecord::Base
   end
 
   def json_show_to_others
-    self.as_json(only: [:avatar, :nick_name, :gender, :weight, :height, :tags])
+    self.as_json(only: [:avatar, :nick_name, :gender, :tags])
   end
 
   def json_show_to_self
-    self.as_json(only: [:id, :auth_token, :auth_token_expire_at, :phone, :nick_name, :gender, :avatar, :height, :weight, :tags])
+    self.as_json(only: [:id, :auth_token, :auth_token_expire_at, :phone, :nick_name, :gender, :avatar, :figure, :tags])
   end
 
   def self.valid_phone_format

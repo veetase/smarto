@@ -6,12 +6,12 @@ class Api::V1::SpotsController < ApplicationController
 	end
 
 	def create
-	    if current_user
+	  if current_user
 		    spot = current_user.spots.build(spot_params)
 		else
 		    spot = Spot.new(spot_params)
 		end
-		
+
 		if spot.save
       		render json: {result: "success"}, status: 201, location: [:api, spot]
     	else
