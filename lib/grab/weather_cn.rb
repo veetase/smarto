@@ -45,7 +45,7 @@ class WeatherCn
       forecast = forecast_v
       persist_temperature(forecast) # backup temperature to database, only temperature
       weather = {index: index, forecast: forecast}
-      
+
       $redis.set(cache_name, weather.to_json)
       $redis.expire(cache_name, WeatherCnSetting.weather_cn.cache_peroid)
     end
@@ -57,7 +57,7 @@ class WeatherCn
     key = Base64.strict_encode64("#{OpenSSL::HMAC.digest(digest, @private_key, public_key)}")
     URI.encode(key)
   end
-  
+
   private
   def persist_temperature(forecast)
     err = nil
@@ -67,14 +67,14 @@ class WeatherCn
       publish_time = forecast["f"]["f0"]
       area_id = forecast["c"]["c1"]
       altitude = forecast["c"]["c15"]
-      
+
     rescue Exception => e
       err = e.message
       puts "weather info parse error, please check the format from weather cn"
-      puts e.message 
+      puts e.message
       puts e.backtrace.inspect
     end
-    
+
     unless err
       weather_spot = StationSpot::Cn.new(max_temperature: max_temperature, min_temperature: min_temperature, altitude: altitude, publish_time: publish_time, area_id: area_id)
       weather_spot.save

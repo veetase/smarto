@@ -3,7 +3,7 @@ module ExceptionHandle
     render json: { errors: I18n.t("exception.not_found")}, status: :not_found
   end
 
-  def valid_format
+  def invalid_format
     render json: { errors: I18n.t("exception.request_format_must_be_json")}, status: :not_acceptable
   end
 

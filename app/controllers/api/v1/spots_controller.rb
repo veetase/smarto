@@ -32,10 +32,10 @@ class Api::V1::SpotsController < ApplicationController
 
 		spots = Spot.near(longitude, latitude, distance).limit(10)
 		weather = nil
-		if area_id = params[:area_id]
-			weather_cn = WeatherCn.new(area_id)
-			weather = weather_cn.fetch_weather
-		end
+		# if area_id = params[:area_id]
+		# 	weather_cn = WeatherCn.new(area_id)
+		# 	weather = weather_cn.fetch_weather
+		# end
 
 		render json: {spots: spots.as_json(include: { user: { only: [:_id, :avatar, :gender, :nick_name]} }, except: [:is_public, :user_id]), weather_cn: weather}
 	end
