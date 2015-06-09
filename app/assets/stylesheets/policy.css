@@ -56,10 +56,10 @@ input[type=checkbox]:checked{ background: url(../image/checkbox_btn.png) 0 -26px
 .main-sale li:first-child{ margin-right: 4px;}
 .main-sale li a{ display: block; width:146px; height: 123px; border: #dcdada solid 1px; }
 .main-sale li a span{ display: block;}
-#.main-sale li .new-shelves{ background: url(../image/shelves.jpg) 0 0 no-repeat; background-size: 148px 125px;}
+.main-sale li .new-shelves{ background: url(../image/shelves.jpg) 0 0 no-repeat; background-size: 148px 125px;}
 .main-sale li .new-shelves .tit{ color: #ea3e3d; font-size: 18px; padding: 7px 0 7px 10px;}
 .main-sale li .new-shelves .tip{ color: #6c6c6c; padding-left: 10px;}
-#.main-sale li .flash-sale{ background: url(../image/sale.jpg) 0 0 no-repeat; background-size: 148px 125px;}
+.main-sale li .flash-sale{ background: url(../image/sale.jpg) 0 0 no-repeat; background-size: 148px 125px;}
 .main-sale li .flash-sale .tit{ color: #bdaf41; font-size: 18px; padding: 7px 0 7px 10px;}
 .main-sale li .flash-sale .countdown{ padding-left: 10px;}
 .main-sale li .flash-sale .countdown e{ color: #fff; background: #000; padding: 0 1px;}
@@ -333,7 +333,7 @@ nav ul li a .nav-cart{ background-position: -162px -126px;}
 .yhq-inp{ float: left; margin-right: 10px;}
 .voucher-num{ width: 100%; padding: 10px 0; text-indent: 10px; margin-top: 10px; border: #cdcdcd solid 1px;border-radius:2px; -webkit-border-radius:2px; -moz-border-radius:2px;}
 .price-lef{ width: 100px; height: 50px; line-height: 50px; text-indent: 10px;}
-.price-rig{-webkit-box-flex:1; width: auto; height: 50px; line-height: 50px; text-align: right; padding-right: 10px;}  
+.price-rig{-webkit-box-flex:1; width: auto; height: 50px; line-height: 50px; text-align: right; padding-right: 10px;}
 .price-con{ margin-top: 20px;}
 .view-order{ background: -webkit-gradient(linear,left top,left bottom,from(#ffffff),to(#e9e9e9)); border: #d2d2d2 solid 1px; border-bottom: none; color: #666; margin-top: 10px;}
 .addr-con{ margin-bottom: 10px; display: block; padding: 10px;}
@@ -442,5 +442,3 @@ nav ul li a .nav-cart{ background-position: -162px -126px;}
 .promotion .red-bg{ margin-right: 8px; padding: 4px 6px; color: #fff; background-color: #ff6600; border-radius: 2px;}
 .promotion .act-detail{ float: right;}
 .promotion .act-detail a{ color: #b2b2b2;}
-
-
