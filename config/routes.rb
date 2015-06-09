@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
   devise_for :users, :controllers => {:confirmations => "devise_overrides/confirmations", :registrations=> "devise_overrides/registrations"}
   resources :subscribers
-  namespace :api, defaults: {format: :json}, path: '/'  do
+  namespace :api, defaults: {format: :json}, path: '/', constraints: { subdomain: 'api' } do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       resources :passwords, :only => [:create] do
         put 'reset', on: :collection
