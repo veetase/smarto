@@ -5,6 +5,7 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w(dou.html 404.html)
 Rails.application.config.assets.paths << Rails.root.join('app/assets/html')
 Rails.application.config.assets.register_mime_type('text/html', '.html')
+Rails.application.config.assets.precompile += %w( bixuange.css)
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
 

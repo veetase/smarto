@@ -22,7 +22,7 @@
   width: 200px;
   height: 200px;
   border-radius: 100px;
-  background: url("img/loading.gif")  no-repeat;
+  background: url("static_page/loading.gif")  no-repeat;
   background-size: 100% 100%;
   position: absolute;
 	top:0;
