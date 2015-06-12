@@ -1172,6 +1172,14 @@ body > a > img {
 }
 
 /* line 832, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+.card .back, .card .front {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* line 839, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
 .card .back {
   background-color: white;
   -webkit-border-radius: 120px;
@@ -1182,41 +1190,41 @@ body > a > img {
   border-color: black;
 }
 
-/* line 842, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+/* line 849, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
 .card div.short_title {
   height: 24px;
   line-height: 24px;
   font-size: 24px;
 }
 
-/* line 848, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+/* line 855, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
 .card div.short_title.middle {
   height: 19px;
   font-size: 19px;
   line-height: 19px;
 }
 
-/* line 854, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+/* line 861, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
 .card div.name, .card div.short_name {
   margin-top: 20px;
   height: 60px;
   line-height: 40px;
 }
 
-/* line 861, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+/* line 868, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
 .card div.long_title {
   height: 14px;
   font-size: 14px;
   line-height: 14px;
 }
 
-/* line 867, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+/* line 874, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
 .card div.short_name {
   font-size: 60px;
   word-spacing: 0.2em;
 }
 
-/* line 872, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+/* line 879, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
 .card .short_title::before, .card .long_title::before {
   content: "";
   float: left;
@@ -1226,17 +1234,17 @@ body > a > img {
   background-size: 100% 100%;
 }
 
-/* line 881, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+/* line 888, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
 .card .short_title::before, .card .long_title::before {
   margin-left: 50px;
 }
 
-/* line 885, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+/* line 892, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
 .card .short_title::after, .card .long_title::after {
   margin-right: 50px;
 }
 
-/* line 889, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+/* line 896, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
 .card .short_title::after, .card .long_title::after {
   content: "";
   float: right;
@@ -1246,38 +1254,44 @@ body > a > img {
   background-size: 100% 100%;
 }
 
-/* line 898, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+/* line 905, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
 .card div.name {
   font-size: 40pt;
 }
 
-/* line 902, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+/* line 909, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
 .card div.name_en {
   font-size: 46px;
   margin-top: 20px;
   line-height: 35px;
 }
 
-/* line 908, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+/* line 915, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
 .card div.en_small {
   font-size: 16pt;
   line-height: 16px;
 }
 
-/* line 913, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+/* line 920, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
 .card .en_very_small {
   font-size: 15px;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
-/* line 918, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+/* line 925, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+.card .en_tall {
+  font-size: 15px;
+  margin-top: 5px;
+}
+
+/* line 930, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
 .card div.desc {
   font-size: 22px;
   height: 22px;
   line-height: 22px;
 }
 
-/* line 924, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+/* line 936, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
 .card div.long_desc {
   font-size: 20px;
   height: 20px;
@@ -1286,168 +1300,168 @@ body > a > img {
   line-height: 20px;
 }
 
-/* line 932, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
-.card:nth-of-type(1) .front {
-  background: url(/assets/static_page/member_1-44af0cc3a0862178465c0f7eddd768b5.png) no-repeat;
-  background-size: 100% 100%;
-}
-
-/* line 936, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
-.card:nth-of-type(2) .front {
-  background: url(/assets/static_page/member_2-bcfb905271581e9b9458c282e3e433dd.png) no-repeat;
-  background-size: 100% 100%;
-}
-
-/* line 940, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
-.card:nth-of-type(3) .front {
-  background: url(/assets/static_page/member_3-0465bc13ec0f0746b66491692de3a59e.png) no-repeat;
-  background-size: 100% 100%;
-}
-
 /* line 944, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
-.card:nth-of-type(4) .front {
-  background: url(/assets/static_page/member_4-8d1c29b3b9df0ba962e48d52f63b6e2c.png) no-repeat;
+.card:nth-of-type(1) .front {
+  background: url(/assets/static_page/member_1-bc22814198acdaf90e02b2603b056fb1.png) no-repeat;
   background-size: 100% 100%;
 }
 
 /* line 948, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
-.card:nth-of-type(5) .front {
-  background: url(/assets/static_page/member_5-42c5ecf007cdd3708aad99a954d24358.png) no-repeat;
+.card:nth-of-type(2) .front {
+  background: url(/assets/static_page/member_2-dcabd14b4ca9c89d88951922ac331b29.png) no-repeat;
   background-size: 100% 100%;
 }
 
 /* line 952, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
-.card:nth-of-type(6) .front {
-  background: url(/assets/static_page/member_6-d757ced05f62130dc8ea520dd42045f5.png) no-repeat;
+.card:nth-of-type(3) .front {
+  background: url(/assets/static_page/member_3-95d91ba1932a1322052cba180a9a6bad.png) no-repeat;
   background-size: 100% 100%;
 }
 
 /* line 956, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
-.card:nth-of-type(7) .front {
-  background: url(/assets/static_page/member_7-db449bf8f3c703eac80b510a929246ac.png) no-repeat;
+.card:nth-of-type(4) .front {
+  background: url(/assets/static_page/member_4-0d38eee5c439903c3da9c33ff186afa9.png) no-repeat;
   background-size: 100% 100%;
 }
 
 /* line 960, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
-.card:nth-of-type(8) .front {
-  background: url(/assets/static_page/member_8-f67bca1c85347a9f6186fbe9bf70dc9f.png) no-repeat;
+.card:nth-of-type(5) .front {
+  background: url(/assets/static_page/member_5-054ad4ca45fe3c5dc3f9fafe146a0713.png) no-repeat;
   background-size: 100% 100%;
 }
 
 /* line 964, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+.card:nth-of-type(6) .front {
+  background: url(/assets/static_page/member_6-afcd8ea23059e0d424dcf98fbc93b666.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+/* line 968, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+.card:nth-of-type(7) .front {
+  background: url(/assets/static_page/member_7-ac2ea71f2da277463cab1fc38c5232e1.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+/* line 972, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+.card:nth-of-type(8) .front {
+  background: url(/assets/static_page/member_8-5de314f5224551bb5693ed56518017d7.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+/* line 976, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
 .card:nth-of-type(9) .front {
-  background: url(/assets/static_page/member_9-047784e9dbf2c9fd24c8f718975454cd.png) no-repeat;
+  background: url(/assets/static_page/member_9-43f40ae261036e7da9bef7b569ecb182.png) no-repeat;
   background-size: 100% 100%;
 }
 
 /* Tablet Portrait size to standard 960 (devices and browsers) */
 @media only screen and (min-width: 768px) and (max-width: 1170px) {
-  /* line 971, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+  /* line 983, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
   .card_container {
     padding: 0 80px;
   }
 
-  /* line 975, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+  /* line 987, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
   #background2 {
     height: 800px;
   }
 
-  /* line 979, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+  /* line 991, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
   #background3 {
     height: 300px;
     top: 1700px;
   }
 
-  /* line 984, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+  /* line 996, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
   #background4 {
     display: none;
   }
 
-  /* line 987, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+  /* line 999, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
   #background5 {
     display: none;
   }
 
-  /* line 990, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+  /* line 1002, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
   #background6 {
     display: none;
   }
 }
 /* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
 @media only screen and (min-width: 480px) and (max-width: 767px) {
-  /* line 1000, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+  /* line 1012, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
   #background2 {
     height: 1300px;
     /*top:900px;*/
   }
 
-  /* line 1005, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+  /* line 1017, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
   #background3 {
     /*height: 300px;*/
     top: 2200px;
   }
 
-  /* line 1010, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+  /* line 1022, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
   #background4 {
     display: none;
   }
 
-  /* line 1013, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+  /* line 1025, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
   #background5 {
     display: none;
   }
 
-  /* line 1016, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+  /* line 1028, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
   #background6 {
     display: none;
   }
 
-  /* line 1020, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+  /* line 1032, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
   h1 {
     margin-right: 30px;
-  }
-
-  /* line 1024, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
-  #bracketCurrent {
-    display: none;
-  }
-}
-/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
-@media only screen and (max-width: 479px) {
-  /* line 1032, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
-  .card_container {
-    padding: 0 60px;
   }
 
   /* line 1036, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
   #bracketCurrent {
     display: none;
   }
+}
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (max-width: 479px) {
+  /* line 1044, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+  .card_container {
+    padding: 0 60px;
+  }
 
-  /* line 1040, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+  /* line 1048, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+  #bracketCurrent {
+    display: none;
+  }
+
+  /* line 1052, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
   h1 {
     font-size: 70px;
     margin-right: 30px;
   }
 
-  /* line 1046, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+  /* line 1058, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
   #top {
     height: 30px;
   }
 
-  /* line 1050, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+  /* line 1062, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
   #navText {
     font-size: 23px;
     margin-top: 1px;
   }
 
-  /* line 1055, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+  /* line 1067, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
   .navBracket {
     height: 20px;
     top: 3px;
   }
 
-  /* line 1060, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+  /* line 1072, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
   #navEnglishDescription {
     -webkit-transform: rotate(90deg);
     -moz-transform: rotate(90deg);
@@ -1460,29 +1474,29 @@ body > a > img {
     text-align: left;
   }
 
-  /* line 1073, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+  /* line 1085, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
   #background2 {
     height: 1300px;
     /*top:900px;*/
   }
 
-  /* line 1078, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+  /* line 1090, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
   #background3 {
     /*height: 300px;*/
     top: 2200px;
   }
 
-  /* line 1083, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+  /* line 1095, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
   #background4 {
     display: none;
   }
 
-  /* line 1086, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+  /* line 1098, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
   #background5 {
     display: none;
   }
 
-  /* line 1089, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
+  /* line 1101, /Users/veetase/Workspace/smarto/app/assets/stylesheets/bixuange.scss.erb */
   #background6 {
     display: none;
   }

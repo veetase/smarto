@@ -1,0 +1,13 @@
+/* TEAM */
+
+Developer & Designer: Bixuange
+Site: http://bixuange.com
+Location: Shenzhen
+
+
+/* SITE */
+
+Last Update: 2015/06/12
+Standards: HTML5, CSS3
+Components: jQuery
+Software: Sublime Text 3

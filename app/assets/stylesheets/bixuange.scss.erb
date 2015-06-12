@@ -828,6 +828,13 @@ body > a > img {
   height: 100%;
 }
 
+.card .back, .card .front{
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
 .card .back{
   background-color: white;
   -webkit-border-radius: 120px;
@@ -911,7 +918,12 @@ body > a > img {
 
 .card .en_very_small{
   font-size: 15px;
-  margin-top: 10px;
+  margin-top: 5px;
+}
+
+.card .en_tall{
+  font-size: 15px;
+  margin-top: 5px;
 }
 
 .card div.desc{
