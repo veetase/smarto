@@ -8,14 +8,14 @@
 	<meta name="description" content="">
 	<meta name="author" content="Tang Yang">
 	<link rel="image_src" href="/assets/static_page/thumb.png" />
-	<%= favicon_link_tag 'static_page/b-icon-16.png', sizes: "16x16" %>
-	<%= favicon_link_tag 'static_page/b-icon-32.png', sizes: "32x32" %>
-	<%= favicon_link_tag 'static_page/b-icon-48.png', sizes: "48x48" %>
-	<%= favicon_link_tag 'static_page/b-icon-96.png', sizes: "96x96" %>
-	<%= favicon_link_tag 'static_page/b-icon-192.png', sizes: "192x192" %>
-	<%= favicon_link_tag 'static_page/thumb.png', rel: 'apple-touch-icon', type: 'image/png' %>
-	<%= stylesheet_link_tag 'bixuange'%>
-	<%= javascript_include_tag "bixuange" %>
+	<link rel="shortcut icon" type="image/x-icon" href="/assets/static_page/b-icon-16.png" sizes="16x16" />
+	<link rel="shortcut icon" type="image/x-icon" href="/assets/static_page/b-icon-32.png" sizes="32x32" />
+	<link rel="shortcut icon" type="image/x-icon" href="/assets/static_page/b-icon-48.png" sizes="48x48" />
+	<link rel="shortcut icon" type="image/x-icon" href="/assets/static_page/b-icon-96.png" sizes="96x96" />
+	<link rel="shortcut icon" type="image/x-icon" href="/assets/static_page/b-icon-192.png" sizes="192x192" />
+	<link rel="apple-touch-icon" type="image/png" href="/assets/static_page/thumb.png" />
+	<link rel="stylesheet" media="screen" href="/assets/bixuange.css" />
+	<script src="/assets/bixuange.js"></script>
 	<title>贔玄阁</title>
 </head>
 <body>
@@ -26,33 +26,33 @@
 			 </a>
 			 &nbsp;
 			 <a href="#project">
-				<%= image_tag "static_page/brackets/bracket2LeftWhite.png", class: "navBracket", id: 'projectNavTopBracketLeft' %>
+				<img class="navBracket" id="projectNavTopBracketLeft" src="/assets/static_page/brackets/bracket2LeftWhite.png" alt="Bracket2leftwhite" />
 				<span class="navWhite" id="projectNavTopText" >器</span>
-				<%= image_tag "static_page/brackets/bracket2RightWhite.png", class: "navBracket", id: 'projectNavTopBracketRight' %>
+				<img class="navBracket" id="projectNavTopBracketRight" src="/assets/static_page/brackets/bracket2RightWhite.png" alt="Bracket2rightwhite" />
 			 </a>
 			 &nbsp;
 			 <a href="#member">
-				<%= image_tag "static_page/brackets/bracket2LeftWhite.png", class: "navBracket", id: 'memberNavTopBracketLeft' %>
+				<img class="navBracket" id="memberNavTopBracketLeft" src="/assets/static_page/brackets/bracket2LeftWhite.png" alt="Bracket2leftwhite" />
 				<span class="navWhite" id="memberNavTopText" >将</span>
-				<%= image_tag "static_page/brackets/bracket2RightWhite.png", class: "navBracket", id: 'memberNavTopBracketRight' %>
+				<img class="navBracket" id="memberNavTopBracketRight" src="/assets/static_page/brackets/bracket2RightWhite.png" alt="Bracket2rightwhite" />
 			 </a>
 			 &nbsp;
 			 <a href="#blog">
-				<%= image_tag "static_page/brackets/bracket2LeftWhite.png", class: "navBracket", id: 'blogNavTopBracketLeft' %>
+				<img class="navBracket" id="blogNavTopBracketLeft" src="/assets/static_page/brackets/bracket2LeftWhite.png" alt="Bracket2leftwhite" />
 				<span class="navWhite" id="blogNavTopText" >著</span>
-				<%= image_tag "static_page/brackets/bracket2RightWhite.png", class: "navBracket", id: 'blogNavTopBracketRight' %>
+				<img class="navBracket" id="blogNavTopBracketRight" src="/assets/static_page/brackets/bracket2RightWhite.png" alt="Bracket2rightwhite" />
 			 </a>
  			&nbsp;
 			 <a href="#management">
-				<%= image_tag "static_page/brackets/bracket2LeftWhite.png", class: "navBracket", id: 'managementNavTopBracketLeft' %>
+				<img class="navBracket" id="managementNavTopBracketLeft" src="/assets/static_page/brackets/bracket2LeftWhite.png" alt="Bracket2leftwhite" />
 				<span class="navWhite" id="managementNavTopText" >治</span>
-				<%= image_tag "static_page/brackets/bracket2RightWhite.png", class: "navBracket", id: 'managementNavTopBracketRight' %>
+				<img class="navBracket" id="managementNavTopBracketRight" src="/assets/static_page/brackets/bracket2RightWhite.png" alt="Bracket2rightwhite" />
 			</a>
 			&nbsp;
 			 <a href="#culture">
-				<%= image_tag "static_page/brackets/bracket2LeftWhite.png", class: "navBracket", id: 'cultureNavTopBracketLeft' %>
+				<img class="navBracket" id="cultureNavTopBracketLeft" src="/assets/static_page/brackets/bracket2LeftWhite.png" alt="Bracket2leftwhite" />
 				<span class="navWhite" id="cultureNavTopText" >本</span>
-				<%= image_tag "static_page/brackets/bracket2RightWhite.png", class: "navBracket", id: 'cultureNavTopBracketRight' %>
+				<img class="navBracket" id="cultureNavTopBracketRight" src="/assets/static_page/brackets/bracket2RightWhite.png" alt="Bracket2rightwhite" />
 			</a>
 		</div>
 		<div id="navEnglishDescription"> </div>
@@ -78,8 +78,8 @@
 		<!-- ====BRIEF==== -->
 		<!-- ============= -->
 		<div class="fourteen columns offset-by-one">
-			<div id="name"> <%= image_tag "static_page/name.png" %> </div>
-			<div id="logo"> <%= image_tag "static_page/mascot.png", height: '250px', width: '250px' %> </div>
+			<div id="name"> <img src="/assets/static_page/name.png" alt="Name" /> </div>
+			<div id="logo"> <img height="250px" width="250px" src="/assets/static_page/mascot.png" alt="Mascot" /> </div>
 
 			<div id="nameExplaination">
 				<h1 id="wenzi">赑</h1>
@@ -110,9 +110,9 @@
 				<a href="#project">
 					<div id="projectNavigation">
 						<h2>
-							<%= image_tag "static_page/brackets/bracket2Left.png", id: 'bracket' %>
+							<img id="bracket" src="/assets/static_page/brackets/bracket2Left.png" alt="Bracket2left" />
 							&nbsp;督造象<span id="redText">器</span>&nbsp;
-							<%= image_tag "static_page/brackets/bracket2Right.png", id: 'bracket' %>
+							<img id="bracket" src="/assets/static_page/brackets/bracket2Right.png" alt="Bracket2right" />
 						</h2>
 						PROJECT
 					</div>
@@ -122,9 +122,9 @@
 				<a href="#member">
 					<div id="memberNavigation">
 						<h2>
-							<%= image_tag "static_page/brackets/bracket2Left.png", id: 'bracket' %>
+							<img id="bracket" src="/assets/static_page/brackets/bracket2Left.png" alt="Bracket2left" />
 							&nbsp;<span id="redText">将</span>校名录&nbsp;
-							<%= image_tag "static_page/brackets/bracket2Right.png", id: 'bracket' %>
+							<img id="bracket" src="/assets/static_page/brackets/bracket2Right.png" alt="Bracket2right" />
 						</h2>
 						MEMBER & CONTACT
 					</div>
@@ -134,9 +134,9 @@
 				<a href="#blog"督造象>
 					<div id="blogNavigation">
 						<h2>
-							<%= image_tag "static_page/brackets/bracket2Left.png", id: 'bracket' %>
+							<img id="bracket" src="/assets/static_page/brackets/bracket2Left.png" alt="Bracket2left" />
 							&nbsp;编<span id="redText">著</span>撰册&nbsp;
-							<%= image_tag "static_page/brackets/bracket2Right.png", id: 'bracket' %>
+							<img id="bracket" src="/assets/static_page/brackets/bracket2Right.png" alt="Bracket2right" />
 						</h2>
 						BLOG & SUBSCRIBE
 					</div>
@@ -146,9 +146,9 @@
 				<a href="#management">
 					<div id="managementNavigation">
 						<h2>
-							<%= image_tag "static_page/brackets/bracket2Left.png", id: 'bracket' %>
+							<img id="bracket" src="/assets/static_page/brackets/bracket2Left.png" alt="Bracket2left" />
 							&nbsp;人和之<span id="redText">治</span>&nbsp;
-							<%= image_tag "static_page/brackets/bracket2Right.png", id: 'bracket' %>
+							<img id="bracket" src="/assets/static_page/brackets/bracket2Right.png" alt="Bracket2right" />
 						</h2>
 						MANAGEMENT
 					</div>
@@ -158,9 +158,9 @@
 				<a href="#culture">
 					<div id="cultureNavigation">
 						<h2>
-							<%= image_tag "static_page/brackets/bracket2Left.png", id: 'bracket' %>
+							<img id="bracket" src="/assets/static_page/brackets/bracket2Left.png" alt="Bracket2left" />
 							&nbsp;源起始<span id="redText">本</span>&nbsp;
-							<%= image_tag "static_page/brackets/bracket2Right.png", id: 'bracket' %>
+							<img id="bracket" src="/assets/static_page/brackets/bracket2Right.png" alt="Bracket2right" />
 						</h2>
 						CULTURE
 					</div>
@@ -172,7 +172,7 @@
 				<div id="space"></div>
 				<div id="space"></div>
 				<div id="space"></div>
-				<%= image_tag "static_page/fish.png", id: "fish" %>
+				<img id="fish" src="/assets/static_page/fish.png" alt="Fish" />
 				<div id="space"></div>
 
 
@@ -183,9 +183,9 @@
 					<div id="space"></div>
 					<div id="space"></div>
 					<h1>
-						<%= image_tag "static_page/brackets/bracket1Left.png", id: 'bracketCurrent' %>
+						<img id="bracketCurrent" src="/assets/static_page/brackets/bracket1Left.png" alt="Bracket1left" />
 						&nbsp;督造象<span id="redText">器</span>&nbsp;
-						<%= image_tag "static_page/brackets/bracket1Right.png", id: 'bracketCurrent' %>
+						<img id="bracketCurrent" src="/assets/static_page/brackets/bracket1Right.png" alt="Bracket1right" />
 					</h1>
 					<div id="space"></div>
 					<div id="space"></div>
@@ -194,7 +194,7 @@
 							<h2 id="shengmaodouText"> 生毛豆</h2>
 							<div id="space"></div>
 							<div id="space"></div>
-							<%= image_tag "static_page/thermodo.png", id: 'shengmaodouImg' %>
+							<img id="shengmaodouImg" src="/assets/static_page/thermodo.png" alt="Thermodo" />
 						</div>
 					</a>
 				</div>
@@ -207,9 +207,9 @@
 					<div id="space"></div>
 					<div id="space"></div>
 					<h1>
-						<%= image_tag "static_page/brackets/bracket1Left.png", id: 'bracketCurrent' %>
+						<img id="bracketCurrent" src="/assets/static_page/brackets/bracket1Left.png" alt="Bracket1left" />
 						&nbsp;<span id="redText">将</span>校名录&nbsp;
-						<%= image_tag "static_page/brackets/bracket1Right.png", id: 'bracketCurrent' %>
+						<img id="bracketCurrent" src="/assets/static_page/brackets/bracket1Right.png" alt="Bracket1right" />
 					</h1>
 					<div class= "card_container">
 						<div class="card">
@@ -217,7 +217,7 @@
 							<div class="back">
 								<div class="short_title"> <span>工部尚书</span></div>
 								<div class="short_name">汤 洋</div>
-								<div class="en_very_small"><a href="http://tang.ninja">http://tang.ninja</a></div>
+								<div class="en_tall"><a href="http://tang.ninja">http://tang.ninja</a></div>
 							</div>
 						</div>
 						<div class="card">
@@ -257,10 +257,9 @@
 						<div class="card">
 							<div class="front"></div>
 							<div class="back">
-								<div class="short_title middle">礼部司郎中</div>
-								<div class="name">程文静</div>
-								<div class="long_desc">我想一个人</div>
-								<div class="long_desc">静一静</div>
+								<div class="long_title">工部水部司郎中</div>
+								<div class="name">孙冰峰</div>
+								<div class="desc">开发毁一生</div>
 							</div>
 						</div>
 						<div class="card">
@@ -274,18 +273,19 @@
 						<div class="card">
 							<div class="front"></div>
 							<div class="back">
-								<div class="long_title">工部水部司郎中</div>
-								<div class="name">孙冰峰</div>
-								<div class="desc">开发毁一生</div>
+								<div class="long_title">工部虞部司郎中</div>
+								<div class="short_name">郑 川</div>
+								<div class="long_desc">珍爱生命</div>
+								<div class="long_desc">远离设计</div>
 							</div>
 						</div>
 						<div class="card">
 							<div class="front"></div>
 							<div class="back">
-								<div class="long_title">工部虞部司郎中</div>
-								<div class="short_name">郑川</div>
-								<div class="long_desc">珍爱生命</div>
-								<div class="long_desc">远离设计</div>
+								<div class="short_title middle">礼部司郎中</div>
+								<div class="name">程文静</div>
+								<div class="long_desc">我想一个人</div>
+								<div class="long_desc">静一静</div>
 							</div>
 						</div>
 					</div>
@@ -338,9 +338,9 @@
 					<div id="space"></div>
 					<div id="space"></div>
 					<h1>
-						<%= image_tag "static_page/brackets/bracket1Left.png", id: 'bracketCurrent' %>
+						<img id="bracketCurrent" src="/assets/static_page/brackets/bracket1Left.png" alt="Bracket1left" />
 						&nbsp;编<span id="redText">著</span>撰册&nbsp;
-						<%= image_tag "static_page/brackets/bracket1Right.png", id: 'bracketCurrent' %>
+						<img id="bracketCurrent" src="/assets/static_page/brackets/bracket1Right.png" alt="Bracket1right" />
 					</h1>
 					<div id="space"></div>
 					<a id="lofter" href="http://bixuange.lofter.com/"> <h2>LOFETER</h2> </a>
@@ -353,7 +353,7 @@
 						<h2>微信</h2>
 <div id="space"></div>
 						<h3>
-							<%= image_tag "static_page/QR.jpg" %>
+							<img src="/assets/static_page/QR.jpg" alt="Qr" />
 						</h3>
 					<div id="space"></div>
 
@@ -364,63 +364,63 @@
 
 						<!-- 高交会 -->
 						<a target="_blank" href="http://mp.weixin.qq.com/s?__biz=MzAwNjE1MzY4Mw==&mid=201798014&idx=1&sn=104b9ca8bfec9e5aa8151d16b6ccb6fb&scene=0#rd">
-							<%= image_tag "static_page/media/1.png", class: "mediaPNG" %>
+							<img class="mediaPNG" src="/assets/static_page/media/1.png" alt="1" />
 						</a>
 
 						<!-- 人民日报 -->
 						<a target="_blank" href="http://sz.people.com.cn/n/2014/1128/c202846-23038084.html">
-							<%= image_tag "static_page/media/10.png", class: "mediaPNG" %>
+							<img class="mediaPNG" src="/assets/static_page/media/10.png" alt="10" />
 						</a>
 
 						<!-- 深圳广电集团 -->
 						<a target="_blank" href="http://www.letv.com/ptv/vplay/21558357.html">
-							<%= image_tag "static_page/media/14.png", class: "mediaPNG" %>
+							<img class="mediaPNG" src="/assets/static_page/media/14.png" alt="14" />
 						</a>
 
 						<!-- 经济日报 -->
 						<a target="_blank" href="http://www.siat.ac.cn/xwzx/mtbd/201411/t20141119_4255563.html">
-							<%= image_tag "static_page/media/4.png", class: "mediaPNG" %>
+							<img class="mediaPNG" src="/assets/static_page/media/4.png" alt="4" />
 						</a>
 
 						<!-- 经济观察报 -->
-						<%= image_tag "static_page/media/5.png", class: "mediaPNG" %>
+						<img class="mediaPNG" src="/assets/static_page/media/5.png" alt="5" />
 
 						<!-- 深圳商报 -->
 						<a target="_blank" href="http://www.siat.ac.cn/xwzx/mtbd/201411/t20141124_4257511.html">
-							<%= image_tag "static_page/media/6.png", class: "mediaPNG" %>
+							<img class="mediaPNG" src="/assets/static_page/media/6.png" alt="6" />
 						</a>
 
 						<!-- 大沙拉 -->
-						<%= image_tag "static_page/media/7.png", class: "mediaPNG" %>
+						<img class="mediaPNG" src="/assets/static_page/media/7.png" alt="7" />
 
 						<!-- 深圳新闻网 -->
 						<a target="_blank" href="http://news.sznews.com/content/2014-12/11/content_10850447.htm">
-							<%= image_tag "static_page/media/8.png", class: "mediaPNG" %>
+							<img class="mediaPNG" src="/assets/static_page/media/8.png" alt="8" />
 						</a>
 
 						<!-- 新华社 -->
 						<a target="_blank" href="/assets/static_page/media/references/2.jpg">
-							<%= image_tag "static_page/media/2.png", class: "mediaPNG" %>
+							<img class="mediaPNG" src="/assets/static_page/media/2.png" alt="2" />
 						</a>
 
 						<!-- 深圳特区报 -->
 						<a target="_blank" href="http://www.siat.ac.cn/xwzx/mtbd/201411/t20141124_4257589.html">
-							<%= image_tag "static_page/media/11.png", class: "mediaPNG" %>
+							<img class="mediaPNG" src="/assets/static_page/media/11.png" alt="11" />
 						</a>
 
 						<!-- startUpWeekend -->
-						<a target="_blank" href="/assets/static_page/media/references/12-b2aa48048c4ea64cb26f343d9d6663ce.jpg">
-							<%= image_tag "static_page/media/12.png", class: "mediaPNG" %>
+						<a target="_blank" href="/assets/static_page/media/references/12.jpg">
+							<img class="mediaPNG" src="/assets/static_page/media/12.png" alt="12" />
 						</a>
 
 						<!-- 羊城晚报 -->
 						<a target="_blank" href="http://www.siat.ac.cn/xwzx/mtbd/201411/t20141125_4258114.html">
-							<%= image_tag "static_page/media/13.png", class: "mediaPNG" %>
+							<img class="mediaPNG" src="/assets/static_page/media/13.png" alt="13" />
 						</a>
 
 						<!-- 开源创客坊 -->
 						<a target="_blank" href="http://mp.weixin.qq.com/s?__biz=MzA5NzExODU5NA==&mid=202688152&idx=1&sn=992549f9a23e024d04e353aa357d4e2b&scene=0#rd">
-							<%= image_tag "static_page/media/15.png", class: "mediaPNG" %>
+							<img class="mediaPNG" src="/assets/static_page/media/15.png" alt="15" />
 						</a>
 
 					<div id="space"></div>
@@ -434,9 +434,9 @@
 					<div id="space"></div>
 					<div id="space"></div>
 					<h1>
-						<%= image_tag "static_page/brackets/bracket1Left.png", id: 'bracketCurrent' %>
+						<img id="bracketCurrent" src="/assets/static_page/brackets/bracket1Left.png" alt="Bracket1left" />
 						&nbsp;人和之<span id="redText">治</span>&nbsp;
-						<%= image_tag "static_page/brackets/bracket1Right.png", id: 'bracketCurrent' %>
+						<img id="bracketCurrent" src="/assets/static_page/brackets/bracket1Right.png" alt="Bracket1right" />
 					</h1>
 					<div id="space"></div>
 					<h4>◎于己者</h4>
@@ -459,9 +459,9 @@
 					<div id="space"></div>
 					<div id="space"></div>
 					<h1>
-						<%= image_tag "static_page/brackets/bracket1Left.png", id: 'bracketCurrent' %>
+						<img id="bracketCurrent" src="/assets/static_page/brackets/bracket1Left.png" alt="Bracket1left" />
 						&nbsp;源起始<span id="redText">本</span>&nbsp;
-						<%= image_tag "static_page/brackets/bracket1Right.png", id: 'bracketCurrent' %>
+						<img id="bracketCurrent" src="/assets/static_page/brackets/bracket1Right.png" alt="Bracket1right" />
 					</h1>
 					<div id="space"></div>
 					<h4>巨灵赑屃 首冠灵山</h4>
@@ -500,7 +500,7 @@
 					<div id="space"></div>
 					<div id="space"></div>
 
-					<div id="logo"> <%= image_tag "static_page/mascot.png", height: '250px', width: '250px' %> </div>
+					<div id="logo"> <img height="250px" width="250px" src="/assets/static_page/mascot.png" alt="Mascot" /> </div>
 
 					<div id="space"></div>
 					<div id="space"></div>
