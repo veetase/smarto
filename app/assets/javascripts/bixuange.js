@@ -1,3 +1,10 @@
+//= require jquery
+//= require jquery_ujs
+//= require jquery.flip
+$(document).ready(function(){
+  $(".card").flip();
+})
+
 $(window).scroll(function() {
     var height = $(window).scrollTop(); //有数值显示
 
