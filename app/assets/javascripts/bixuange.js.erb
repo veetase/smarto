@@ -24,21 +24,21 @@ $(window).scroll(function() {
     	document.getElementById("managementNavTopText").style.color = "#fbf9e5";
     	document.getElementById("cultureNavTopText").style.color = "#fbf9e5";
 
-		document.getElementById("projectNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>;
-    	document.getElementById("projectNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightWhite.png') %>;
-    	document.getElementById("memberNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>;
-    	document.getElementById("memberNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightWhite.png') %>;
-    	document.getElementById("blogNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>;
-    	document.getElementById("blogNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightWhite.png') %>;
-    	document.getElementById("managementNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>;
-    	document.getElementById("managementNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightWhite.png') %>;
-    	document.getElementById("cultureNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>;
-    	document.getElementById("cultureNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightWhite.png') %>;
+		document.getElementById("projectNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>";
+    	document.getElementById("projectNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightWhite.png') %>";
+    	document.getElementById("memberNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>";
+    	document.getElementById("memberNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightWhite.png') %>";
+    	document.getElementById("blogNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>";
+    	document.getElementById("blogNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightWhite.png') %>";
+    	document.getElementById("managementNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>";
+    	document.getElementById("managementNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightWhite.png') %>";
+    	document.getElementById("cultureNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>";
+    	document.getElementById("cultureNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightWhite.png') %>";
 
     }else if (height >= projectHeight && height < memberHeight) {
     	document.getElementById('navEnglishDescription').innerHTML = 'PROJECT';
-    	document.getElementById("projectNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftRed.png') %>;
-    	document.getElementById("projectNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightRed.png') %>;
+    	document.getElementById("projectNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftRed.png') %>";
+    	document.getElementById("projectNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightRed.png') %>";
     	document.getElementById("projectNavTopText").style.color = "#c00";
 
 		document.getElementById("memberNavTopText").style.color = "#fbf9e5";
@@ -46,18 +46,18 @@ $(window).scroll(function() {
     	document.getElementById("managementNavTopText").style.color = "#fbf9e5";
     	document.getElementById("cultureNavTopText").style.color = "#fbf9e5";
 
-    	document.getElementById("memberNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>;
-    	document.getElementById("memberNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightWhite.png') %>;
-    	document.getElementById("blogNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>;
-    	document.getElementById("blogNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightWhite.png') %>;
-    	document.getElementById("managementNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>;
-    	document.getElementById("managementNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightWhite.png') %>;
-    	document.getElementById("cultureNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>;
-    	document.getElementById("cultureNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightWhite.png') %>;
+    	document.getElementById("memberNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>";
+    	document.getElementById("memberNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightWhite.png') %>";
+    	document.getElementById("blogNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>";
+    	document.getElementById("blogNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightWhite.png') %>";
+    	document.getElementById("managementNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>";
+    	document.getElementById("managementNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightWhite.png') %>";
+    	document.getElementById("cultureNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>";
+    	document.getElementById("cultureNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightWhite.png') %>";
     }else if (height >= memberHeight && height < blogHeight) {
     	document.getElementById('navEnglishDescription').innerHTML = 'MEMBER & CONTACT';
-    	document.getElementById("memberNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftRed.png') %>;
-    	document.getElementById("memberNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightRed.png') %>;
+    	document.getElementById("memberNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftRed.png') %>";
+    	document.getElementById("memberNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightRed.png') %>";
     	document.getElementById("memberNavTopText").style.color = "#c00";
 
     	document.getElementById("projectNavTopText").style.color = "#fbf9e5";
@@ -65,18 +65,18 @@ $(window).scroll(function() {
     	document.getElementById("managementNavTopText").style.color = "#fbf9e5";
     	document.getElementById("cultureNavTopText").style.color = "#fbf9e5";
 
-    	document.getElementById("projectNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>;
-    	document.getElementById("projectNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightWhite.png') %>;
-    	document.getElementById("blogNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>;
-    	document.getElementById("blogNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightWhite.png') %>;
-    	document.getElementById("managementNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>;
-    	document.getElementById("managementNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightWhite.png') %>;
-    	document.getElementById("cultureNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>;
-    	document.getElementById("cultureNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightWhite.png') %>;
+    	document.getElementById("projectNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>";
+    	document.getElementById("projectNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightWhite.png') %>";
+    	document.getElementById("blogNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>";
+    	document.getElementById("blogNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightWhite.png') %>";
+    	document.getElementById("managementNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>";
+    	document.getElementById("managementNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightWhite.png') %>";
+    	document.getElementById("cultureNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>";
+    	document.getElementById("cultureNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightWhite.png') %>";
     }else if (height >= blogHeight && height < managementHeight) {
     	document.getElementById('navEnglishDescription').innerHTML = 'BLOG & SUBSCRIBE';
-    	document.getElementById("blogNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftRed.png') %>;
-    	document.getElementById("blogNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightRed.png') %>;
+    	document.getElementById("blogNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftRed.png') %>";
+    	document.getElementById("blogNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightRed.png') %>";
     	document.getElementById("blogNavTopText").style.color = "#c00";
 
     	document.getElementById("projectNavTopText").style.color = "#fbf9e5";
@@ -84,18 +84,18 @@ $(window).scroll(function() {
     	document.getElementById("managementNavTopText").style.color = "#fbf9e5";
     	document.getElementById("cultureNavTopText").style.color = "#fbf9e5";
 
-    	document.getElementById("projectNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>;
-    	document.getElementById("projectNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightWhite.png') %>;
-    	document.getElementById("memberNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>;
-    	document.getElementById("memberNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightWhite.png') %>;
-    	document.getElementById("managementNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>;
-    	document.getElementById("managementNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightWhite.png') %>;
-    	document.getElementById("cultureNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>;
-    	document.getElementById("cultureNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightWhite.png') %>;
+    	document.getElementById("projectNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>";
+    	document.getElementById("projectNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightWhite.png') %>";
+    	document.getElementById("memberNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>";
+    	document.getElementById("memberNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightWhite.png') %>";
+    	document.getElementById("managementNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>";
+    	document.getElementById("managementNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightWhite.png') %>";
+    	document.getElementById("cultureNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>";
+    	document.getElementById("cultureNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightWhite.png') %>";
     }else if (height >= managementHeight && height < cultureHeight) {
     	document.getElementById('navEnglishDescription').innerHTML = 'MANAGEMENT';
-    	document.getElementById("managementNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftRed.png') %>;
-    	document.getElementById("managementNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightRed.png') %>;
+    	document.getElementById("managementNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftRed.png') %>";
+    	document.getElementById("managementNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightRed.png') %>";
     	document.getElementById("managementNavTopText").style.color = "#c00";
 
     	document.getElementById("projectNavTopText").style.color = "#fbf9e5";
@@ -103,18 +103,18 @@ $(window).scroll(function() {
 		document.getElementById("blogNavTopText").style.color = "#fbf9e5";
     	document.getElementById("cultureNavTopText").style.color = "#fbf9e5";
 
-    	document.getElementById("projectNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>;
-    	document.getElementById("projectNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightWhite.png') %>;
-    	document.getElementById("memberNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>;
-    	document.getElementById("memberNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightWhite.png') %>;
-    	document.getElementById("blogNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>;
-    	document.getElementById("blogNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightWhite.png') %>;
-    	document.getElementById("cultureNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>;
-    	document.getElementById("cultureNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightWhite.png') %>;
+    	document.getElementById("projectNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>";
+    	document.getElementById("projectNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightWhite.png') %>";
+    	document.getElementById("memberNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>";
+    	document.getElementById("memberNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightWhite.png') %>";
+    	document.getElementById("blogNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>";
+    	document.getElementById("blogNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightWhite.png') %>";
+    	document.getElementById("cultureNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>";
+    	document.getElementById("cultureNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightWhite.png') %>";
     }else if (height >= cultureHeight) {
     	document.getElementById('navEnglishDescription').innerHTML = 'CULTURE';
-    	document.getElementById("cultureNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftRed.png') %>;
-    	document.getElementById("cultureNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightRed.png') %>;
+    	document.getElementById("cultureNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftRed.png') %>";
+    	document.getElementById("cultureNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightRed.png') %>";
     	document.getElementById("cultureNavTopText").style.color = "#c00";
 
     	document.getElementById("projectNavTopText").style.color = "#fbf9e5";
@@ -122,14 +122,14 @@ $(window).scroll(function() {
 		document.getElementById("blogNavTopText").style.color = "#fbf9e5";
     	document.getElementById("managementNavTopText").style.color = "#fbf9e5";
 
-    	document.getElementById("projectNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>;
-    	document.getElementById("projectNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightWhite.png') %>;
-    	document.getElementById("memberNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>;
-    	document.getElementById("memberNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightWhite.png') %>;
-    	document.getElementById("blogNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>;
-    	document.getElementById("blogNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightWhite.png') %>;
-    	document.getElementById("managementNavTopBracketLeft").src = <%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>;
-    	document.getElementById("managementNavTopBracketRight").src = <%= asset_path('static_page/brackets/bracket2RightWhite.png') %>;
+    	document.getElementById("projectNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>";
+    	document.getElementById("projectNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightWhite.png') %>";
+    	document.getElementById("memberNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>";
+    	document.getElementById("memberNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightWhite.png') %>";
+    	document.getElementById("blogNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>";
+    	document.getElementById("blogNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightWhite.png') %>";
+    	document.getElementById("managementNavTopBracketLeft").src = "<%= asset_path('static_page/brackets/bracket2LeftWhite.png') %>";
+    	document.getElementById("managementNavTopBracketRight").src = "<%= asset_path('static_page/brackets/bracket2RightWhite.png') %>";
     };
 
 });
