@@ -814,13 +814,9 @@ body > a > img {
 .card{
   width: 220px;
   height: 220px;
-  float: left;
+  display: inline-block;
   padding: 10px;
   cursor: pointer;
-}
-
-.card_container{
-  padding: 0 120px;
 }
 
 .card .front{
@@ -976,9 +972,6 @@ body > a > img {
 
 /* Tablet Portrait size to standard 960 (devices and browsers) */
 @media only screen and (min-width: 768px) and (max-width: 1170px) {
-  .card_container {
-    padding: 0 80px;
-  }
 
 	#background2{
         height: 800px;
@@ -1004,7 +997,6 @@ body > a > img {
 
 /* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
 @media only screen and (min-width: 480px) and (max-width: 767px) {
-
 	#background2{
         height: 1300px;
         /*top:900px;*/
@@ -1037,10 +1029,6 @@ body > a > img {
 
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) {
-    .card_container {
-      padding: 0 60px;
-    }
-
     #bracketCurrent{
         display: none;
     }
