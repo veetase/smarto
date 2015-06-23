@@ -11,11 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518062919) do
+ActiveRecord::Schema.define(version: 20150622065139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
+
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string   "namespace"
+    t.text     "body"
+    t.string   "resource_id",   null: false
+    t.string   "resource_type", null: false
+    t.integer  "author_id"
+    t.string   "author_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
   create_table "spots", force: :cascade do |t|
     t.integer   "perception_value"
@@ -33,6 +48,7 @@ ActiveRecord::Schema.define(version: 20150518062919) do
     t.geography "location",           limit: {:srid=>4326, :type=>"point", :geographic=>true},                null: false
     t.integer   "user_id"
     t.integer   "category",                                                                    default: 1,    null: false
+    t.integer   "status",             limit: 2,                                                default: 0
   end
 
   add_index "spots", ["location"], name: "index_spots_on_location", using: :gist
@@ -71,6 +87,7 @@ ActiveRecord::Schema.define(version: 20150518062919) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.datetime "confirmation_expire_at"
+    t.integer  "roles_mask"
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree

@@ -6,8 +6,8 @@ class Api::V1::SpotsController < ApplicationController
 	end
 
 	def create
-	  if current_user
-		    spot = current_user.spots.build(spot_params)
+	  if current_app_user
+		    spot = current_app_user.spots.build(spot_params)
 		else
 		    spot = Spot.new(spot_params)
 		end
@@ -20,7 +20,7 @@ class Api::V1::SpotsController < ApplicationController
 	end
 
 	def destroy
-	    spot = current_user.spots.find(params[:id])
+	    spot = current_app_user.spots.find(params[:id])
 	   	spot.destroy
 	    head 204
 	end

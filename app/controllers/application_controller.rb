@@ -14,9 +14,21 @@ class ApplicationController < ActionController::Base
   rescue_from Api::Unauthorized, with: :unauth
   rescue_from ActionController::ParameterMissing, ActiveRecord::RecordInvalid, Api::ParameterInvalid, with: :invalid_value
 
+  def authenticate_admin!
+    if current_user
+      current_user.has_role?(:admin)
+    else
+      redirect_to new_user_session_path
+    end
+  end
+
+  def access_denied(exception)
+    raise ActionController::RoutingError.new('Not Found')
+  end
+
   protected
 
   def authenticate_with_token
-    raise Api::Unauthorized unless current_user
+    raise Api::Unauthorized unless current_app_user
   end
 end

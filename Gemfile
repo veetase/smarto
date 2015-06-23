@@ -23,7 +23,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'sidekiq'
 gem 'sinatra', :require => nil
-
+gem 'activeadmin', github: 'activeadmin'
+gem 'cancancan', '~> 1.10'
 # Use Uglifier as compressor for JavaScript assets
 # Use CoffeeScript for .coffee assets and views
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -62,7 +63,7 @@ group :development, :test do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  # gem 'spring'
 end
 
 group :test do

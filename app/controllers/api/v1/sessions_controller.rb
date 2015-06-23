@@ -15,7 +15,7 @@ class Api::V1::SessionsController < ApplicationController
   end
 
   def logout
-    if user = current_user
+    if user = current_app_user
       user.generate_authentication_token!
       user.save
      # sign_out :user

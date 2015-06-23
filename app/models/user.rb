@@ -4,14 +4,16 @@ class User < ActiveRecord::Base
   before_create :next_seq
   has_many :spots
   before_create :generate_authentication_token!
-  devise :database_authenticatable, :async, :registerable,
-         :recoverable, :trackable
+  devise :database_authenticatable, :async,
+         :recoverable, :trackable, :rememberable
 
   module Gender
     UNDEFINED = 0
     MALE      = 1
     FEMALE    = 2
   end
+
+  ROLES = %i[admin QA]
 
 
   #Validates
@@ -25,6 +27,26 @@ class User < ActiveRecord::Base
   validates :figure, numericality: { greater_than: -10, less_than: 50}, :allow_nil => true #The heaviest man ever lived in the world is 635
   validates :age, numericality: { greater_than: 0, less_than: 130}, :allow_nil => true #The heaviest man ever lived in the world is 635
   validate :validate_tags
+
+  def roles=(roles)
+    roles = [*roles].map { |r| r.to_sym }
+    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
+  end
+
+  def roles
+    ROLES.reject do |r|
+      ((roles_mask.to_i || 0) & 2**ROLES.index(r)).zero?
+    end
+  end
+
+  def has_role?(role)
+    roles.include?(role)
+  end
+
+  def display_name
+    self.nick_name || "No name"
+  end
+
   #to ensure auto token is unique
   def generate_authentication_token!
     begin

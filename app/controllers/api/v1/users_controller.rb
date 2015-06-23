@@ -32,23 +32,23 @@ class Api::V1::UsersController < ApplicationController
   #   end
   # end
   def update
-    if current_user.update(user_params)
+    if current_app_user.update(user_params)
 
-      render json: current_user.json_show_to_self, status: 200, location: [:api, current_user]
+      render json: current_app_user.json_show_to_self, status: 200, location: [:api, current_app_user]
     else
-      render json: { errors: current_user.errors }, status: 422
+      render json: { errors: current_app_user.errors }, status: 422
     end
   end
 
   def change_phone
-    @user = current_user #for test case
+    @user = current_app_user #for test case
     @user.change_phone
     head 200
   end
 
   def reset_phone
     confirm_token = params[:user][:confirm_token]
-    @user = current_user
+    @user = current_app_user
 
     if @user.valid_confirm_token?(confirm_token)
       @user.phone = params[:user][:phone]
@@ -58,7 +58,7 @@ class Api::V1::UsersController < ApplicationController
       if @user.save
         head 204
       else
-        render json: { errors: current_user.errors }, status: 422
+        render json: { errors: current_app_user.errors }, status: 422
       end
     else
       render json: { errors: I18n.t('invalid_confirmation_token') }, status: 422

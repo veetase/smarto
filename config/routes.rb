@@ -3,6 +3,7 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   root 'static#index'
+  ActiveAdmin.routes(self)
   mount Sidekiq::Web => '/sidekiq'
   devise_for :users, :controllers => {:confirmations => "devise_overrides/confirmations", :registrations=> "devise_overrides/registrations"}
   resources :subscribers

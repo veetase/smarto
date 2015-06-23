@@ -28,3 +28,6 @@ en:
   faker:
     weather:
       tag: ["Very hot", "Nice weather", "Cool", "Windy", "Rainning"]
+  admin:
+    spot:
+      statuses: ["published", "reject"]
