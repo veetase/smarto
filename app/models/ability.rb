@@ -9,7 +9,7 @@ class Ability
       can :read, ActiveAdmin::Page, name: "Dashboard", namespace_name: :admin
       can :manage, :all
     else
-      # can :read, :all
+      can :read, :all
     end
 
     #

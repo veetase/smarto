@@ -18,7 +18,7 @@
     }
     function createMap(){
       map = new BMap.Map("map");
-      map.centerAndZoom(new BMap.Point(<%= @spots.first.location.lon%>,<%= @spots.first.location.lat%>),15);
+      map.centerAndZoom(new BMap.Point(<%= @spots.first.location.lon if @spots.present?%>,<%= @spots.first.location.lat if @spots.present?%>),15);
     }
     function setMapEvent(){
       map.enableScrollWheelZoom();

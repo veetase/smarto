@@ -1,7 +1,7 @@
 ActiveAdmin.register Spot do
   permit_params :status
   actions :all, except: [:destroy, :create, :new]
-  sidebar :map do
+  sidebar :map, only: :index do
     render :partial => "/admin/map", :locals => {spots: @spots }
   end
   index do
