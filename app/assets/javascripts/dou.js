@@ -1,2 +1,2 @@
 //= require jquery
-//= require_tree ./dou
+//= require dou/main

@@ -405,24 +405,47 @@ Main Components
   width: 40%;
   min-width: 400px;
   margin: 0 auto;
-  height: 100%;
   text-align: center;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .link_block{
   display: block;
-  width: 100%;
+  margin: 0 auto;
   font-size: 30px;
   color: black;
   text-align: center;
 }
 
+.link_block::before
+{
+  content: "";
+  display: inline-block;
+  height: 18px;
+  width: 10px;
+  background: url(<%= asset_path 'static_page/brackets/bracket2Left.png' %>) no-repeat;
+  background-size: 100% 100%;
+}
+
+.link_block::after
+{
+  content: "";
+  display: inline-block;
+  height: 18px;
+  width: 10px;
+  background: url(<%= asset_path 'static_page/brackets/bracket2Right.png' %>) no-repeat;
+  background-size: 100% 100%;
+}
+
 #to_store{
-  padding-top: 60%;
+  width: 140px;
 }
 
 #to_bixuange{
-  margin: 30px 0;
+  width: 180px;
+  margin-top: 30px;
 }
 
 #to_itunes{
@@ -1071,5 +1094,26 @@ Main Components
 
   .cd-product-mockup {
     height: 100%;
+  }
+
+  .img-9 .cd-content{
+    display: none;
+  }
+
+  .img-9{
+    height: 100%
+  }
+
+  #to_store{
+    top: 21%;
+    padding: 0;
+  }
+
+  #to_bixuange{
+    top: 45%;
+  }
+
+  #to_itunes{
+    top: 72%;
   }
 }

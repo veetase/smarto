@@ -1,7 +1,10 @@
-//= require_tree .
+//= require .
+//= require pace
+//= require_self
+
 jQuery(document).ready(function($){
 	var animating = false;
-
+	disableScroll();
 	//update arrows visibility and detect which section is visible in the viewport
 	setSlider();
 	$(window).on('scroll resize', function(){
@@ -123,6 +126,46 @@ jQuery(document).ready(function($){
 
 });
 
+function preventDefault(e) {
+  e = e || window.event;
+  if (e.preventDefault)
+      e.preventDefault();
+  e.returnValue = false;
+}
+
+function preventDefaultForScrollKeys(e) {
+		var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+    if (keys[e.keyCode]) {
+        preventDefault(e);
+        return false;
+    }
+}
+
+function disableScroll() {
+  if (window.addEventListener) // older FF
+      window.addEventListener('DOMMouseScroll', preventDefault, false);
+  window.onwheel = preventDefault; // modern standard
+  window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
+  window.ontouchmove  = preventDefault; // mobile
+  document.onkeydown  = preventDefaultForScrollKeys;
+}
+
+function enableScroll() {
+    if (window.removeEventListener)
+        window.removeEventListener('DOMMouseScroll', preventDefault, false);
+    window.onmousewheel = document.onmousewheel = null;
+    window.onwheel = null;
+    window.ontouchmove = null;
+    document.onkeydown = null;
+}
+Pace.on("start", function(){
+
+});
+
 Pace.on("done", function(){
+
 	$(".cover").fadeOut(500);
+	$( ".cover" ).fadeOut( 500, function() {
+		enableScroll();
+	});
 });

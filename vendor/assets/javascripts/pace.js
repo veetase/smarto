@@ -285,7 +285,7 @@
         return false;
       }
       el = this.getElement();
-      el.children[0].style.width = "" + this.progress + "%";
+      //el.children[0].style.width = "" + this.progress + "%";
       if (!this.lastRenderedProgress || this.lastRenderedProgress | 0 !== this.progress | 0) {
         el.children[0].setAttribute('data-progress-text', "" + (this.progress | 0) + "%");
         if (this.progress >= 100) {
