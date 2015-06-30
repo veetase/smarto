@@ -4,8 +4,7 @@ class User < ActiveRecord::Base
   before_create :next_seq
   has_many :spots
   before_create :generate_authentication_token!
-  devise :database_authenticatable, :async,
-         :recoverable, :trackable, :rememberable
+  devise :database_authenticatable, :async, :trackable, :rememberable
 
   module Gender
     UNDEFINED = 0

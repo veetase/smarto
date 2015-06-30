@@ -37,7 +37,7 @@ module Smarto
       g.javascripts = false
       g.helper = false
     end
-
+    config.assets.prefix = "/assets"
     config.serve_static_files = true
     config.active_record.raise_in_transactional_callbacks = true
     config.autoload_paths += %W(\#{config.root}/lib)

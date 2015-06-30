@@ -1,8 +1,14 @@
 require 'constraints/api_constraints'
+require 'constraints/dashing_constraints'
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  constraints DashingConstraints do
+    mount Dashing::Engine, at: Dashing.config.engine_path
+  end
+
   root 'static#index'
+  get 'static/shengmaodou', to: 'static#shengmaodou'
   ActiveAdmin.routes(self)
   mount Sidekiq::Web => '/sidekiq'
   devise_for :users, :controllers => {:confirmations => "devise_overrides/confirmations", :registrations=> "devise_overrides/registrations"}

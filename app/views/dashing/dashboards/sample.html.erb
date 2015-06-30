@@ -1,0 +1,38 @@
+<% content_for :title do %>
+  My super sweet dashboard
+<% end %>
+
+<div class="gridster">
+  <ul>
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="today_users" data-view="Number" data-title="Today Users"></div>
+    </li>
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
+      <div data-id="users" data-view="Graph" data-title="Users" style="background-color:#ff9618"></div>
+    </li>
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="total_users" data-view="Meter" data-title="Total Users"  data-min="0"></div>
+    </li>
+
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="today_spots" data-view="Number" data-title="Today Spots"></div>
+    </li>
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
+      <div data-id="welcome" data-view="Text" data-title="伽里略说" data-text="数字是上帝的语言" data-moreinfo="少年欢迎你来到贔玄阁数字世界，你可以拖动卡片，然而这并没有什么卵用"></div>
+    </li>
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="spots" data-view="Meter" data-title="Total spots" data-min="0"></div>
+    </li>
+    <!-- <li data-row="1" data-col="1" data-sizex="1" data-sizey="2">
+      <div data-id="buzzwords" data-view="List" data-unordered="true" data-title="Buzzwords" data-moreinfo="# of times said around the office"></div>
+    </li> -->
+    <!-- <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="valuation" data-view="Number" data-title="Users" data-moreinfo="In billions" data-prefix="$"></div>
+    </li> -->
+
+
+
+
+  </ul>
+  <!-- <center><div style="font-size: 12px">Try this: curl -X PUT 'http://<%= request.host %>:<%= request.port %>/dashing/widgets/welcome' -d "widget[text]=Dashing is awesome"</div></center> -->
+</div>
