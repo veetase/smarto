@@ -4,7 +4,6 @@
 
 jQuery(document).ready(function($){
 	var animating = false;
-	disableScroll();
 	//update arrows visibility and detect which section is visible in the viewport
 	setSlider();
 	$(window).on('scroll resize', function(){
@@ -158,9 +157,6 @@ function enableScroll() {
     window.ontouchmove = null;
     document.onkeydown = null;
 }
-Pace.on("start", function(){
-
-});
 
 Pace.on("done", function(){
 
