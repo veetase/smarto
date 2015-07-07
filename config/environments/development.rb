@@ -18,7 +18,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
   # Print deprecation notices to the Rails logger.
-  config.assets.enabled = true
+  config.assets.enabled = false
   config.active_support.deprecation = :log
   #config.assets.digest = true
   # Raise an error on page load if there are pending migrations.
@@ -27,7 +27,7 @@ Rails.application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
-  #config.assets.debug = true
+  config.assets.debug = true
 
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
   # yet still be able to expire them through the digest params.

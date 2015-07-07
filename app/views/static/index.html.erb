@@ -25,34 +25,35 @@
 				<span class="navWhite">阁之</span>
 			 </a>
 			 &nbsp;
-			 <a href="#project">
-				<%= image_tag "static_page/brackets/bracket2LeftWhite.png", class: "navBracket", id: 'projectNavTopBracketLeft' %>
-				<span class="navWhite" id="projectNavTopText" >器</span>
-				<%= image_tag "static_page/brackets/bracket2RightWhite.png", class: "navBracket", id: 'projectNavTopBracketRight' %>
+			 <a href="#project" id="projectNav">
+				<div class="bracket brackets_left_white"></div>
+				<span class="navWhite text_link" >器</span>
+				<div class="bracket brackets_right_white" id="projectNavTopBracketRight"></div>
 			 </a>
 			 &nbsp;
-			 <a href="#member">
-				<%= image_tag "static_page/brackets/bracket2LeftWhite.png", class: "navBracket", id: 'memberNavTopBracketLeft' %>
-				<span class="navWhite" id="memberNavTopText" >将</span>
-				<%= image_tag "static_page/brackets/bracket2RightWhite.png", class: "navBracket", id: 'memberNavTopBracketRight' %>
+			 <a href="#member" id="memberNav">
+				<div class="bracket brackets_left_white"></div>
+				<span class="navWhite text_link" >将</span>
+				<div class="bracket brackets_right_white"></div>
 			 </a>
 			 &nbsp;
-			 <a href="#blog">
-				<%= image_tag "static_page/brackets/bracket2LeftWhite.png", class: "navBracket", id: 'blogNavTopBracketLeft' %>
-				<span class="navWhite" id="blogNavTopText" >著</span>
-				<%= image_tag "static_page/brackets/bracket2RightWhite.png", class: "navBracket", id: 'blogNavTopBracketRight' %>
+			 <a href="#blog" id="blogNav">
+				<div class="bracket brackets_left_white"></div>
+				<span class="navWhite text_link">著</span>
+				<div class="bracket brackets_right_white"></div>
 			 </a>
  			&nbsp;
-			 <a href="#management">
-				<%= image_tag "static_page/brackets/bracket2LeftWhite.png", class: "navBracket", id: 'managementNavTopBracketLeft' %>
-				<span class="navWhite" id="managementNavTopText" >治</span>
-				<%= image_tag "static_page/brackets/bracket2RightWhite.png", class: "navBracket", id: 'managementNavTopBracketRight' %>
+			 <a href="#management" id="managementNav">
+				<div class="bracket brackets_left_white"></div>
+				<span class="navWhite text_link">治</span>
+				<div class="bracket brackets_right_white"></div>
+				<!-- <%= image_tag "static_page/brackets/bracket2RightWhite.png", class: "navBracket", id: 'managementNavTopBracketRight' %> -->
 			</a>
 			&nbsp;
-			 <a href="#culture">
-				<%= image_tag "static_page/brackets/bracket2LeftWhite.png", class: "navBracket", id: 'cultureNavTopBracketLeft' %>
-				<span class="navWhite" id="cultureNavTopText" >本</span>
-				<%= image_tag "static_page/brackets/bracket2RightWhite.png", class: "navBracket", id: 'cultureNavTopBracketRight' %>
+			 <a href="#culture" id="cultureNav">
+				<div class="bracket brackets_left_white"></div>
+				<span class="navWhite text_link">本</span>
+				<div class="bracket brackets_right_white"></div>
 			</a>
 		</div>
 		<div id="navEnglishDescription"> </div>
@@ -110,10 +111,8 @@
 				<!-- Navigation1 -->
 				<a href="#project">
 					<div id="projectNavigation">
-						<h2>
-							<%= image_tag "static_page/brackets/bracket2Left.png", id: 'bracket' %>
+						<h2  class="with_mid_brackets">
 							&nbsp;督造象<span id="redText">器</span>&nbsp;
-							<%= image_tag "static_page/brackets/bracket2Right.png", id: 'bracket' %>
 						</h2>
 						PROJECT
 					</div>
@@ -122,10 +121,8 @@
 				<!-- Navigation2 -->
 				<a href="#member">
 					<div id="memberNavigation">
-						<h2>
-							<%= image_tag "static_page/brackets/bracket2Left.png", id: 'bracket' %>
+						<h2 class="with_mid_brackets">
 							&nbsp;<span id="redText">将</span>校名录&nbsp;
-							<%= image_tag "static_page/brackets/bracket2Right.png", id: 'bracket' %>
 						</h2>
 						MEMBER & CONTACT
 					</div>
@@ -134,10 +131,8 @@
 				<!-- Navigation3 -->
 				<a href="#blog"督造象>
 					<div id="blogNavigation">
-						<h2>
-							<%= image_tag "static_page/brackets/bracket2Left.png", id: 'bracket' %>
+						<h2 class="with_mid_brackets">
 							&nbsp;编<span id="redText">著</span>撰册&nbsp;
-							<%= image_tag "static_page/brackets/bracket2Right.png", id: 'bracket' %>
 						</h2>
 						BLOG & SUBSCRIBE
 					</div>
@@ -146,10 +141,8 @@
 				<!-- Navigation4 -->
 				<a href="#management">
 					<div id="managementNavigation">
-						<h2>
-							<%= image_tag "static_page/brackets/bracket2Left.png", id: 'bracket' %>
+						<h2 class="with_mid_brackets">
 							&nbsp;人和之<span id="redText">治</span>&nbsp;
-							<%= image_tag "static_page/brackets/bracket2Right.png", id: 'bracket' %>
 						</h2>
 						MANAGEMENT
 					</div>
@@ -158,10 +151,8 @@
 				<!-- Navigation5 -->
 				<a href="#culture">
 					<div id="cultureNavigation">
-						<h2>
-							<%= image_tag "static_page/brackets/bracket2Left.png", id: 'bracket' %>
+						<h2 class="with_mid_brackets">
 							&nbsp;源起始<span id="redText">本</span>&nbsp;
-							<%= image_tag "static_page/brackets/bracket2Right.png", id: 'bracket' %>
 						</h2>
 						CULTURE
 					</div>
@@ -183,21 +174,21 @@
 				<div id="project">
 					<div id="space"></div>
 					<div id="space"></div>
-					<h1>
-						<%= image_tag "static_page/brackets/bracket1Left.png", id: 'bracketCurrent' %>
+					<h1  class="with_big_brackets">
 						&nbsp;督造象<span id="redText">器</span>&nbsp;
-						<%= image_tag "static_page/brackets/bracket1Right.png", id: 'bracketCurrent' %>
 					</h1>
 					<div id="space"></div>
 					<div id="space"></div>
-					<a href="http://shengmaodou.com">
-						<div id="shengmaodou">
-							<h2 id="shengmaodouText"> 生毛豆</h2>
-							<div id="space"></div>
-							<div id="space"></div>
-							<%= image_tag "static_page/thermodo.png", id: 'shengmaodouImg' %>
+					<div class="shengmaodou_block">
+						<%= image_tag "static_page/dou.jpg", id: 'shengmaodouImg' %>
+						<div class="shengmaodou_desc">
+							<div class="title">生毛豆</div>
+							<div class="des">让你过有温度的生活</div>
+							<a target="_blank" href="http://item.taobao.com/item.htm?id=45490875177"><div class="link">[立即购买]</div></a>
+							<a target="_blank" href="https://geo.itunes.apple.com/cn/app/sheng-mao-dou/id1001885946?mt=8" style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/zh-chs/badge_appstore-lrg.svg);width:185px;height:55px;background-size: 100% 100%;"></a>
 						</div>
-					</a>
+						<div style="clear: both;"></div>
+					</div>
 				</div>
 
 				<!-- ============= -->
@@ -207,10 +198,8 @@
 				<div id="member">
 					<div id="space"></div>
 					<div id="space"></div>
-					<h1>
-						<%= image_tag "static_page/brackets/bracket1Left.png", id: 'bracketCurrent' %>
+					<h1  class="with_big_brackets">
 						&nbsp;<span id="redText">将</span>校名录&nbsp;
-						<%= image_tag "static_page/brackets/bracket1Right.png", id: 'bracketCurrent' %>
 					</h1>
 					<div id="space"></div>
           <div class= "card_container">
@@ -339,10 +328,8 @@
 				<div id="blog">
 					<div id="space"></div>
 					<div id="space"></div>
-					<h1>
-						<%= image_tag "static_page/brackets/bracket1Left.png", id: 'bracketCurrent' %>
+					<h1  class="with_big_brackets">
 						&nbsp;编<span id="redText">著</span>撰册&nbsp;
-						<%= image_tag "static_page/brackets/bracket1Right.png", id: 'bracketCurrent' %>
 					</h1>
 					<div id="space"></div>
 					<a id="lofter" href="http://bixuange.lofter.com/"> <h2>LOFETER</h2> </a>
@@ -364,97 +351,90 @@
 						<div id="space"></div>
 						<div id="space"></div>
 
-						<!-- 高交会 -->
-						<a target="_blank" href="http://mp.weixin.qq.com/s?__biz=MzAwNjE1MzY4Mw==&mid=201798014&idx=1&sn=104b9ca8bfec9e5aa8151d16b6ccb6fb&scene=0#rd">
-							<%= image_tag "static_page/media/1.png", class: "mediaPNG" %>
-						</a>
-
-						<!-- 人民日报 -->
-						<a target="_blank" href="http://sz.people.com.cn/n/2014/1128/c202846-23038084.html">
-							<%= image_tag "static_page/media/10.png", class: "mediaPNG" %>
-						</a>
-
-						<!-- 深圳广电集团 -->
-						<a target="_blank" href="http://www.letv.com/ptv/vplay/21558357.html">
-							<%= image_tag "static_page/media/14.png", class: "mediaPNG" %>
-						</a>
-
-						<!-- 经济日报 -->
-						<a target="_blank" href="http://www.siat.ac.cn/xwzx/mtbd/201411/t20141119_4255563.html">
-							<%= image_tag "static_page/media/4.png", class: "mediaPNG" %>
-						</a>
-
-						<!-- 经济观察报 -->
-						<%= image_tag "static_page/media/5.png", class: "mediaPNG" %>
-
-						<!-- 深圳商报 -->
-						<a target="_blank" href="http://szsb.sznews.com/html/2015-06/19/content_3257516.htm">
-							<%= image_tag "static_page/media/6.png", class: "mediaPNG" %>
-						</a>
-
-						<!-- 大沙拉 -->
-						<%= image_tag "static_page/media/7.png", class: "mediaPNG" %>
-
-						<!-- 深圳新闻网 -->
-						<a target="_blank" href="http://news.sznews.com/content/2014-12/11/content_10850447.htm">
-							<%= image_tag "static_page/media/8.png", class: "mediaPNG" %>
-						</a>
-
-						<!-- 新华社 -->
-						<a target="_blank" href="http://news.xinhuanet.com/tech/2015-02/17/c_127505680_4.htm">
-							<%= image_tag "static_page/media/2.png", class: "mediaPNG" %>
-						</a>
-
-						<!-- 深圳特区报 -->
-						<a target="_blank" href="http://www.siat.ac.cn/xwzx/mtbd/201411/t20141124_4257589.html">
-							<%= image_tag "static_page/media/11.png", class: "mediaPNG" %>
-						</a>
-
 						<!-- cctv -->
-						<a target="_blank" href="http://news.cntv.cn/2015/06/04/VIDE1433376114121685.shtml">
-							<%= image_tag "static_page/media/CCTV.png", class: "mediaPNG" %>
-						</a>
+						<div class="media_image">
+							<a target="_blank" href="http://news.cntv.cn/2015/06/04/VIDE1433376114121685.shtml">
+								<div class="CCTV"></div>
+							</a>
 
-						<!-- Make Faire -->
-						<a target="_blank" href="#">
-							<%= image_tag "static_page/media/makeFaire.png", class: "mediaPNG" %>
-						</a>
+							<!-- 我是海归网 -->
+							<a target="_blank" href="http://mp.weixin.qq.com/s?__biz=MjM5MTAxNjMwMA==&mid=207320634&idx=3&sn=a2ab98339afcdfed7f3060d35472da5f&scene=2#rd">
+								<div class="haigui"></div>
+							</a>
 
-						<!-- 中科院先进院 -->
-						<a target="_blank" href="http://www.siat.cas.cn/xwzx/mtbd/">
-							<%= image_tag "static_page/media/zhongkeyuan.png", class: "mediaPNG" %>
-						</a>
+							<!-- 中科院先进院 -->
+							<a target="_blank" href="http://www.siat.cas.cn/xwzx/mtbd/">
+								<div class="zhongkeyuan"></div>
+							</a>
 
-						<!-- 凤凰新闻 -->
-						<a target="_blank" href="http://v.ifeng.com/news/mainland/201506/01c288a9-9f0c-4243-a540-23cf8db8e29f.shtml">
-							<%= image_tag "static_page/media/fenghuang.png", class: "mediaPNG" %>
-						</a>
+							<!-- Make Faire -->
+							<a target="_blank" href="#">
+								<div class="makeFaire"></div>
+							</a>
 
-						<!-- 文博会 -->
-						<a target="_blank" href="#">
-							<%= image_tag "static_page/media/wenbo.png", class: "mediaPNG" %>
-						</a>
+							<!-- startUpWeekend -->
+							<a target="_blank" href="#">
+								<div class="startup_weekend"></div>
+							</a>
+							<!-- 人民日报 -->
+							<a target="_blank" href="http://sz.people.com.cn/n/2014/1128/c202846-23038084.html">
+								<div class="peoples_daily"></div>
+							</a>
 
-						<!-- 我是海归网 -->
-						<a target="_blank" href="http://mp.weixin.qq.com/s?__biz=MjM5MTAxNjMwMA==&mid=207320634&idx=3&sn=a2ab98339afcdfed7f3060d35472da5f&scene=2#rd">
-							<%= image_tag "static_page/media/haigui.png", class: "mediaPNG" %>
-						</a>
+							<!-- 深圳商报 -->
+							<a target="_blank" href="http://szsb.sznews.com/html/2015-06/19/content_3257516.htm">
+								<div class="sznews"></div>
+							</a>
+							<!-- 经济观察报 -->
+							<div class="jjgc"></div>
+							<!-- 文博会 -->
+							<a target="_blank" href="#">
+								<div class="wenbo"></div>
+							</a>
+							<!-- 新华社 -->
+							<a target="_blank" href="http://news.xinhuanet.com/tech/2015-02/17/c_127505680_4.htm">
+								<div class="xinhuanet"></div>
+							</a>
+							<!-- 深圳广电集团 -->
+							<a target="_blank" href="http://www.letv.com/ptv/vplay/21558357.html">
+								<div class="szmg"></div>
+							</a>
+							<!-- 高交会 -->
+							<a target="_blank" href="http://mp.weixin.qq.com/s?__biz=MzAwNjE1MzY4Mw==&mid=201798014&idx=1&sn=104b9ca8bfec9e5aa8151d16b6ccb6fb&scene=0#rd">
+								<div class="CHTF"></div>
+							</a>
+							<!-- 凤凰新闻 -->
+							<a target="_blank" href="http://v.ifeng.com/news/mainland/201506/01c288a9-9f0c-4243-a540-23cf8db8e29f.shtml">
+								<div class="fenghuang"></div>
+							</a>
+							<div class="dashala"></div>
+							<!-- 深圳日报 -->
+							<a target="_blank" href="http://mp.weixin.qq.com/s?__biz=MzA4NDIzMjY2Ng==&mid=204064563&idx=1&sn=25ce32fd2fe1a92c3c827cd8c6b94e0b&scene=0#rd">
+								<div class="shenzhendaily"></div>
+							</a>
+							<!-- 深圳特区报 -->
+							<a target="_blank" href="http://www.siat.ac.cn/xwzx/mtbd/201411/t20141124_4257589.html">
+								<div class="sztq"></div>
+							</a>
+							<!-- 羊城晚报 -->
+							<a target="_blank" href="http://www.siat.ac.cn/xwzx/mtbd/201411/t20141125_4258114.html">
+								<div class="sheep_city"></div>
+							</a>
 
-						<!-- 深圳日报 -->
-						<a target="_blank" href="http://mp.weixin.qq.com/s?__biz=MzA4NDIzMjY2Ng==&mid=204064563&idx=1&sn=25ce32fd2fe1a92c3c827cd8c6b94e0b&scene=0#rd">
-							<%= image_tag "static_page/media/shenzhendaily.png", class: "mediaPNG" %>
-						</a>
+							<!-- 经济日报 -->
+							<a target="_blank" href="http://www.siat.ac.cn/xwzx/mtbd/201411/t20141119_4255563.html">
+								<div class="jjrb"></div>
+							</a>
 
-						<!-- 羊城晚报 -->
-						<a target="_blank" href="http://www.siat.ac.cn/xwzx/mtbd/201411/t20141125_4258114.html">
-							<%= image_tag "static_page/media/13.png", class: "mediaPNG" %>
-						</a>
-
-						<!-- 开源创客坊 -->
-						<a target="_blank" href="http://mp.weixin.qq.com/s?__biz=MzA5NzExODU5NA==&mid=202688152&idx=1&sn=992549f9a23e024d04e353aa357d4e2b&scene=0#rd">
-							<%= image_tag "static_page/media/15.png", class: "mediaPNG" %>
-						</a>
-
+							<!-- 深圳新闻网 -->
+							<a target="_blank" href="http://news.sznews.com/content/2014-12/11/content_10850447.htm">
+								<div class="sz_news"></div>
+							</a>
+							<!-- 开源创客坊 -->
+							<a target="_blank" href="http://mp.weixin.qq.com/s?__biz=MzA5NzExODU5NA==&mid=202688152&idx=1&sn=992549f9a23e024d04e353aa357d4e2b&scene=0#rd">
+								<div class="opensource"></div>
+							</a>
+						</div>
 					<div id="space"></div>
 					<div id="space"></div>
 				</div>
@@ -465,10 +445,8 @@
 				<div id="management">
 					<div id="space"></div>
 					<div id="space"></div>
-					<h1>
-						<%= image_tag "static_page/brackets/bracket1Left.png", id: 'bracketCurrent' %>
+					<h1  class="with_big_brackets">
 						&nbsp;人和之<span id="redText">治</span>&nbsp;
-						<%= image_tag "static_page/brackets/bracket1Right.png", id: 'bracketCurrent' %>
 					</h1>
 					<div id="space"></div>
 					<h4>◎于己者</h4>
@@ -490,10 +468,8 @@
 				<div id="culture">
 					<div id="space"></div>
 					<div id="space"></div>
-					<h1>
-						<%= image_tag "static_page/brackets/bracket1Left.png", id: 'bracketCurrent' %>
+					<h1  class="with_big_brackets">
 						&nbsp;源起始<span id="redText">本</span>&nbsp;
-						<%= image_tag "static_page/brackets/bracket1Right.png", id: 'bracketCurrent' %>
 					</h1>
 					<div id="space"></div>
 					<h4>巨灵赑屃 首冠灵山</h4>

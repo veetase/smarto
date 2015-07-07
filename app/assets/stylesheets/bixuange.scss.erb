@@ -1,3 +1,5 @@
+@import "compass";
+@import "resize_sprite";
 //skeleton.css
 /*
 * Skeleton V1.2
@@ -21,6 +23,43 @@
 
 /* #Base 960 Grid
 ================================================== */
+
+@import "compass/utilities/sprites";
+$media-layout:horizontal;
+@import "media/*.png";
+@include all-media-sprites;
+@import "static_page/members/*.png";
+@include all-members-sprites;
+@import "static_page/brackets/*.png";
+@include all-brackets-sprites;
+.media_image {
+  .CCTV    { @include media-sprite(CCTV); height: 100px; width: image-width("media/CCTV.png");}
+  .haigui   { @include media-sprite(haigui); height: 100px; width: image-width("media/haigui.png");}
+  .zhongkeyuan   { @include media-sprite(zhongkeyuan); height: 100px; width: image-width("media/zhongkeyuan.png");}
+  .makeFaire { @include media-sprite(makeFaire); height: 100px; width: image-width("media/makeFaire.png");}
+  .startup_weekend    { @include media-sprite(startup_weekend); height: 100px; width: image-width("media/startup_weekend.png");}
+  .peoples_daily   { @include media-sprite(peoples_daily); height: 100px; width: image-width("media/peoples_daily.png");}
+  .sznews   { @include media-sprite(sznews); height: 100px; width: image-width("media/sznews.png");}
+  .jjgc { @include media-sprite(jjgc); height: 100px; width: image-width("media/jjgc.png");}
+  .wenbo    { @include media-sprite(wenbo);  height: 100px; width: image-width("media/wenbo.png");}
+  .xinhuanet   { @include media-sprite(xinhuanet);  height: 100px; width: image-width("media/xinhuanet.png");}
+  .szmg   { @include media-sprite(szmg);  height: 100px; width: image-width("media/szmg.png");}
+  .CHTF { @include media-sprite(CHTF);  height: 100px; width: image-width("media/CHTF.png");}
+  .fenghuang    { @include media-sprite(fenghuang); height: 100px; width: image-width("media/fenghuang.png");}
+  .dashala   { @include media-sprite(dashala); height: 100px; width: image-width("media/dashala.png");}
+  .shenzhendaily   { @include media-sprite(shenzhendaily); height: 100px; width: image-width("media/shenzhendaily.png");}
+  .sztq { @include media-sprite(sztq); height: 100px; width: image-width("media/sztq.png");}
+  .sheep_city{ @include media-sprite(sheep_city); height: 100px; width: image-width("media/sheep_city.png");}
+  .jjrb   { @include media-sprite(jjrb); height: 100px; width: image-width("media/jjrb.png");}
+  .sz_news   { @include media-sprite(sz_news); height: 100px; width: image-width("media/sz_news.png");}
+  .opensource { @include media-sprite(opensource);  height: 100px; width: image-width("media/opensource.png");}
+}
+
+.media_image div {
+  display: inline-block;
+  margin: 10px 5px;
+}
+
 
     .container                                  { position: relative; width: 960px; margin: 0 auto; padding: 0; }
     .container .column,
@@ -490,6 +529,67 @@ body > a > img {
     margin-left: -6px;
     margin-right: -4px;
 }
+.bracket{
+  display: inline-block;
+  position: relative;
+  top: 6px;
+  height: 30px;
+  width: 15px;
+}
+
+.with_mid_brackets::before{
+  content: '';
+  display: inline-block;
+  position: relative;
+  top: 8px;
+  width: 25px;
+  height: 49px;
+  @include brackets-sprite(bracket2Left);
+}
+
+.with_mid_brackets::after{
+  content: '';
+  display: inline-block;
+  position: relative;
+  top: 8px;
+  width: 25px;
+  height: 49px;
+  @include brackets-sprite(bracket2Right);
+}
+.with_big_brackets::before{
+  content: '';
+  display: inline-block;
+  position: relative;
+  top: 8px;
+  width: 64px;
+  height: 70px;
+  @include brackets-sprite(bracket1Left);
+}
+.with_big_brackets::after{
+  content: '';
+  display: inline-block;
+  position: relative;
+  top: 8px;
+  width: 64px;
+  height: 70px;
+  @include brackets-sprite(bracket1Right);
+}
+
+.brackets_left_white{
+  @include brackets-sprite(bracket2LeftWhite);
+}
+
+.brackets_right_white{
+  @include brackets-sprite(bracket2RightWhite);
+}
+
+.brackets_left_red{
+  @include brackets-sprite(bracket2LeftRed);
+}
+
+.brackets_right_red{
+  @include brackets-sprite(bracket2RightRed);
+}
 
 #navRed{
     color: #c00;
@@ -738,18 +838,15 @@ body > a > img {
     /*margin-left: 300px;*/
 }
 
-.vertical_words{
-  width: 860px;
-  margin: 0 auto;
-}
 
 h1#wenzi{
   margin-left: 0;
   margin-right: 0;
+  width:1.2em;
+  padding-right: 70px;
 }
 h1#wenzi:nth-of-type(2), h1#wenzi:nth-of-type(3){
-  width:1.2em;
-  padding-right: 60px;
+
 }
 
 #wenzi {
@@ -769,16 +866,47 @@ h1#wenzi:nth-of-type(2), h1#wenzi:nth-of-type(3){
     position:relative;
 }
 
+.shengmaodou_block{
+  width: 60%;
+  min-width: 300px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.shengmaodou_desc{
+  margin-left: 2%;
+  float: right;
+  width: 55%;
+  min-width: 300px;
+}
+
+.shengmaodou_desc .title{
+  font-size: 55px;
+  line-height: 55px;
+}
+
+.shengmaodou_desc .link{
+  font-size: 40px;
+  margin: 33px 0;
+}
+.shengmaodou_desc .des{
+  font-size: 33px;
+}
+
 #shengmaodouImg{
-    text-align: center;
-    width: 50%;
+    min-width: 200px;
+    width: 40%;
+    float: left;
+    border:1px solid #021a40;
+    -moz-border-radius: 15px;
+    border-radius: 50px;
 }
 
 #shengmaodou:hover{
     color: #800;
 }
 
-#projectNavigation:hover{
+#fshengmaodouNavigation:hover{
     color: #800;
 }
 #memberNavigation:hover{
@@ -887,8 +1015,8 @@ h1#wenzi:nth-of-type(2), h1#wenzi:nth-of-type(3){
   float: left;
   height: 100%;
   width: 10px;
-  background: url(<%= asset_path 'static_page/brackets/bracket2Left.png' %>) no-repeat;
-  background-size: 100% 100%;
+  @include brackets-sprite(bracket2Left);
+  @include resize-sprite($brackets-sprites, bracket2Left, 40);
 }
 
 .card .short_title::before, .card .long_title::before{
@@ -904,8 +1032,8 @@ h1#wenzi:nth-of-type(2), h1#wenzi:nth-of-type(3){
   float: right;
   height: 100%;
   width: 10px;
-  background: url(<%= asset_path 'static_page/brackets/bracket2Right.png' %>) no-repeat;
-  background-size: 100% 100%;
+  @include brackets-sprite(bracket2Right);
+  @include resize-sprite($brackets-sprites, bracket2Right, 40);
 }
 
 .card div.name{
@@ -948,42 +1076,32 @@ h1#wenzi:nth-of-type(2), h1#wenzi:nth-of-type(3){
 }
 
 .card:nth-of-type(1) .front {
-  background: url(<%= asset_path 'static_page/member_1.png' %>) no-repeat;
-  background-size: 100% 100%;
+  @include members-sprite(member_1);
 }
 .card:nth-of-type(2) .front {
-  background: url(<%= asset_path 'static_page/member_2.png' %>) no-repeat;
-  background-size: 100% 100%;
+  @include members-sprite(member_2);
 }
 .card:nth-of-type(3) .front{
-  background: url(<%= asset_path 'static_page/member_3.png' %>) no-repeat;
-  background-size: 100% 100%;
+  @include members-sprite(member_3);
 }
 .card:nth-of-type(4) .front {
-  background: url(<%= asset_path 'static_page/member_4.png' %>) no-repeat;
-  background-size: 100% 100%;
+  @include members-sprite(member_4);
 }
 .card:nth-of-type(5) .front {
-  background: url(<%= asset_path 'static_page/member_5.png' %>) no-repeat;
-  background-size: 100% 100%;
+  @include members-sprite(member_5);
 }
 .card:nth-of-type(6) .front{
-  background: url(<%= asset_path 'static_page/member_6.png' %>) no-repeat;
-  background-size: 100% 100%;
+  @include members-sprite(member_6);
 }
 .card:nth-of-type(7) .front {
-  background: url(<%= asset_path 'static_page/member_7.png' %>) no-repeat;
-  background-size: 100% 100%;
+  @include members-sprite(member_7);
 }
 .card:nth-of-type(8) .front{
-  background: url(<%= asset_path 'static_page/member_8.png' %>) no-repeat;
-  background-size: 100% 100%;
+  @include members-sprite(member_8);
 }
 .card:nth-of-type(9) .front{
-  background: url(<%= asset_path 'static_page/member_9.png' %>) no-repeat;
-  background-size: 100% 100%;
+  @include members-sprite(member_9);
 }
-
 /* Tablet Portrait size to standard 960 (devices and browsers) */
 @media only screen and (min-width: 768px) and (max-width: 1170px) {
 
