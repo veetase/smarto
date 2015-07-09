@@ -32,27 +32,28 @@ $media-layout:horizontal;
 @include all-members-sprites;
 @import "static_page/brackets/*.png";
 @include all-brackets-sprites;
+.media_image{width: 80%; margin: 0 auto;}
 .media_image {
-  .CCTV    { @include media-sprite(CCTV); height: 100px; width: image-width("media/CCTV.png");}
-  .haigui   { @include media-sprite(haigui); height: 100px; width: image-width("media/haigui.png");}
-  .zhongkeyuan   { @include media-sprite(zhongkeyuan); height: 100px; width: image-width("media/zhongkeyuan.png");}
-  .makeFaire { @include media-sprite(makeFaire); height: 100px; width: image-width("media/makeFaire.png");}
-  .startup_weekend    { @include media-sprite(startup_weekend); height: 100px; width: image-width("media/startup_weekend.png");}
-  .peoples_daily   { @include media-sprite(peoples_daily); height: 100px; width: image-width("media/peoples_daily.png");}
-  .sznews   { @include media-sprite(sznews); height: 100px; width: image-width("media/sznews.png");}
-  .jjgc { @include media-sprite(jjgc); height: 100px; width: image-width("media/jjgc.png");}
-  .wenbo    { @include media-sprite(wenbo);  height: 100px; width: image-width("media/wenbo.png");}
-  .xinhuanet   { @include media-sprite(xinhuanet);  height: 100px; width: image-width("media/xinhuanet.png");}
-  .szmg   { @include media-sprite(szmg);  height: 100px; width: image-width("media/szmg.png");}
-  .CHTF { @include media-sprite(CHTF);  height: 100px; width: image-width("media/CHTF.png");}
-  .fenghuang    { @include media-sprite(fenghuang); height: 100px; width: image-width("media/fenghuang.png");}
-  .dashala   { @include media-sprite(dashala); height: 100px; width: image-width("media/dashala.png");}
-  .shenzhendaily   { @include media-sprite(shenzhendaily); height: 100px; width: image-width("media/shenzhendaily.png");}
-  .sztq { @include media-sprite(sztq); height: 100px; width: image-width("media/sztq.png");}
-  .sheep_city{ @include media-sprite(sheep_city); height: 100px; width: image-width("media/sheep_city.png");}
-  .jjrb   { @include media-sprite(jjrb); height: 100px; width: image-width("media/jjrb.png");}
-  .sz_news   { @include media-sprite(sz_news); height: 100px; width: image-width("media/sz_news.png");}
-  .opensource { @include media-sprite(opensource);  height: 100px; width: image-width("media/opensource.png");}
+  .CCTV    { @include media-sprite(CCTV); height: 70px; width: image-width("media/CCTV.png");}
+  .haigui   { @include media-sprite(haigui); height: 70px; width: image-width("media/haigui.png");}
+  .zhongkeyuan   { @include media-sprite(zhongkeyuan); height: 70px; width: image-width("media/zhongkeyuan.png");}
+  .makeFaire { @include media-sprite(makeFaire); height: 70px; width: image-width("media/makeFaire.png");}
+  .startup_weekend    { @include media-sprite(startup_weekend); height: 70px; width: image-width("media/startup_weekend.png");}
+  .peoples_daily   { @include media-sprite(peoples_daily); height: 70px; width: image-width("media/peoples_daily.png");}
+  .sznews   { @include media-sprite(sznews); height: 70px; width: image-width("media/sznews.png");}
+  .jjgc { @include media-sprite(jjgc); height: 70px; width: image-width("media/jjgc.png");}
+  .wenbo    { @include media-sprite(wenbo);  height: 70px; width: image-width("media/wenbo.png");}
+  .xinhuanet   { @include media-sprite(xinhuanet);  height: 70px; width: image-width("media/xinhuanet.png");}
+  .szmg   { @include media-sprite(szmg);  height: 70px; width: image-width("media/szmg.png");}
+  .CHTF { @include media-sprite(CHTF);  height: 70px; width: image-width("media/CHTF.png");}
+  .fenghuang    { @include media-sprite(fenghuang); height: 70px; width: image-width("media/fenghuang.png");}
+  .dashala   { @include media-sprite(dashala); height: 70px; width: image-width("media/dashala.png");}
+  .shenzhendaily   { @include media-sprite(shenzhendaily); height: 70px; width: image-width("media/shenzhendaily.png");}
+  .sztq { @include media-sprite(sztq); height: 70px; width: image-width("media/sztq.png");}
+  .sheep_city{ @include media-sprite(sheep_city); height: 70px; width: image-width("media/sheep_city.png");}
+  .jjrb   { @include media-sprite(jjrb); height: 70px; width: image-width("media/jjrb.png");}
+  .sz_news   { @include media-sprite(sz_news); height: 70px; width: image-width("media/sz_news.png");}
+  .opensource { @include media-sprite(opensource);  height: 70px; width: image-width("media/opensource.png");}
 }
 
 .media_image div {
@@ -327,30 +328,6 @@ $media-layout:horizontal;
 	/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 	@media only screen and (max-width: 479px) {}
 
-
-/* #Font-Face
-================================================== */
-/* 	This is the proper syntax for an @font-face file
-		Just create a "fonts" folder at the root,
-		copy your FontName into code below and remove
-		comment brackets */
-
-/*	@font-face {
-	    font-family: 'FontName';
-	    src: url('../fonts/FontName.eot');
-	    src: url('../fonts/FontName.eot?iefix') format('eot'),
-	         url('../fonts/FontName.woff') format('woff'),
-	         url('../fonts/FontName.ttf') format('truetype'),
-	         url('../fonts/FontName.svg#webfontZam02nTh') format('svg');
-	    font-weight: normal;
-	    font-style: normal; }
-*/
-//main.css
-/*@font-face {*/
-    /*font-family: 'KaitiTC1'; */
-    /*src: url('../font/kaitiTC.TTF'); */
-/*}*/
-
 body, html {
 }
 
@@ -526,8 +503,8 @@ body > a > img {
 
 .navWhite{
     color: #fbf9e5;
-    margin-left: -6px;
-    margin-right: -4px;
+    margin-left: -8px;
+    margin-right: -8px;
 }
 .bracket{
   display: inline-block;
@@ -1161,18 +1138,16 @@ h1#wenzi:nth-of-type(2), h1#wenzi:nth-of-type(3){
 
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) {
-    #bracketCurrent{
-        display: none;
+    .with_big_brackets::before{
+      display: none;
+    }
+    .with_big_brackets::after{
+      display: none;
     }
 
     h1{
         font-size: 70px;
         margin-right: 30px;
-    }
-
-
-    #top {
-        height:30px;
     }
 
     #navText{

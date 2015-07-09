@@ -1,7 +1,136 @@
-/* ...
-*= require_tree .
-*= require_self
+.pace {
+  -webkit-pointer-events: none;
+  pointer-events: none;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.pace.pace-inactive .pace-progress {
+  display: none;
+}
+
+.pace .pace-progress {
+  z-index: 2000;
+  height: 10px;
+  width: 0;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  -ms-transform: translate3d(0, 0, 0) !important;
+  transform: translate3d(0, 0, 0) !important;
+}
+
+.pace .pace-progress:after {
+  display: block;
+  position: absolute;
+  top: 80px;
+  left: -50px;
+  content: attr(data-progress-text);
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: 100;
+  font-size: 5rem;
+  line-height: 1;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.19999999999999996);
+}
+/*
+
+ */
+
+.pace {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+  z-index: 2000;
+  opacity: 0;
+  -webkit-transition: all 0.5s linear 0s;
+  -moz-transition: all 0.5s linear 0s;
+  transition: all 0.5s linear 0s;
+}
+
+.pace.pace-active {
+  opacity: 1;
+}
+
+.pace .pace-activity {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  background: url(/assets/static_page/loading.gif)  no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
 */
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, main {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* ...
+
+
+*/
+
 *, *::after, *::before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -140,44 +269,44 @@ Main Components
 }
 
 .cd-fixed-background.img-1 .cd-content::after {
-  background: url(<%= asset_path 'static_page/img-mobile-1.jpg' %>) no-repeat;
+  background: url(/assets/static_page/img-mobile-1.jpg) no-repeat;
   background-size: 100% 100%;
 }
 
 .cd-fixed-background.img-2 .cd-content::after {
-  background: url(<%= asset_path 'static_page/img-mobile-2.jpg' %>) no-repeat;
+  background: url(/assets/static_page/img-mobile-2.jpg) no-repeat;
   background-size: 100% 100%;
 }
 
 .cd-fixed-background.img-3 .cd-content::after {
-  background: url(<%= asset_path 'static_page/img-mobile-3.jpg' %>) no-repeat;
+  background: url(/assets/static_page/img-mobile-3.jpg) no-repeat;
   background-size: 100% 100%;
 }
 
 .cd-fixed-background.img-4 .cd-content::after {
-  background: url(<%= asset_path 'static_page/img-mobile-4.jpg' %>) no-repeat;
+  background: url(/assets/static_page/img-mobile-4.jpg) no-repeat;
   background-size: 100% 100%;
 }
 /*.cd-fixed-background.img-5 {
   background-color: #407e7c;
 }*/
 .cd-fixed-background.img-5 .cd-content::after {
-  background: url(<%= asset_path 'static_page/img-mobile-5.jpg' %>) no-repeat;
+  background: url(/assets/static_page/img-mobile-5.jpg) no-repeat;
   background-size: 100% 100%;
 }
 
 .cd-fixed-background.img-6 .cd-content::after {
-  background: url(<%= asset_path 'static_page/img-mobile-6.jpg' %>) no-repeat;
+  background: url(/assets/static_page/img-mobile-6.jpg) no-repeat;
   background-size: 100% 100%;
 }
 
 .cd-fixed-background.img-7 .cd-content::after {
-  background: url(<%= asset_path 'static_page/img-mobile-7.jpg' %>) no-repeat;
+  background: url(/assets/static_page/img-mobile-7.jpg) no-repeat;
   background-size: 100% 100%;
 }
 
 .cd-fixed-background.img-9 .cd-content::after {
-  background: url(<%= asset_path 'static_page/img-mobile-9.jpg' %>) no-repeat;
+  background: url(/assets/static_page/img-mobile-9.jpg) no-repeat;
   background-size: 100% 100%;
 }
 @media only screen and (min-width: 768px) {
@@ -208,34 +337,34 @@ Main Components
     display: none !important;
   }
   .cd-fixed-background.img-1 {
-    background-image: url(<%= asset_path 'static_page/img-mobile-1.jpg' %>);
+    background-image: url(/assets/static_page/img-mobile-1.jpg);
     background-size: auto 100%;
     background-color: white;
   }
 
   .cd-fixed-background.img-2 {
-    background-image: url(<%= asset_path 'static_page/img-2.jpg' %>);
+    background-image: url(/assets/static_page/img-2.jpg);
   }
   .cd-fixed-background.img-3 {
-    background-image: url(<%= asset_path 'static_page/img-3.jpg' %>);
+    background-image: url(/assets/static_page/img-3.jpg);
   }
   .cd-fixed-background.img-4 {
-    background-image: url(<%= asset_path 'static_page/img-4.jpg' %>);
+    background-image: url(/assets/static_page/img-4.jpg);
   }
   .cd-fixed-background.img-5 {
-    background-image: url(<%= asset_path 'static_page/img-5.jpg' %>);
+    background-image: url(/assets/static_page/img-5.jpg);
   }
   .cd-fixed-background.img-6 {
-    background-image: url(<%= asset_path 'static_page/img-6.jpg' %>);
+    background-image: url(/assets/static_page/img-6.jpg);
   }
   .cd-fixed-background.img-7 {
-    background-image: url(<%= asset_path 'static_page/img-7.jpg' %>);
+    background-image: url(/assets/static_page/img-7.jpg);
   }
   .cd-fixed-background.img-8 {
-    background-image: url(<%= asset_path 'static_page/img-8.jpg' %>);
+    background-image: url(/assets/static_page/img-8.jpg);
   }
   .cd-fixed-background.img-9 {
-    background-image: url(<%= asset_path 'static_page/img-9.jpg' %>);
+    background-image: url(/assets/static_page/img-9.jpg);
   }
 }
 @media only screen and (min-width: 1048px) {
@@ -269,7 +398,7 @@ Main Components
   overflow: hidden;
   text-indent: 100%;
   white-space: nowrap;
-  background: transparent url(<%= asset_path 'static_page/cd-icon-arrow.png' %>) center center;
+  background: transparent url(/assets/static_page/cd-icon-arrow.png) center center;
   background-size: 40px 40px;
   -webkit-transition: opacity 0.2s 0s, visibility 0.2s 0s;
   -moz-transition: opacity 0.2s 0s, visibility 0.2s 0s;
@@ -277,7 +406,7 @@ Main Components
 }
 
 .white a{
-  background: transparent url(<%= asset_path 'static_page/cd-icon-arrow-white.png' %>) center center;
+  background: transparent url(/assets/static_page/cd-icon-arrow-white.png) center center;
   background-size: 40px 40px;
 }
 
@@ -425,7 +554,7 @@ Main Components
   display: inline-block;
   height: 18px;
   width: 10px;
-  background: url(<%= asset_path 'static_page/brackets/bracket2Left.png' %>) no-repeat;
+  background: url(/assets/static_page/brackets/bracket2Left.png) no-repeat;
   background-size: 100% 100%;
 }
 
@@ -435,7 +564,7 @@ Main Components
   display: inline-block;
   height: 18px;
   width: 10px;
-  background: url(<%= asset_path 'static_page/brackets/bracket2Right.png' %>) no-repeat;
+  background: url(/assets/static_page/brackets/bracket2Right.png) no-repeat;
   background-size: 100% 100%;
 }
 
@@ -558,7 +687,7 @@ Main Components
   }
 
   .green::after{
-    background: url(<%= asset_path 'static_page/img-page-8.jpg' %>);
+    background: url(/assets/static_page/img-page-8.jpg);
   }
 }
 
@@ -1033,7 +1162,7 @@ Main Components
 
 @media only screen and (max-width: 480px){
   .cd-fixed-background.img-8 .cd-product-mockup::after {
-    background: url(<%= asset_path 'static_page/img-mobile-8.jpg' %>) no-repeat;
+    background: url(/assets/static_page/img-mobile-8.jpg) no-repeat;
     background-size: 100% 100%;
   }
   #mockup-image{
@@ -1117,3 +1246,8 @@ Main Components
     top: 72%;
   }
 }
+/*
+
+
+ */
+
