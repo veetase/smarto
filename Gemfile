@@ -26,6 +26,7 @@ gem 'sidekiq'
 gem 'sinatra', :require => nil
 gem 'activeadmin', github: 'activeadmin'
 gem 'cancancan', '~> 1.10'
+gem 'sprockets-rails', '~> 2.2.4'
 gem 'dashing-rails'
 # Use Uglifier as compressor for JavaScript assets
 # Use CoffeeScript for .coffee assets and views

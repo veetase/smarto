@@ -1,9 +1,9 @@
-//= require .
 //= require pace
 //= require_self
 
 jQuery(document).ready(function($){
 	var animating = false;
+	disableScroll();
 	//update arrows visibility and detect which section is visible in the viewport
 	setSlider();
 	$(window).on('scroll resize', function(){
@@ -159,7 +159,6 @@ function enableScroll() {
 }
 
 Pace.on("done", function(){
-
 	$(".cover").fadeOut(500);
 	$( ".cover" ).fadeOut( 500, function() {
 		enableScroll();
