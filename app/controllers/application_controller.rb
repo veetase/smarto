@@ -31,4 +31,8 @@ class ApplicationController < ActionController::Base
   def authenticate_with_token
     raise Api::Unauthorized unless current_app_user
   end
+
+  def after_sign_in_path_for(resource)
+    session["user_return_to"] || admin_root_path
+  end
 end
