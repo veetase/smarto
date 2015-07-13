@@ -236,7 +236,6 @@ Main Components
   }
   .cd-fixed-background.img-9 {
     background-image: url(<%= asset_path 'static_page/img-9.jpg' %>);
-    background-position: 4.5px center;
   }
 }
 @media only screen and (min-width: 1048px) {
@@ -415,37 +414,42 @@ Main Components
 .link_block{
   display: block;
   margin: 0 auto;
-  font-size: 30px;
+  font-size: 20px;
   color: black;
   text-align: center;
+
 }
 
-.link_block::before
-{
-  content: "";
+.link_block span{
+  border-bottom: solid 1px #000000;
+}
+
+.bracket_left {
   display: inline-block;
-  height: 18px;
-  width: 10px;
+  position: relative;
+  top: 8px;
+  height: 25px;
+  width: 12px;
   background: url(<%= asset_path 'static_page/brackets/bracket2Left.png' %>) no-repeat;
   background-size: 100% 100%;
 }
 
-.link_block::after
-{
-  content: "";
+.bracket_right {
   display: inline-block;
-  height: 18px;
-  width: 10px;
+  position: relative;
+  top: 8px;
+  height: 25px;
+  width: 12px;
   background: url(<%= asset_path 'static_page/brackets/bracket2Right.png' %>) no-repeat;
   background-size: 100% 100%;
 }
 
 #to_store{
-  width: 140px;
+  width: 170px;
 }
 
 #to_bixuange{
-  width: 180px;
+  width: 200px;
   margin-top: 30px;
 }
 

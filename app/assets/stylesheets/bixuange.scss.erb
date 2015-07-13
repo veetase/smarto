@@ -804,7 +804,6 @@ body > a > img {
 
 #fish{
     text-align: center;
-    width: 80%;
 }
 
 #email{
@@ -865,7 +864,15 @@ h1#wenzi:nth-of-type(2), h1#wenzi:nth-of-type(3){
 
 .shengmaodou_desc .link{
   font-size: 40px;
-  margin: 26px 0;
+  margin: 20px 0;
+}
+
+.shengmaodou_desc .link::before{
+  @include resize-sprite($brackets-sprites, bracket2Left, 70);
+}
+
+.shengmaodou_desc .link::after{
+  @include resize-sprite($brackets-sprites, bracket2Right, 70);
 }
 .shengmaodou_desc .des{
   font-size: 35px;
@@ -1138,25 +1145,6 @@ h1#wenzi:nth-of-type(2), h1#wenzi:nth-of-type(3){
 
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) {
-    .with_big_brackets::before{
-      display: none;
-    }
-    .with_big_brackets::after{
-      display: none;
-    }
-    .shengmaodou_block{
-      text-align: center;
-      width: 100%;
-    }
-    #shengmaodouImg{
-      float: none;
-      width: 80%;
-    }
-    .shengmaodou_desc {
-      width: 100%;
-      margin: 0;
-    }
-
     h1{
         font-size: 70px;
         margin-right: 30px;
@@ -1204,4 +1192,25 @@ h1#wenzi:nth-of-type(2), h1#wenzi:nth-of-type(3){
     #background6{
         display: none;
     }
+}
+
+@media only screen and (max-width: 767px) {
+  .with_big_brackets::before{
+    display: none;
+  }
+  .with_big_brackets::after{
+    display: none;
+  }
+  .shengmaodou_block{
+    text-align: center;
+    width: 100%;
+  }
+  #shengmaodouImg{
+    float: none;
+    width: 80%;
+  }
+  .shengmaodou_desc {
+    width: 100%;
+    margin: 0;
+  }
 }
