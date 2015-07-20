@@ -10,4 +10,6 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require_tree .
+//= require dashing/widgets/rickshaw.min
+//= require dashing/widgets/Rickshaw.Graph.HoverDetail
+//= require dashing/widgets/graph

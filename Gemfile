@@ -19,14 +19,14 @@ gem "httparty"
 gem 'sass-rails', '~> 5.0'
 gem "compass-rails", github: "Compass/compass-rails", branch: "master"
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'sidekiq'
 gem 'sinatra', :require => nil
 gem 'activeadmin', github: 'activeadmin'
 gem 'cancancan', '~> 1.10'
-gem 'sprockets-rails', '~> 2.2.4'
+gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'dashing-rails'
 # Use Uglifier as compressor for JavaScript assets
 # Use CoffeeScript for .coffee assets and views
