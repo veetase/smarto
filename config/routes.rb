@@ -36,6 +36,8 @@ Rails.application.routes.draw do
       	end
       end
       get 'qiniu_token/:bucket', to: 'qiniu_token#create'
+      post 'vouchers/:voucher', to: 'vouchers#active'
+      get 'vouchers', to: 'vouchers#index'
     end
   end
 end

@@ -31,3 +31,5 @@ en:
   admin:
     spot:
       statuses: ["published", "reject"]
+    voucher:
+      statuses: ["fresh", "assigned", "used"]

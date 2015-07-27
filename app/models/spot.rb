@@ -16,7 +16,7 @@ class Spot < ActiveRecord::Base
   validates :perception_value, numericality: { greater_than_or_equal_to: -50, less_than_or_equal_to: 50}
   validates :comment, length: { maximum: 200 }
   validates :image, :image_shaped, length: { maximum: 100 }
-  validates :avg_temperature, :mid_temperature, :max_temperature, :min_temperature, numericality: { greater_than_or_equal_to: -100, less_than_or_equal_to: 1000} # todo..  curracy the value
+  validates :avg_temperature, :mid_temperature, :max_temperature, :min_temperature, numericality: { greater_than_or_equal_to: -40, less_than_or_equal_to: 125} # todo..  curracy the value
   validates :measure_duration, numericality: { greater_than: 0}
   validates :location, :image, :image_shaped, :mid_temperature, :avg_temperature, :max_temperature, :min_temperature, :start_measure_time, :perception_value, :perception_tags, presence: true
   validate :validate_tags

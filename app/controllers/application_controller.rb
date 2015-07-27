@@ -26,6 +26,10 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new('Not Found')
   end
 
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
+
   protected
 
   def authenticate_with_token

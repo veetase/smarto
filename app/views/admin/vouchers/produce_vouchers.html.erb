@@ -1,0 +1,33 @@
+<%= form_tag('produce_vouchers', class: 'formtastic')  do%>
+  <fieldset class="inputs">
+    <ol>
+      <li>
+        <%= label_tag 'name' %>
+        <%= text_field_tag 'voucher[name]' %>
+      </li>
+      <li>
+        <%= label_tag 'description' %>
+        <%= text_field_tag 'voucher[description]' %>
+      </li>
+      <li>
+        <%= label_tag(:type) %>
+        <%= select_tag "voucher[type]", options_for_select({Single: 'Vouchers::Single', Online: 'Vouchers::Template', Offline: 'Vouchers::Offline'}) %>
+        <span>Single: everyone share one voucher, online: automertically generate a unique voucher for one user, offline: create a number of vouchers in database.</span>
+      </li>
+      <li>
+        <%= label_tag 'ex_count' %>
+        <%= number_field_tag 'voucher[ex_count]' %>
+      </li>
+      <li>
+        <%= label_tag 'expire_at' %>
+        <%= date_field_tag('voucher[expire_at]') %>
+      </li>
+
+      <li>
+        <%= label_tag 'count' %>
+        <%= number_field_tag('count')%>
+      </li>
+      <li><%= submit_tag 'Produce' %></li>
+    </ol>
+  </fieldset>
+<% end %>

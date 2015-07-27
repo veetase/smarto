@@ -11,8 +11,11 @@
 // = require_tree ./admin
 @import "active_admin/mixins";
 @import "active_admin/base";
-
+// = require_self
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+form input[type=date], form input[type=number], form input[type=text] {
+  width: auto;
+}

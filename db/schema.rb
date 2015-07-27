@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150625064915) do
+ActiveRecord::Schema.define(version: 20150721062737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,14 @@ ActiveRecord::Schema.define(version: 20150625064915) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_vouchers", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "voucher_id"
+  end
+
+  add_index "user_vouchers", ["user_id"], name: "index_user_vouchers_on_user_id", using: :btree
+  add_index "user_vouchers", ["voucher_id"], name: "index_user_vouchers_on_voucher_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "auth_token"
     t.datetime "auth_token_expire_at"
@@ -93,6 +101,7 @@ ActiveRecord::Schema.define(version: 20150625064915) do
     t.integer  "roles_mask"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "dou_coin",                           default: 0
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree
@@ -100,6 +109,23 @@ ActiveRecord::Schema.define(version: 20150625064915) do
   add_index "users", ["created_at"], name: "index_users_on_created_at", using: :btree
   add_index "users", ["phone"], name: "index_users_on_phone", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "vouchers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "ex_count"
+    t.string   "code"
+    t.string   "picture"
+    t.string   "type"
+    t.integer  "max"
+    t.integer  "used_count"
+    t.integer  "status",      limit: 2
+    t.datetime "expire_at"
+  end
+
+  add_index "vouchers", ["code"], name: "index_vouchers_on_code", using: :btree
+  add_index "vouchers", ["name"], name: "index_vouchers_on_name", using: :btree
+  add_index "vouchers", ["type"], name: "index_vouchers_on_type", using: :btree
 
   create_table "weather_station_spots", force: :cascade do |t|
     t.float    "max_temperature", null: false

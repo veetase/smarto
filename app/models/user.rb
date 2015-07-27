@@ -2,9 +2,12 @@ require 'uti/uc_sms'
 class User < ActiveRecord::Base
   self.sequence_name = "dou_id_seq"
   before_create :next_seq
-  has_many :spots
   before_create :generate_authentication_token!
   devise :database_authenticatable, :async, :trackable, :rememberable, :registerable
+
+  has_many :spots
+  has_many :vouchers, through: :user_vouchers, before_add: :check_voucher
+  has_many :user_vouchers
 
   module Gender
     UNDEFINED = 0
@@ -25,6 +28,7 @@ class User < ActiveRecord::Base
   validates :gender, inclusion: { in: [Gender::UNDEFINED, Gender::MALE, Gender::FEMALE]}, :allow_nil => true
   validates :figure, numericality: { greater_than: -10, less_than: 50}, :allow_nil => true #The heaviest man ever lived in the world is 635
   validates :age, numericality: { greater_than: 0, less_than: 130}, :allow_nil => true #The heaviest man ever lived in the world is 635
+  validates :dou_coin, numericality: {greater_than_or_equal_to: 0}
   validate :validate_tags
 
   def roles=(roles)
@@ -107,5 +111,20 @@ class User < ActiveRecord::Base
   def next_seq
     result = User.connection.execute("SELECT nextval('dou_id_seq')")
     self.id = result[0]['nextval']
+  end
+
+  def check_voucher(voucher)
+    case voucher.type
+    when "Vouchers::Single"
+      voucher.use_one
+      voucher.save
+    when "Vouchers::Online"
+      temp = Vouchers::Template.where(name: voucher.name, status: Voucher::Status::FRESH).first
+      temp.use_one
+      temp.save
+    when "Vouchers::Offline"
+      voucher.status = Voucher::Status::USED
+      voucher.save
+    end
   end
 end
