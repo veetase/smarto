@@ -21,7 +21,7 @@ gem "compass-rails", github: "Compass/compass-rails", branch: "master"
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails'
 gem 'jquery-rails'
-gem 'turbolinks'
+#gem 'turbolinks'
 gem 'sidekiq'
 gem 'sinatra', :require => nil
 gem 'activeadmin', github: 'activeadmin'
@@ -50,6 +50,7 @@ gem 'qiniu'
 source 'http://rubygems.oneapm.com' do
   gem 'oneapm_rpm'
 end
+gem 'kaminari'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

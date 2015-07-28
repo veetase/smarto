@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150721062737) do
+ActiveRecord::Schema.define(version: 20150727081319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,16 @@ ActiveRecord::Schema.define(version: 20150721062737) do
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
+  create_table "spot_comments", force: :cascade do |t|
+    t.integer  "spot_id"
+    t.integer  "user_id"
+    t.string   "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "spot_comments", ["spot_id"], name: "index_spot_comments_on_spot_id", using: :btree
+
   create_table "spots", force: :cascade do |t|
     t.integer   "perception_value"
     t.string    "perception_tags",                                                                                         array: true
@@ -51,6 +61,9 @@ ActiveRecord::Schema.define(version: 20150721062737) do
     t.integer   "status",             limit: 2,                                                default: 0
     t.datetime  "created_at"
     t.datetime  "updated_at"
+    t.integer   "like",                                                                        default: 0
+    t.float     "height",                                                                      default: 0.0
+    t.integer   "comment_count",                                                               default: 0
   end
 
   add_index "spots", ["created_at"], name: "index_spots_on_created_at", using: :btree

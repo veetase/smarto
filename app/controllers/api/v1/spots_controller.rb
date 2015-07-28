@@ -1,8 +1,10 @@
 require 'grab/weather_cn'
 class Api::V1::SpotsController < ApplicationController
 	before_action :authenticate_with_token, only: [:destroy]
+	before_action :get_spot, only: [:show, :like, :unlike]
+
 	def show
-		respond_with spot = Spot.find(params[:id])
+		respond_with @spot
 	end
 
 	def create
@@ -37,11 +39,25 @@ class Api::V1::SpotsController < ApplicationController
 		# 	weather = weather_cn.fetch_weather
 		# end
 
-		render json: {spots: spots.as_json(include: { user: { only: [:_id, :avatar, :gender, :nick_name]} }, except: [:is_public, :user_id]), weather_cn: weather}
+		render json: {spots: spots.as_json(include: { user: { only: [:id, :avatar, :gender, :nick_name]} }, except: [:is_public, :user_id]), weather_cn: weather}
+	end
+
+	def like
+			@spot.like = @spot.like + 1
+			head 204 if @spot.save
+	end
+
+	def unlike
+		@spot.like = @spot.like - 1
+		head 204 if @spot.save
 	end
 
 	private
 	def spot_params
-	  attr = params.require(:spot).permit!
+		params.require(:spot).except!(:like).permit!
+	end
+
+	def get_spot
+		@spot = Spot.find(params[:id])
 	end
 end

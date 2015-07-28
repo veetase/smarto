@@ -34,6 +34,16 @@ Rails.application.routes.draw do
       	collection do
       	  get 'around/:area_id/:lon/:lat/:distance', :action => 'around', :constraints => {:lon => /\-*\d+.\d+/ , :lat => /\-*\d+.\d+/}
       	end
+
+        member do
+          post 'like'
+          post 'unlike'
+        end
+
+        resources :spot_comments, only: [:index, :create] do
+          get 'page/:page', :action => :index, :on => :collection
+        end
+        
       end
       get 'qiniu_token/:bucket', to: 'qiniu_token#create'
       post 'vouchers/:voucher', to: 'vouchers#active'

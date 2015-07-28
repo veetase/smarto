@@ -1,5 +1,7 @@
 class Spot < ActiveRecord::Base
   belongs_to :user
+  has_many :spot_comments, before_add: :add_comment_count
+
   module Category
     INDOOR  = 0
     OUTDOOR = 1
@@ -42,5 +44,10 @@ class Spot < ActiveRecord::Base
     if !perception_tags.is_a?(Array) || perception_tags.size > 10 || perception_tags.detect{|t| t.size > 10}
       errors.add(:perception_tags, :invalid)
     end
+  end
+
+  def add_comment_count
+    self.comment_count = self.comment_count + 1
+    self.save
   end
 end
