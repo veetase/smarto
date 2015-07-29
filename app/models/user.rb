@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :spots
   has_many :vouchers, through: :user_vouchers, before_add: :check_voucher
   has_many :user_vouchers
+  has_one :tel_attribution
 
   module Gender
     UNDEFINED = 0
