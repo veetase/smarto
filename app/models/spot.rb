@@ -46,7 +46,7 @@ class Spot < ActiveRecord::Base
     end
   end
 
-  def add_comment_count
+  def add_comment_count(coment)
     self.comment_count = self.comment_count + 1
     self.save
   end
