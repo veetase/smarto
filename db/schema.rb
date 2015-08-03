@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150729031500) do
+ActiveRecord::Schema.define(version: 20150731040015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20150729031500) do
     t.integer   "like",                                                                        default: 0
     t.float     "height",                                                                      default: 0.0
     t.integer   "comment_count",                                                               default: 0
+    t.integer   "view_count",                                                                  default: 0
   end
 
   add_index "spots", ["created_at"], name: "index_spots_on_created_at", using: :btree

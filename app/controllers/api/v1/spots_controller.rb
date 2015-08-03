@@ -4,7 +4,8 @@ class Api::V1::SpotsController < ApplicationController
 	before_action :get_spot, only: [:show, :like, :unlike]
 
 	def show
-		respond_with @spot
+		@spot.add_view_count
+		respond_with @spot.as_json
 	end
 
 	def create

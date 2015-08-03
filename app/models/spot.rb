@@ -1,6 +1,6 @@
 class Spot < ActiveRecord::Base
   belongs_to :user
-  has_many :spot_comments, before_add: :add_comment_count
+  has_many :spot_comments, after_add: :add_count
 
   module Category
     INDOOR  = 0
@@ -39,6 +39,24 @@ class Spot < ActiveRecord::Base
     self.save
   end
 
+  def add_view_count
+    cache_name = view_count_cache
+    count = $redis.get(cache_name).to_i
+    if count > 10
+      self.view_count += count
+      self.save
+      $redis.set(cache_name, 1) #added one
+    else
+      $redis.set(cache_name, count + 1)
+    end
+  end
+
+  def as_json(options={})
+    result = super
+    result["view_count"] = result["view_count"].to_i + $redis.get(view_count_cache).to_i
+    result
+  end
+
   private
   def validate_tags
     if !perception_tags.is_a?(Array) || perception_tags.size > 10 || perception_tags.detect{|t| t.size > 10}
@@ -46,8 +64,18 @@ class Spot < ActiveRecord::Base
     end
   end
 
-  def add_comment_count(coment)
+  def add_count(coment)
     self.comment_count = self.comment_count + 1
+
+    cache_name = view_count_cache
+    cached_view_count = $redis.get(cache_name).to_i
+
+    self.view_count += cached_view_count
     self.save
+    $redis.set(cache_name, 0)
+  end
+
+  def view_count_cache
+    "spot_#{self.id}"
   end
 end

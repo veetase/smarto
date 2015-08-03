@@ -11,9 +11,10 @@ class Api::V1::SpotCommentsController < ApplicationController
     spot_comment = SpotComment.new(spot_params)
     spot_comment.user = current_app_user if current_app_user
 
-    if @spot.spot_comments.create(spot_comment.attributes)
-      head 204
-    end
+    byebug
+    @spot.spot_comments.create!(spot_comment.attributes)
+    head 204
+
   end
 
   private
