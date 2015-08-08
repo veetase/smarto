@@ -97,6 +97,10 @@ class User < ActiveRecord::Base
     /\A1[3, 5, 7, 8]\d{9}\z/i
   end
 
+  def self.count_by_signup_date(start_date, end_date)
+    where('created_at >= ? and created_at <= ?', start_date, end_date).group('date(created_at)').order('date(created_at)').count
+  end
+
   private
   def validate_tags
     return true if tags.nil?

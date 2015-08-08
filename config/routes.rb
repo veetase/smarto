@@ -3,10 +3,6 @@ require 'constraints/dashing_constraints'
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  constraints DashingConstraints do
-    mount Dashing::Engine, at: Dashing.config.engine_path
-  end
-
   root 'static#index'
   get 'static/shengmaodou', to: 'static#shengmaodou'
   ActiveAdmin.routes(self)
@@ -43,7 +39,7 @@ Rails.application.routes.draw do
         resources :spot_comments, only: [:index, :create] do
           get 'page/:page', :action => :index, :on => :collection
         end
-        
+
       end
       get 'qiniu_token/:bucket', to: 'qiniu_token#create'
       post 'vouchers/:voucher', to: 'vouchers#active'

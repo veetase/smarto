@@ -1,0 +1,289 @@
+<% content_for :head do %>
+	<%= stylesheet_link_tag 'dashboard', media: 'all'%>
+<% end %>
+<!-- Start Content -->
+<div class="container-fluid fixed">
+	<div id="wrapper">
+		<div id="content">
+			<div class="menubar">
+				<ul class="nav nav-pills">
+					<li class="active"><a id="data_all">all</a></li>
+					<li class="divider"></li>
+					<li><a id="data_month">This Month</a></li>
+					<li><a id="data_week">This Week</a></li>
+					<li><a id="data_today" >Today</a></li>
+					<!-- <li><a id="export">Export</a></li> -->
+				</ul>
+			</div>
+
+			<div class="innerLR">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="widget widget-4">
+							<div class="widget-head">
+								<h4 class="heading">User</h4>
+								<a href="/admin/users" class="details pull-right">manage</a>
+							</div>
+							<div class="widget-body list">
+								<ul>
+									<li>
+										<span>Users</span>
+										<span class="count" id="signups_count"></span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-8">
+						<div class="row">
+							<div class="col-md-4">
+								<a href="" class="widget-stats">
+									<span class="glyphicon glyphicon-user"></span>
+									<span class="txt"><strong id="likes_count"></strong>Likes</span>
+									<!-- <div class="clearfix"></div> -->
+								</a>
+							</div>
+							<div class="col-md-4">
+								<a href="" class="widget-stats">
+									<span class="glyphicon glyphicon-map-marker"></span>
+									<span class="txt"><strong id="spots_count"></strong>spots</span>
+									<div class="clearfix"></div>
+								</a>
+							</div>
+							<div class="col-md-4">
+								<a href="" class="widget-stats">
+									<span class="glyphicon glyphicon-comment"></span>
+									<span class="txt"><strong id="comments_count"></strong>comments</span>
+									<div class="clearfix"></div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="separator bottom"></div>
+
+			<div class="widget widget-2 widget-tabs widget-tabs-2">
+				<div class="widget-head">
+					<ul>
+						<li class="active"><a class="glyphicons cardio" href="#website-traffic-tab" data-toggle="tab"><i></i>Signups</a></li>
+						<!-- <li><a class="glyphicons cardio" href="#website-traffic-tab2" data-toggle="tab"><i></i>Secondary Tab</a></li> -->
+					</ul>
+				</div>
+
+			<div class="widget-body">
+				<div class="tab-pane active" id="website-traffic-tab">
+					<!-- <div class="btn-group separator bottom pull-right">
+						<button id="users_today" class="btn btn-small btn-default">24 Hours</button>
+						<button id="users_week" class="btn btn-small btn-default">7 Days</button>
+						<button id="users_month" class="btn btn-small btn-default">14 Days</button>
+						<button id="websiteTrafficClear" class="btn btn-small btn-default" disabled="disabled">Clear</button>
+					</div>
+					<div class="clearfix" style="clear: both;"></div> -->
+					<div id="users_chart" style="height: 200px;">Yang Tang is very delicious</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="innerLR">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="widget widget-4">
+						<div class="widget-head">
+							<h4 class="heading">Overview</h4>
+						</div>
+						<div class="widget-body list">
+							<ul>
+								<li><span class="number"> <div class="sparkline" id="spots_chart"></div></span>Spots</li>
+								<li><span class="number"> <div class="sparkline" id="comments_chart"></div></span>Comments</li>
+								<li><span class="number"> <div class="sparkline" id="likes_chart"></div></span>Likes</li>
+							</ul>
+						</div>
+					</div>
+					<div class="widget widget-4">
+						<div class="widget-head">
+							<h4 class="heading">App</h4>
+						</div>
+						<div class="widget-body list">
+							<ul>
+								<li><span class="number">TODO <span class="sparkline"></span></span> Downloads</li>
+								<li><span class="number">TODO <span class="sparkline"></span></span> page view count</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="widget widget-4">
+						<div class="widget-head">
+							<h4 class="heading">Phone number attribution</h4>
+						</div>
+						<div class="widget-body">
+							<div id="phone" style="height: 400px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+
+<script type="text/javascript">
+	$(function () {
+			$(".nav-pills li").click(function(){
+				$(this).addClass("active");
+				$(this).siblings().removeClass("active");
+			});
+			getData();
+			$("#data_month").click(function(){
+				var args = {start_date: moment().startOf('month').format("YYYY-MM-DD HH:mm:ss")};
+				getData(args);
+			});
+			$("#data_week").click(function(){
+				var args = {start_date: moment().startOf('week').format("YYYY-MM-DD HH:mm:ss")};
+				getData(args);
+			});
+			$("#data_today").click(function(){
+				var args = {start_date: moment().startOf('day').format("YYYY-MM-DD HH:mm:ss")};
+				getData(args);
+			});
+			$("#data_all").click(function(){
+				getData();
+			});
+
+			function getData(args){
+				var url = "/admin/users/user_report";
+				$.ajax({
+				  type: "POST",
+				  url: url,
+				  data: args,
+				  success: changeData,
+				  dataType: "json"
+				});
+			}
+
+			function changeData(data){
+
+				$("#signups_count").html(data["signups"]["total"]);
+				$("#spots_count").html(data["spots"]["total"]);
+				$("#comments_count").html(data["comments"]["total"]);
+				$("#likes_count").html(data["likes"]["total"]);
+
+				var users_data = data["signups"]["data"];
+				var comments_data = data["comments"]["data"];
+				var spots_data = data["spots"]["data"];
+				var tel_data = data["tel_attributions"]["data"];
+
+				//users chart
+				$('#users_chart').highcharts({
+						chart: {
+								zoomType: 'x'
+						},
+						xAxis: {
+								type: 'datetime'
+						},
+						title: {
+								text: 'Users count'
+						},
+						yAxis: {
+								min: 0,
+								allowDecimals: false,
+								title: {
+										text: 'count'
+								}
+						},
+						series: [{
+								type: 'area',
+								name: 'Users',
+								data: users_data,
+								showInLegend: false
+						}],
+						credits: {
+							enabled: false
+						}
+				});
+
+				$('#spots_chart').highcharts({
+						chart: {
+								type: 'line'
+						},
+						xAxis: {
+								type: 'datetime',
+								labels: {
+										enabled: false
+								},
+								tickWidth: 0
+						},
+						title: {
+								text: null
+						},
+						yAxis: {
+								min: 0,
+								labels: {
+										enabled: false
+								},
+								title: {
+										text: null
+								},
+								gridLineWidth: 0
+						},
+						series: [{
+								data: spots_data,
+								showInLegend: false,
+								name: 'count'
+						}],
+						credits: {
+							enabled: false
+						}
+				});
+
+				$('#comments_chart').highcharts({
+						chart: {
+								type: 'line'
+						},
+						xAxis: {
+								type: 'datetime',
+								labels: {
+										enabled: false
+								},
+								tickWidth: 0
+						},
+						title: {
+								text: null
+						},
+						yAxis: {
+								min: 0,
+								labels: {
+										enabled: false
+								},
+								title: {
+										text: null
+								},
+								gridLineWidth: 0
+						},
+						series: [{
+								data: comments_data,
+								showInLegend: false,
+								name: 'count'
+						}],
+						credits: {
+							enabled: false
+						}
+				});
+
+				$('#phone').highcharts({
+						chart: {
+								type: 'pie'
+						},
+						title: {
+								text: null
+						},
+						series: [{
+								data: tel_data
+						}],
+						credits: {
+							enabled: false
+						}
+				});
+			}
+
+	});
+</script>

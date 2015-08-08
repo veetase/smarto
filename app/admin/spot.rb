@@ -27,8 +27,6 @@ ActiveAdmin.register Spot do
     redirect_to collection_path, alert: "The spots have been rejected."
   end
 
-
-
   batch_action :activate do |ids|
     batch_action_collection.find(ids).each do |spot|
       spot.activate

@@ -11,11 +11,88 @@
 // = require_tree ./admin
 @import "active_admin/mixins";
 @import "active_admin/base";
+
 // = require_self
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+
+@font-face{
+  font-family: 'Glyphicons Halflings';
+  src: font-url('glyphicons-halflings-regular.eot');
+  src: font-url('glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+       font-url('glyphicons-halflings-regular.woff') format('woff'),
+       font-url('glyphicons-halflings-regular.ttf') format('truetype'),
+       font-url('glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
 form input[type=date], form input[type=number], form input[type=text] {
   width: auto;
+}
+
+a:hover{
+  cursor: pointer;
+}
+
+.container-fluid{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.nav>li>a {
+  padding: 1px 10px;
+  top: 5px;
+}
+.menubar ul li{
+  line-height: 18px;
+}
+
+.nav-tabs>li>a:hover, .nav-pills>li>a, .nav-pills>li>a:hover {
+    background: #fff;
+    border-color: #37a6cd;
+    color: #37a6cd;
+}
+.row .widget.widget-4 .widget-head .heading{
+  height: 30px;
+}
+.row .widget.widget-4 .widget-head{
+  height: 30px;
+}
+
+.row .widget-stats{
+  height: 70px;
+}
+
+.widget-stats .glyphicon{
+  font-size: 40px;
+}
+
+a, a:link, a:visited{
+  text-decoration: none;
+}
+.widget-stats .txt{
+  padding: 0;
+}
+.widget-stats .txt strong {
+  font-size: 20px;
+}
+.widget .widget-body.list ul li .number {
+    position: relative;
+    top: -10px;
+    float: right;
+    color: #37a6cd;
+}
+.widget .widget-body .number {
+    font-size: 20pt;
+    font-weight: 400;
+}
+.widget .widget-body.list ul li .sparkline {
+    display: inline-block;
+    width: 150px;
+    height: 39px;
+    top: 10px;
+}
+
+.nav>li>a{
+
 }

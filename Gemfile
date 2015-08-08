@@ -27,7 +27,6 @@ gem 'sinatra', :require => nil
 gem 'activeadmin', github: 'activeadmin'
 gem 'cancancan', '~> 1.10'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
-gem 'dashing-rails'
 # Use Uglifier as compressor for JavaScript assets
 # Use CoffeeScript for .coffee assets and views
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -47,9 +46,6 @@ gem 'mina'
 gem 'mina-sidekiq', :require => false
 gem 'mina-puma', :require => false
 gem 'qiniu'
-source 'http://rubygems.oneapm.com' do
-  gem 'oneapm_rpm'
-end
 gem 'kaminari'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -70,6 +66,11 @@ group :development, :test do
   # gem 'spring'
 end
 
+group :production do
+  source 'http://rubygems.oneapm.com' do
+    gem 'oneapm_rpm'
+  end
+end
 group :test do
   gem "factory_girl_rails"
   gem "faker"

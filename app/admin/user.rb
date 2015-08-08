@@ -24,4 +24,11 @@ ActiveAdmin.register User do
     f.actions
   end
 
+  collection_action :user_report, method: :post do
+    opts = {start_date: params[:start_date], end_date: params[:end_date]}
+    reports = {}
+    ["signups", "spots", "comments", "likes", "tel_attributions"].map{|item| reports[item] = Report.find(item, opts).as_json}
+    render json: reports.as_json
+  end
+
 end
