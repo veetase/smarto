@@ -1,21 +1,20 @@
-<% content_for :head do %>
-	<%= stylesheet_link_tag 'dashboard', media: 'all'%>
-<% end %>
 <link href='http://fonts.googleapis.com/css?family=Raleway:400,200' rel='stylesheet' type='text/css'>
 
 <div class="container">
 	<div class="row login_box">
 	    <div class="col-md-12 col-xs-12" align="center">
-            <div class="line"><h3>哟</h3></div>
-            <div class="outter"><img src=<%= asset_path 'static_page/loading.gif' %> class="image-circle"/></div>
+            <div class="line"><h3>12 : 30 AM</h3></div>
+            <div class="outter"><img src="http://lorempixel.com/output/people-q-c-100-100-1.jpg" class="image-circle"/></div>
+            <h1>Hi Guest</h1>
+            <span>INDIAN</span>
 	    </div>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <%= f.hidden_field :remember_me, :value =>'checked' %>
+        <%= f.hidden_field, remember_me, value: 'checked' %>
         <div class="col-md-12 col-xs-12 login_control">
             <div class="control">
                 <div class="label">Phone Number</div>
-                <%= f.phone_field :phone, autofocus: true, class: "form-control" %>
+                <%= f.email_field :phone, autofocus: true, class: "form-control" %>
             </div>
 
             <div class="control">
@@ -25,7 +24,10 @@
             <div align="center">
                 <%= f.submit "LOGIN", class:'btn btn-orange' %>
             </div>
+
+            <div align="center">
+                <%= render "devise/shared/links" %>
+            </div>
         </div>
-      <%end%>
     </div>
 </div>

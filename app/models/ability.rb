@@ -8,7 +8,6 @@ class Ability
     if user.has_role? :admin
       can :read, ActiveAdmin::Page, name: "Dashboard", namespace_name: :admin
       can :manage, :all
-      can :manage, Dashing
     elsif user.has_role? :QA
       can :read, :all
     end
