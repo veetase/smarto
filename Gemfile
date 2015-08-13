@@ -10,7 +10,7 @@ gem 'activerecord-postgis-adapter', '3.0.0.beta2'
 gem 'redis'
 gem 'redis-namespace'
 gem 'redis-rails'
-
+gem 'rufus-scheduler'
 gem "responders"
 gem "devise"
 gem "devise-async"
