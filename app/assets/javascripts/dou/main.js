@@ -57,7 +57,7 @@ jQuery(document).ready(function($){
 		( $(window).scrollTop() < $(window).height()/2 ) ? $('.cd-vertical-nav .cd-prev').addClass('inactive') : $('.cd-vertical-nav .cd-prev').removeClass('inactive');
 		( $(window).scrollTop() > $(document).height() - 3*$(window).height()/2 ) ? $('.cd-vertical-nav .cd-next').addClass('inactive') : $('.cd-vertical-nav .cd-next').removeClass('inactive');
 
-		if ($(window).scrollTop() < 3*$(window).height()/2 || $(window).scrollTop() > $(document).height() - 3*$(window).height()/2 ){
+		if ($(window).scrollTop() < 3*$(window).height()/2 || $(window).scrollTop() > ($(document).height() - 3*$(window).height()/2 + 50) ){
 			$('.cd-vertical-nav').removeClass('white');
 		}else{
 			$('.cd-vertical-nav').addClass('white');

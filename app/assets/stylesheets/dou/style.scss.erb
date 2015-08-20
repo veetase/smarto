@@ -236,6 +236,8 @@ Main Components
   }
   .cd-fixed-background.img-9 {
     background-image: url(<%= asset_path 'static_page/img-9.jpg' %>);
+    background-size: auto 60%;
+    background-color: white;
   }
 }
 @media only screen and (min-width: 1048px) {
@@ -302,9 +304,9 @@ Main Components
   }
 }
 
-.no-js .cd-vertical-nav {
+/*.no-js .cd-vertical-nav {
   display: none;
-}
+}*/
 
 .cd-product {
   position: relative;
@@ -404,11 +406,11 @@ Main Components
 .link_cont{
   width: 40%;
   min-width: 200px;
-  margin: 0 auto;
   text-align: center;
-  position: relative;
+  position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .link_block{
