@@ -1,5 +1,7 @@
 require 'rails_helper'
-
 RSpec.describe TelAttribution, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should respond_to(:city) }
+  it { should respond_to(:province) }
+  it { should respond_to(:isp) }
+  it { should respond_to(:user) }
 end

@@ -1,16 +1,15 @@
-require 'spec_helper'
-require 'constraints/api_constraints'
-describe ApiConstraints do
-  let(:url)     { "http://api.domain.com"     }
-  let(:bad_url) { "http://bad_url.domain.com" }
-
-  describe "subdomain" do
-    it "requrest with api subdomain should pass in" do
-      request = double(host: 'api.localhost:3000',
-                       headers: {"Accept" => "application/smarto.v1"})
-      expect(api_constraints_v1.matches?(request)).to be true
-      expect({:get => "#{url}/"})
-    end
-
-  end
-end
+# require 'spec_helper'
+# require 'constraints/api_constraints'
+# describe ApiConstraints, type: :routing do
+#   describe "spots" do
+#     it "requrest with api subdomain should pass in" do
+#       expect(:get => "/spots/around/10101010/50.55/50.55/1000", subdomain: 'api', :format => "json").to route_to(
+#         :controller => "spots",
+#         :area_id => "101010100",
+#         :lon => "50.55",
+#         :lat => "50.55",
+#         :distance => "1000"
+#       )
+#     end
+#   end
+# end

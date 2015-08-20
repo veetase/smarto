@@ -16,9 +16,11 @@
       addMapControl();//向地图添加控件
       addMapOverlay();//向地图添加覆盖物
     }
+
+
     function createMap(){
       map = new BMap.Map("map");
-      map.centerAndZoom(new BMap.Point(<%= @spots.first.location.lon if @spots.present?%>,<%= @spots.first.location.lat if @spots.present?%>),15);
+      map.centerAndZoom(new BMap.Point(<%= @spots.first.location.lon if @spots.present? %>,<%= @spots.first.location.lat if @spots.present? %>),15);
     }
     function setMapEvent(){
       map.enableScrollWheelZoom();
@@ -32,8 +34,9 @@
       });
     }
     function addMapOverlay(){
+
       var markers = [<% @spots.each do |s|%>
-        {content: "<%= s.comment %>", title: <%= s.id %>, imageOffset: {width:0,height:-46}, position:{lat: <%= s.location.lat %>, lng: <%=s.location.lon %>} },
+        {content: '<%= s.comment.gsub!("\\", "\\\\") %>', title: <%=s.id %>, imageOffset: {width:0,height:-46}, position:{lat: <%= s.location.lat %>, lng: <%=s.location.lon %>} },
       <% end %>];
 
       for(var index = 0; index < markers.length; index++ ){
@@ -63,6 +66,17 @@
       var overviewControl = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:true});
       map.addControl(overviewControl);
     }
+
+    //更新地图当前位置
+    <%
+      formated_spots = {}
+      @spots.collect{|s| formated_spots[s.id] = [s.location.lon, s.location.lat] }
+    %>
+    $("tr").click(function(){
+      var formated_spots = <%=raw formated_spots.to_json %> ;
+      var spot_id = $(this).find(".resource_id_link").html();
+      map.centerAndZoom(new BMap.Point(formated_spots[spot_id][0], formated_spots[spot_id][1]),15);
+    });
     var map;
       initMap();
   </script>

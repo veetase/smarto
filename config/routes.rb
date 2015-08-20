@@ -1,5 +1,4 @@
 require 'constraints/api_constraints'
-require 'constraints/dashing_constraints'
 require 'sidekiq/web'
 
 Rails.application.routes.draw do

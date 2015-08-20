@@ -61,6 +61,10 @@ class Spot < ActiveRecord::Base
     result
   end
 
+  def json_show
+    self.as_json(include: { user: { only: [:id, :avatar, :gender, :nick_name]} }, except: [:is_public, :user_id])
+  end
+
   private
   def validate_tags
     if !perception_tags.is_a?(Array) || perception_tags.size > 10 || perception_tags.detect{|t| t.size > 10}

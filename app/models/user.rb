@@ -114,7 +114,7 @@ class User < ActiveRecord::Base
   end
 
   def next_seq
-    result = User.connection.execute("SELECT nextval('dou_id_seq')")
+    result = ActiveRecord::Base.connection.execute("SELECT nextval('dou_id_seq')")
     self.id = result[0]['nextval']
   end
 

@@ -34,10 +34,6 @@ RSpec.describe User, :type => :model do
       expect(@user.reset_password_token).to eql "1234"
     end
 
-    it "should create a sms job" do
-      assert_equal 1, UcSmsJob.jobs.size
-    end
-
     it "should increment the count" do
       expect{@user.reset_password}.to change{UcSmsJob.jobs.size}.by(1)
     end
