@@ -27,6 +27,7 @@ gem 'sinatra', :require => nil
 gem 'activeadmin', github: 'activeadmin'
 gem 'cancancan', '~> 1.10'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
+gem 'pingpp'
 # Use Uglifier as compressor for JavaScript assets
 # Use CoffeeScript for .coffee assets and views
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -60,6 +61,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "rspec-rails"
   gem 'byebug'
+  gem "faker"
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
@@ -73,6 +75,5 @@ group :production do
 end
 group :test do
   gem "factory_girl_rails"
-  gem "faker"
   gem "shoulda-matchers"
 end

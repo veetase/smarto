@@ -11,6 +11,8 @@ defaults: &defaults
     app_id: "104a84f3cdaf45ac9bcd9cb764447164"
     register_tmplate_id: "6615"
     reset_password_tmplate_id: "6617"
+  pingpp:
+    app_id: "app_bfXXz58W1Cy1CyTK"
 
 
 

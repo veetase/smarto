@@ -59,10 +59,6 @@ RSpec.describe Api::V1::UsersController, :type => :controller do
     end
 
     describe "when is successfully updated" do
-      it "renders the json representation for the updated user" do
-        expect(json_response[:nick_name]).to eql "new_name"
-      end
-
       it { should respond_with 200 }
     end
   end

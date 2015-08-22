@@ -7,4 +7,7 @@ module Api
 
 	class ParameterInvalid < StandardError
 	end
+
+	class ThirdPartyError < StandardError
+	end
 end

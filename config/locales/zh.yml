@@ -1,0 +1,10 @@
+zh:
+  admin:
+    spot:
+      statuses: ["已发布", "回决"]
+    voucher:
+      statuses: ["可用", "已分配", "已使用"]
+  activerecord:
+    models:
+      order:
+        subject: "生毛豆订单"

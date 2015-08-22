@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150812022651) do
+ActiveRecord::Schema.define(version: 20150908031513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,55 @@ ActiveRecord::Schema.define(version: 20150812022651) do
   add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
+
+  create_table "addresses", force: :cascade do |t|
+    t.string   "name"
+    t.string   "country",    default: "中国"
+    t.string   "province"
+    t.string   "city"
+    t.string   "district"
+    t.string   "detail"
+    t.string   "zip_code"
+    t.string   "tel"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.decimal  "total"
+    t.string   "order_no"
+    t.string   "pay_method"
+    t.integer  "status",       limit: 2, default: 0
+    t.string   "ship_carrier"
+    t.string   "ship_no"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+
+  create_table "placements", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "product_id"
+    t.integer  "quantity",   default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "placements", ["order_id"], name: "index_placements_on_order_id", using: :btree
+  add_index "placements", ["product_id"], name: "index_placements_on_product_id", using: :btree
+
+  create_table "products", force: :cascade do |t|
+    t.string   "title",       default: ""
+    t.text     "description", default: ""
+    t.decimal  "price",                       null: false
+    t.boolean  "published",   default: false
+    t.integer  "quantity",    default: 0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
 
   create_table "spot_comments", force: :cascade do |t|
     t.integer  "spot_id"
@@ -69,6 +118,18 @@ ActiveRecord::Schema.define(version: 20150812022651) do
 
   add_index "spots", ["created_at"], name: "index_spots_on_created_at", using: :btree
   add_index "spots", ["location"], name: "index_spots_on_location", using: :gist
+
+  create_table "station_spots", force: :cascade do |t|
+    t.string    "city"
+    t.string    "name"
+    t.geography "location",    limit: {:srid=>4326, :type=>"point", :geographic=>true}, null: false
+    t.float     "temperature",                                                          null: false
+    t.float     "height"
+    t.datetime  "created_at",                                                           null: false
+    t.datetime  "updated_at",                                                           null: false
+  end
+
+  add_index "station_spots", ["location"], name: "index_station_spots_on_location", using: :gist
 
   create_table "subscribers", force: :cascade do |t|
     t.string   "email"
@@ -165,4 +226,7 @@ ActiveRecord::Schema.define(version: 20150812022651) do
     t.datetime "publish_time"
   end
 
+  add_foreign_key "orders", "users"
+  add_foreign_key "placements", "orders"
+  add_foreign_key "placements", "products"
 end

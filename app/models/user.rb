@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :vouchers, through: :user_vouchers, before_add: :check_voucher
   has_many :user_vouchers
   has_one :tel_attribution
+  has_many :orders, dependent: :destroy
+  has_many :addresses, dependent: :destroy
 
   module Gender
     UNDEFINED = 0

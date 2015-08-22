@@ -18,7 +18,9 @@ RSpec.describe User, :type => :model do
   it { should respond_to(:nick_name) }
   it { should respond_to(:gender) }
   it { should respond_to(:age) }
-
+  it { should have_many(:products) }
+  it { should have_many(:orders) }
+  it { should have_many(:addresses) }
   describe "generate_authentication_token" do
     it "generates a unique token" do
       Devise.stub(:friendly_token).and_return("auniquetoken123")
