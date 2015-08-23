@@ -32,7 +32,11 @@ class WeatherCn
     url = @base_url + part_params + "&appid=#{@app_id_param}"
     key = generate_key(public_key)
     request_url = url + "&key=#{key}"
-    response = JSON.load self.class.get(request_url).force_encoding('UTF-8')
+    begin
+      response = JSON.load self.class.get(request_url).force_encoding('UTF-8')
+    rescue
+      response = nil
+    end
   end
 
   def fetch_weather
@@ -43,11 +47,14 @@ class WeatherCn
     else
       index = index_v
       forecast = forecast_v
-      persist_temperature(forecast) # backup temperature to database, only temperature
-      weather = {index: index, forecast: forecast}
-
-      $redis.set(cache_name, weather.to_json)
-      $redis.expire(cache_name, WeatherCnSetting.weather_cn.cache_peroid)
+      persist_temperature(forecast) if forecast# backup temperature to database, only temperature
+      if index.nil? && forecast.nil?
+        weather = nil
+      else
+        weather = {index: index, forecast: forecast}
+        $redis.set(cache_name, weather.to_json)
+        $redis.expire(cache_name, WeatherCnSetting.weather_cn.cache_peroid)
+      end
     end
     weather
   end
