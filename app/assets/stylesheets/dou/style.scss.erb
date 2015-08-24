@@ -236,6 +236,9 @@ Main Components
   }
   .cd-fixed-background.img-9 {
     background-image: url(<%= asset_path 'static_page/img-9.jpg' %>);
+    -webkit-background-size: auto 60%;
+    -moz-background-size: auto 60%;
+    -o-background-size: auto 60%;
     background-size: auto 60%;
     background-color: white;
   }
@@ -410,6 +413,10 @@ Main Components
   position: absolute;
   top: 50%;
   left: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
 
