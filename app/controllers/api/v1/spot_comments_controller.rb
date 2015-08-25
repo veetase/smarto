@@ -1,7 +1,7 @@
 class Api::V1::SpotCommentsController < ApplicationController
   before_action :get_spot
   def index
-    render json: @spot.spot_comments.order(created_at: :desc).page(params[:page]).as_json(
+    render json: @spot.spot_comments.includes(:user).order(created_at: :desc).page(params[:page]).as_json(
       include: { user: { only: [:id, :avatar, :gender, :nick_name]} }
     )
   end

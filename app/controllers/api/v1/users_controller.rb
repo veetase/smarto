@@ -66,6 +66,7 @@ class Api::V1::UsersController < ApplicationController
 
   private
   def user_params
-    params.require("user").permit(:nick_name, :avatar, :gender, :age, :figure, tags:[])
+    # remove age when app version is high enough
+    params.require("user").permit(:nick_name, :avatar, :gender, :age, :birth_date, :figure, tags:[])
   end
 end

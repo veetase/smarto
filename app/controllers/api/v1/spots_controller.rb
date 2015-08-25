@@ -33,7 +33,7 @@ class Api::V1::SpotsController < ApplicationController
 		longitude = params[:lon].to_f
 		latitude = params[:lat].to_f
 
-		spots = Spot.near(longitude, latitude, distance)
+		spots = Spot.near(longitude, latitude, distance).includes(:user)
 		weather = nil
 		if area_id = params[:area_id]
 			weather_cn = WeatherCn.new(area_id)
