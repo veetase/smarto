@@ -70,6 +70,7 @@ group :production do
   source 'http://rubygems.oneapm.com' do
     gem 'oneapm_rpm'
   end
+  gem 'htmlcompressor'
 end
 group :test do
   gem "factory_girl_rails"
