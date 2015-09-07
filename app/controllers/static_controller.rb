@@ -1,5 +1,7 @@
 class StaticController < ApplicationController
   layout false
+  caches_page :index
+
   def index
   end
 

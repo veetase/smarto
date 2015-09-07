@@ -1,14 +1,55 @@
 html, body{
-    height:100%
+    height:100%;
+    margin: 0;
 }
 
 .jing{
-	height:300px;
-	width:850px;
+	height:250px;
+	width:800px;
 	position:absolute;
 	margin:-150px 0 0 -425px;
-    left:50%; top:50%;
-    background-image: url("images/caidan.jpg");
+  left:50%; top:45%;
+  background-image: url("images/caidan.jpg");
+  background-size: 100% 100%;
+}
+
+.vedio_link{
+  display: block;
+  width: 133px;
+  margin: 0 auto;
+}
+
+.link_block {
+    font-size: 20px;
+    color: black;
+    width: 170px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin: 10px 0 0 -85px;
+}
+.link_block a {
+    display: inline-block;
+    width: 120px;
+    height: 20px;
+    border-bottom: solid 1px #000000;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.bracket{
+  display: inline-block;
+  position: relative;
+  top: 6px;
+  height: 25px;
+  width: 12px;
+}
+.bracket_left {
+    background: url(//7xj6xc.com2.z0.glb.qiniucdn.com/assets/static_page/brackets/bracket2Left-ce911a83b7d20c6e481a93ebf6ba058c.png) no-repeat;
+    background-size: 100% 100%;
+}
+.bracket_right {
+    background: url(//7xj6xc.com2.z0.glb.qiniucdn.com/assets/static_page/brackets/bracket2Right-5008f4985c0bb4d0ed414ff8552604ee.png) no-repeat;
     background-size: 100% 100%;
 }
 
@@ -24,75 +65,3 @@ html, body{
 	    background-size: auto;
 	}
 }
-
-
-
-
-
-/*
-{
- 	width:600px;
- 	height:200px;
- 	overflow:hidden;
- 	position:relative;
- 	display:table-cell;
- 	text-align:center;
- 	vertical-align:middle
-}
-<div>
- 	<div>
- p
- {
- 	position:static;
- 	+position:absolute;
- 	top:50%
- }
-
- 	img
- {
- 	position:static;
- 	+position:relative;
-    top:-50%;left:-50%;
- }
-</div>
-
-text{ display: inline-block; width:200px;border:100px;}
-#center{ margin: auto; width: 900px; text-align: center;}
-
-<h1 style="position: relative; top: 50%; transform: translateY(-50%); text-align: center;background-color:pink">
-
-
-<div style="height:100%;"
-    height:100%
-    height:100%
-	position:relative;
-	height:100%;>
-</div>
-
-
-		<div style="height:300px;
-					width:850px;
-					position:absolute;
-					margin:-150px 0 0 -425px;
-					left:50%;
-					top:50%;">
-		</div>
-
-		    <img src="img-12.jpg"
-		    style="width:100%;
-		           height:100%;"/>
-
-
-
-
-  div
-{
-	height:
-
-}
-
-
-
-
-
-*/

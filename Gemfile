@@ -47,6 +47,7 @@ gem 'mina-sidekiq', :require => false
 gem 'mina-puma', :require => false
 gem 'qiniu'
 gem 'kaminari'
+gem 'actionpack-page_caching'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
