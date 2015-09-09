@@ -33,7 +33,7 @@ class Api::V1::UsersController < ApplicationController
   # end
   def update
     if current_app_user.update(user_params)
-      render json: current_app_user.json_show_to_self, status: 200, location: [:api, current_app_user]
+      head :ok
     else
       render json: { errors: current_app_user.errors }, status: 422
     end

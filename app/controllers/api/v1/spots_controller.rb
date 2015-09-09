@@ -32,15 +32,23 @@ class Api::V1::SpotsController < ApplicationController
 		distance = params[:distance].to_i
 		longitude = params[:lon].to_f
 		latitude = params[:lat].to_f
+		limit_count = 100
 
-		spots = Spot.near(longitude, latitude, distance).includes(:user)
-		weather = nil
-		if area_id = params[:area_id]
-			weather_cn = WeatherCn.new(area_id)
-			weather = weather_cn.fetch_weather
+		case distance
+		when 0..5000
+			limit_count = 10
+		when 5001..500000
+			limit_count = 50
 		end
 
-		render json: {spots: spot_public_list(spots), weather_cn: weather}
+		spots = Spot.includes(:spot_comments, :user).near(longitude, latitude, distance).order("created_at DESC").limit(limit_count)
+		# weather = nil
+		# if area_id = params[:area_id]
+		# 	weather_cn = WeatherCn.new(area_id)
+		# 	weather = weather_cn.fetch_weather
+		# end
+
+		render json: {spots: spot_public_list(spots)}
 	end
 
 	def like
@@ -63,6 +71,6 @@ class Api::V1::SpotsController < ApplicationController
 	end
 
 	def spot_public_list(spots)
-		spots.as_json(include: { user: { only: [:id, :avatar, :gender, :nick_name]} }, except: [:is_public, :user_id])
+		spots.as_json(include: [:spot_comments, {user: { only: [:id, :avatar, :gender, :nick_name]}}], except: [:is_public, :user_id])
 	end
 end

@@ -17,4 +17,8 @@ module ExceptionHandle
   def invalid_value
     render json: { errors: I18n.t("exception.invalid_value")}, status: :bad_request
   end
+
+  def third_party_error
+    render json: { errors: I18n.t("exception.third_party_error")}, status: :not_found
+  end
 end

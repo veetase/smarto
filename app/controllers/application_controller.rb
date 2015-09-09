@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :null_session
-
   include Authenticable
 
   rescue_from Api::NotFound, ActionController::RoutingError, ActiveRecord::RecordNotFound, with: :not_found
@@ -20,6 +19,10 @@ class ApplicationController < ActionController::Base
     else
       redirect_to new_user_session_path
     end
+  end
+
+  def authenticate_app_admin!
+    raise Api::Unauthorized unless current_app_user.has_role?(:admin)
   end
 
   def access_denied(exception)

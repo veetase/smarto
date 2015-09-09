@@ -75,11 +75,11 @@ RSpec.describe Api::V1::SpotsController, :type => :controller do
       spots_response = json_response
       expect(spots_response[:spots].count).to eql 1
     end
-
-    it "should get weather info" do
-      spots_response = json_response
-      expect(spots_response[:weather_cn]).not_to eql nil
-    end
+    # 
+    # it "should get weather info" do
+    #   spots_response = json_response
+    #   expect(spots_response[:weather_cn]).not_to eql nil
+    # end
 
     it { should respond_with 200 }
   end
