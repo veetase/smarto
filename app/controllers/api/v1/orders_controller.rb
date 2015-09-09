@@ -1,6 +1,6 @@
 class Api::V1::OrdersController < ApplicationController
   before_action :authenticate_with_token, except: :complete_order
-  before_action :find_order, only: :show, :prepare_pay, :complete_order
+  before_action :find_order, only: [:show, :prepare_pay, :complete_order]
   def index
     render json: current_app_user.orders
   end

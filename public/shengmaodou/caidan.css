@@ -1,6 +1,7 @@
 html, body{
     height:100%;
     margin: 0;
+    font-family: Kaiti TC,"楷体","楷体_GB2312",KaiTi_GB2312,KaiTi,STKaiti Regular,Adobe Kaiti Std R;
 }
 
 .jing{
@@ -20,7 +21,7 @@ html, body{
 }
 
 .link_block {
-    font-size: 20px;
+    font-size: 22px;
     color: black;
     width: 170px;
     position: absolute;
@@ -29,9 +30,10 @@ html, body{
     margin: 10px 0 0 -85px;
 }
 .link_block a {
+    color: black;
     display: inline-block;
-    width: 120px;
-    height: 20px;
+    width: 133px;
+    height: 25px;
     border-bottom: solid 1px #000000;
     cursor: pointer;
     text-decoration: none;
@@ -56,11 +58,11 @@ html, body{
 @media screen and (max-width: 736px) {
 	.jing{
 	    height: 802px;
-	    width:133px;
-	    position: static;
-	    margin: 0 auto;
-	    left: none;
-	    top: none;
+	    width: 133px;
+	    position: absolute;
+	    margin: 0 0 0 -67px;
+	    left: 50%;
+	    top: 0;
 	    background-image:url("images/caidan_mobile.jpg");
 	    background-size: auto;
 	}
