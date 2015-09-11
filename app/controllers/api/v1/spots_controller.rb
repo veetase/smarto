@@ -42,13 +42,12 @@ class Api::V1::SpotsController < ApplicationController
 		end
 
 		spots = Spot.includes(:spot_comments, :user).near(longitude, latitude, distance).order("created_at DESC").limit(limit_count)
-		# weather = nil
-		# if area_id = params[:area_id]
-		# 	weather_cn = WeatherCn.new(area_id)
-		# 	weather = weather_cn.fetch_weather
-		# end
+		station_spots = nil
+		if params[:area_id] == "101280601"
+			station_spots = StationSpot.near(longitude, latitude, distance).order("created_at DESC").limit(limit_count)
+		end
 
-		render json: {spots: spot_public_list(spots)}
+		render json: {spots: spot_public_list(spots), station_spots: station_spots}
 	end
 
 	def like

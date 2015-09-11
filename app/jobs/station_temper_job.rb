@@ -1,15 +1,12 @@
-module StationTemper
-  #only support shenzhen
-  @locations = nil
-
-  def fetch_station_temper
+class StationTemperJob
+  include Sidekiq::Worker
+  def perform
     response = HTTParty.get("http://szmb.gov.cn/data_cache/szWeather/szMetroWeather.js")
     raise "Get Station temper info failed" unless response.message == "OK"
 
     station_spots = []
     temper_info = (JSON.load response.parsed_response)["SZ121_MetroLiveWeather"]
-
-    raise "station api went wrong" if (Time.now - (temper_info["eDate"] / 1000)) > 600
+    raise "station api went wrong" if (Time.now.to_i - (temper_info["line1"]["eDate"] / 1000)) > 2000
     temper_info.each do |k, value|
       value["stations"].each do |temper|
         station_name = temper["stationName"]
