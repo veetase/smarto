@@ -1,25 +1,34 @@
-require 'grab/weather_cn'
 class Api::V1::SpotsController < ApplicationController
+	include Api::V1::Concerns::FindSpot
 	before_action :authenticate_with_token, only: [:destroy]
-	before_action :get_spot, only: [:show, :like, :unlike]
+	before_action only: [:like, :unlike] do
+		get_spot(params[:id])
+	end
 
+	#in action show, like, unlike, spot can be user spot and station spot
 	def show
+		if params[:type] == "station_spot"
+			@spot = StationSpot.includes(comments: :user).find(params[:id])
+		else
+			@spot = Spot.includes(:user, comments: :user).find(params[:id])
+		end
+
 		@spot.add_view_count
 		respond_with spot_public_list(@spot)
 	end
 
 	def create
 	  if current_app_user
-		    spot = current_app_user.spots.build(spot_params)
+		  spot = current_app_user.spots.build(spot_params)
 		else
-		    spot = Spot.new(spot_params)
+		  spot = Spot.new(spot_params)
 		end
 
 		if spot.save
-      		render json: {result: "success"}, status: 201, location: [:api, spot]
-    	else
-      		render json: { errors: spot.errors }, status: 422
-    	end
+      render json: {result: "success"}, status: 201, location: [:api, spot]
+    else
+      render json: { errors: spot.errors }, status: 422
+    end
 	end
 
 	def destroy
@@ -41,10 +50,10 @@ class Api::V1::SpotsController < ApplicationController
 			limit_count = 50
 		end
 
-		spots = Spot.includes(:spot_comments, :user).near(longitude, latitude, distance).order("created_at DESC").limit(limit_count)
+		spots = Spot.includes(:comments, :user).near(longitude, latitude, distance).order("created_at DESC").limit(limit_count)
 		station_spots = nil
 		if params[:area_id] == "101280601"
-			station_spots = StationSpot.near(longitude, latitude, distance).order("created_at DESC").limit(limit_count)
+			station_spots = StationSpot.near(longitude, latitude, distance).where("created_at >= ?", 15.minutes.ago).order("created_at DESC").limit(limit_count)
 		end
 
 		render json: {spots: spot_public_list(spots), station_spots: station_spots}
@@ -65,11 +74,11 @@ class Api::V1::SpotsController < ApplicationController
 		params.require(:spot).except!(:like).permit!
 	end
 
-	def get_spot
-		@spot = Spot.find(params[:id])
-	end
-
-	def spot_public_list(spots)
-		spots.as_json(include: [:spot_comments, {user: { only: [:id, :avatar, :gender, :nick_name]}}], except: [:is_public, :user_id])
+	def spot_public_list(spot)
+		if spot.model_name.name.underscore == "spot"
+			spot.as_json(include: [{comments: {only: [:id, :content, :created_at], include: {user: {only: [:id, :avatar, :gender, :nick_name]}}}}, {user: { only: [:id, :avatar, :gender, :nick_name]}}], except: [:is_public, :user_id])
+		else
+			spot.as_json(include: {comments: {only: [:id, :content, :created_at], include: {user: {only: [:id, :avatar, :gender, :nick_name]}}}})
+		end
 	end
 end

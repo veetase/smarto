@@ -4,7 +4,7 @@ RSpec.describe Api::V1::SpotsController, :type => :controller do
   describe "GET #show" do
     before(:each) do
       @spot = FactoryGirl.create :spot
-      get :show, id: @spot.id
+      get :show, id: @spot.id, type: "spot"
     end
 
     it "returns the information about a reporter on a hash" do
@@ -75,7 +75,7 @@ RSpec.describe Api::V1::SpotsController, :type => :controller do
       spots_response = json_response
       expect(spots_response[:spots].count).to eql 1
     end
-    # 
+    #
     # it "should get weather info" do
     #   spots_response = json_response
     #   expect(spots_response[:weather_cn]).not_to eql nil

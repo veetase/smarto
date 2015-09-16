@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150911084614) do
+ActiveRecord::Schema.define(version: 20150915083258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,18 @@ ActiveRecord::Schema.define(version: 20150911084614) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "comments", force: :cascade do |t|
+    t.string   "content"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "user_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
@@ -81,16 +93,6 @@ ActiveRecord::Schema.define(version: 20150911084614) do
     t.datetime "updated_at",                  null: false
   end
 
-  create_table "spot_comments", force: :cascade do |t|
-    t.integer  "spot_id"
-    t.integer  "user_id"
-    t.string   "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "spot_comments", ["spot_id"], name: "index_spot_comments_on_spot_id", using: :btree
-
   create_table "spots", force: :cascade do |t|
     t.integer   "perception_value"
     t.string    "perception_tags",                                                                                         array: true
@@ -122,11 +124,14 @@ ActiveRecord::Schema.define(version: 20150911084614) do
   create_table "station_spots", force: :cascade do |t|
     t.string    "city"
     t.string    "name"
-    t.geography "location",    limit: {:srid=>4326, :type=>"point", :geographic=>true}, null: false
-    t.float     "temperature",                                                          null: false
+    t.geography "location",      limit: {:srid=>4326, :type=>"point", :geographic=>true},             null: false
+    t.float     "temperature",                                                                        null: false
     t.float     "height"
-    t.datetime  "created_at",                                                           null: false
-    t.datetime  "updated_at",                                                           null: false
+    t.datetime  "created_at",                                                                         null: false
+    t.datetime  "updated_at",                                                                         null: false
+    t.integer   "view_count",                                                             default: 0
+    t.integer   "comment_count",                                                          default: 0
+    t.integer   "like",                                                                   default: 0
   end
 
   add_index "station_spots", ["created_at"], name: "index_station_spots_on_created_at", using: :btree

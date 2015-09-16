@@ -25,20 +25,23 @@ Rails.application.routes.draw do
           delete 'logout'
         end
       end
-      resources :spots do
+      resources :spots, :only => [:create, :destroy] do
       	collection do
       	  get 'around/:area_id/:lon/:lat/:distance', :action => 'around', :constraints => {:lon => /\-*\d+.\d+/ , :lat => /\-*\d+.\d+/}
       	end
 
         member do
-          post 'like'
-          post 'unlike'
+          get ':type', :action => :show
+          post 'like/:type', :action => :like
+          post 'unlike/:type', :action => :unlike
         end
 
-        resources :spot_comments, only: [:index, :create] do
-          get 'page/:page', :action => :index, :on => :collection
+        resources :comments, only: [] do
+          collection do
+            get ':type/page/:page', :action => :index
+            post ':type', :action => :create
+          end
         end
-
       end
       get 'qiniu_token/:bucket', to: 'qiniu_token#create'
       post 'vouchers/:voucher', to: 'vouchers#active'
