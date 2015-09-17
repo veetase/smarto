@@ -4,7 +4,7 @@ RSpec.describe Api::V1::SpotsController, :type => :controller do
   describe "GET #show" do
     before(:each) do
       @spot = FactoryGirl.create :spot
-      get :show, id: @spot.id, type: "spot"
+      get :show, id: @spot.id
     end
 
     it "returns the information about a reporter on a hash" do
@@ -75,13 +75,37 @@ RSpec.describe Api::V1::SpotsController, :type => :controller do
       spots_response = json_response
       expect(spots_response[:spots].count).to eql 1
     end
-    #
-    # it "should get weather info" do
-    #   spots_response = json_response
-    #   expect(spots_response[:weather_cn]).not_to eql nil
-    # end
-
     it { should respond_with 200 }
   end
 
+  describe "GET #around when city is shenzhen" do
+    before(:each) do
+      FactoryGirl.create(:station_spot, location: "POINT(-110 30)")
+      get :around, {area_id: "101280601", lon: -111.44, lat: 30.25, distance: 1060000}
+    end
+
+    it "should get station_spot info" do
+      spots_response = json_response
+      expect(spots_response[:station_spots]).not_to eql nil
+    end
+    it { should respond_with 200 }
+  end
+
+  describe "POST #like" do
+    before(:each) do
+      @spot = FactoryGirl.create(:spot)
+      post :like, {id: @spot.id }
+    end
+
+    it { should respond_with 204 }
+  end
+
+  describe "POST #unlike" do
+    before(:each) do
+      @spot = FactoryGirl.create(:spot)
+      post :unlike, {id: @spot.id }
+    end
+
+    it { should respond_with 204 }
+  end
 end

@@ -1,7 +1,7 @@
 class Spot < ActiveRecord::Base
   belongs_to :user
   include SpotConcern
-
+  has_many :spot_comments, after_add: :add_count
   module Category
     INDOOR  = 0
     OUTDOOR = 1

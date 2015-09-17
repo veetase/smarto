@@ -25,22 +25,18 @@ Rails.application.routes.draw do
           delete 'logout'
         end
       end
-      resources :spots, :only => [:create, :destroy] do
+      resources :spots, :only => [:show, :create, :destroy] do
       	collection do
       	  get 'around/:area_id/:lon/:lat/:distance', :action => 'around', :constraints => {:lon => /\-*\d+.\d+/ , :lat => /\-*\d+.\d+/}
       	end
 
         member do
-          get ':type', :action => :show
-          post 'like/:type', :action => :like
-          post 'unlike/:type', :action => :unlike
+          post 'like'
+          post 'unlike'
         end
 
-        resources :comments, only: [] do
-          collection do
-            get ':type/page/:page', :action => :index
-            post ':type', :action => :create
-          end
+        resources :spot_comments, only: [:index, :create] do
+          get 'page/:page', :action => :index, :on => :collection
         end
       end
       get 'qiniu_token/:bucket', to: 'qiniu_token#create'
@@ -53,6 +49,23 @@ Rails.application.routes.draw do
           get 'get_charge'
           post 'complete_order'
           post 'cancel'
+        end
+      end
+    end
+
+    scope module: :v2, constraints: ApiConstraints.new(version: 2) do
+      resources :spots, :only => [:create, :destroy] do
+        member do
+          get ':type', :action => :show
+          post 'like/:type', :action => :like
+          post 'unlike/:type', :action => :unlike
+        end
+
+        resources :comments do
+          collection do
+            get ':type/page/:page', :action => :index
+            post ':type', :action => :create
+          end
         end
       end
     end

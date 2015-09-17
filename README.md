@@ -478,6 +478,39 @@ http请求方式（以下简称方式）：POST
 ### 请求
 方式：POST
 
+地址：/spots/\(spot_id)/like.json ; /spots/\(spot_id)/unlike.json
+身份验证: 否
+
+### 返回：
+##### 成功
+状态码：204
+
+## 获取spot评论
+### 请求
+方式：GET
+
+地址：/spots/\(spot_id)/spot_comments/page/\(page_id).json
+
+例如：http://api.bixuange.com/spots/30/spot_comments/page/1.json
+身份验证: 否
+
+## 提交spot评论
+### 请求
+方式：POST
+
+地址：/spots/\(spot_id)/spot_comments.json
+
+body:
+{
+  "spot_comment": {"content": "要提交的评论"}
+}
+身份验证: 否
+
+# 详细接口介绍 第二版
+## 提交赞, 取消赞
+### 请求
+方式：POST
+
 地址：/spots/\(spot_id)/like/\(type).json ; /spots/\(spot_id)/unlike\(type).json
 身份验证: 否
 参数: spot_id: spot 或者 station_spot的id, type: 取值spot或station_spot或省略默认spot
@@ -498,11 +531,11 @@ http请求方式（以下简称方式）：POST
 ### 请求
 方式：POST
 
-地址：/spots/\(spot_id)/spot_comments/\(type).json
+地址：/spots/\(spot_id)/comments/\(type).json
 
 body:
 {
-  "spot_comment": {"content": "要提交的评论"}
+  "comment": {"content": "要提交的评论"}
 }
 身份验证: 否
 

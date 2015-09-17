@@ -12,7 +12,7 @@ class Api::V1::AddressesController < ApplicationController
   def create
     address = current_app_user.addresses.build(address_params)
     if address.save
-      render json: address, status: 201, location: [:api, current_app_user, address]
+      render json: address, status: 201
     else
       render json: { errors: address.errors }, status: 422
     end
@@ -21,7 +21,7 @@ class Api::V1::AddressesController < ApplicationController
   def update
     address = Address.find(params[:id])
     if address.update(address_params)
-      render json: address, status: 200, location: [:api, current_app_user, address]
+      render json: address, status: 200
     else
       render json: { errors: address.errors }, status: 422
     end
