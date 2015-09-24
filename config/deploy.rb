@@ -84,9 +84,11 @@ task :deploy => :environment do
     invoke :'sidekiq:quiet'
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
+    invoke :'prepare:static_page'
     invoke :'bundle:install'
     invoke :'rails:db_migrate'
     invoke :'rails:assets_precompile'
+    invoke :'prepare:do_copy'
     invoke :'deploy:cleanup'
 
     to :launch do
@@ -98,12 +100,17 @@ task :deploy => :environment do
   end
 end
 
-# namespace :custom_deploy do
-#   desc 'create mongodb indexes'
-#   task :create_indexes do
-#     queue %[cd #{deploy_to}/#{current_path} && bundle exec rake db:mongoid:create_indexes]
-#   end
-# end
+namespace :prepare do
+  desc 'prepare static page shengmaodou, so that it can be served directly by ngnix'
+  task :static_page do
+    queue %[cd #{deploy_to}/#{current_path}/app && cp views/static/shengmaodou.html.erb assets/html/dou.html.erb]
+  end
+
+  task :do_copy do
+    queue %[cd #{deploy_to}/#{current_path}/public]
+    queue %[for d in assets/dou-*.html; do cp $d dou.html; done]
+  end
+end
 
 # For help in making your deploy script, see the Mina documentation:
 #

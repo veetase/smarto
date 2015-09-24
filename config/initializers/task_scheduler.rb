@@ -2,7 +2,7 @@ require 'rufus-scheduler'
 s = Rufus::Scheduler.singleton
 
 #grab station temper infomation
-s.every '10m' do
+s.every '60m' do
   StationTemperJob.perform_async
 end
 

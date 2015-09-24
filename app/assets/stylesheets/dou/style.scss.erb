@@ -140,7 +140,7 @@ Main Components
 }
 
 .cd-fixed-background.img-1 .cd-content::after {
-  background: url(<%= asset_path 'static_page/img-mobile-1.jpg' %>) no-repeat;
+  background: url(<%= asset_path 'static_page/img-mobile-1.png' %>) no-repeat;
   background-size: 100% 100%;
 }
 
@@ -208,7 +208,7 @@ Main Components
     display: none !important;
   }
   .cd-fixed-background.img-1 {
-    background-image: url(<%= asset_path 'static_page/img-mobile-1.jpg' %>);
+    background-image: url(<%= asset_path 'static_page/img-1.png' %>);
     background-size: auto 100%;
     background-color: white;
   }
@@ -459,11 +459,15 @@ Main Components
 
 #to_bixuange{
   width: 200px;
-  margin-top: 30px;
+  margin: 30px auto;
 }
 
-#to_itunes{
+#to_qr{
+  width: 120px;
+}
 
+#to_qr img{
+  width: 100%;
 }
 
 @media only screen and (min-width: 1170px) {

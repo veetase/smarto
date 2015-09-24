@@ -5,7 +5,7 @@ jQuery(document).ready(function($){
 	var animating = false;
 	disableScroll();
 	//update arrows visibility and detect which section is visible in the viewport
-	setSlider();
+	// setSlider();
 	$(window).on('scroll resize', function(){
 		(!window.requestAnimationFrame) ? setSlider() : window.requestAnimationFrame(setSlider);
 	});
@@ -53,14 +53,37 @@ jQuery(document).ready(function($){
 	}
 
 	//update the visibility of the navigation arrows
+	var prevStatus = false
+	var nextStatus = true
+	var sliderBlackStatus = true
 	function checkNavigation() {
-		( $(window).scrollTop() < $(window).height()/2 ) ? $('.cd-vertical-nav .cd-prev').addClass('inactive') : $('.cd-vertical-nav .cd-prev').removeClass('inactive');
-		( $(window).scrollTop() > $(document).height() - 3*$(window).height()/2 ) ? $('.cd-vertical-nav .cd-next').addClass('inactive') : $('.cd-vertical-nav .cd-next').removeClass('inactive');
+		// 注意：不要间隔读取写入scrollTop
+		var showPrev =  $(window).scrollTop() > $(window).height()/2
+		var showNext = ( $(window).scrollTop() < $(document).height() - 3*$(window).height()/2 )
+		var sliderBlack = ($(window).scrollTop() < 3*$(window).height()/2 || $(window).scrollTop() > ($(document).height() - 3*$(window).height()/2 + 50) )
 
-		if ($(window).scrollTop() < 3*$(window).height()/2 || $(window).scrollTop() > ($(document).height() - 3*$(window).height()/2 + 50) ){
+		if(showPrev && showPrev != prevStatus){
+			$('.cd-vertical-nav .cd-prev').removeClass('inactive');
+			prevStatus = showPrev;
+		}else if (!showPrev && showPrev != prevStatus) {
+			$('.cd-vertical-nav .cd-prev').addClass('inactive');
+			prevStatus = showPrev;
+		}
+
+		if(showNext && showNext != nextStatus){
+			$('.cd-vertical-nav .cd-next').removeClass('inactive');
+			nextStatus = showNext;
+		}else if (!showNext && showNext != prevStatus) {
+			$('.cd-vertical-nav .cd-next').addClass('inactive');
+			nextStatus = showNext;
+		}
+
+		if(sliderBlack && sliderBlack != sliderBlackStatus){
 			$('.cd-vertical-nav').removeClass('white');
-		}else{
+			sliderBlackStatus = sliderBlack;
+		}else if (!sliderBlack && sliderBlack != sliderBlackStatus) {
 			$('.cd-vertical-nav').addClass('white');
+			sliderBlackStatus = sliderBlack;
 		}
 	}
 
