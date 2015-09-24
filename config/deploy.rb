@@ -107,9 +107,13 @@ namespace :prepare do
   end
 
   task :do_copy do
-    queue %[cd #{deploy_to}/#{current_path}/public]
-    queue %[for d in assets/dou-*.html; do cp $d dou.html; done]
+    queue %[cd #{deploy_to}/#{current_path}/public && for d in assets/dou-*.html; do cp $d dou.html; done]
   end
+end
+
+desc "Shows logs."
+task :logs do
+  queue %[cd #{deploy_to}/#{current_path} && tail -f log/production.log]
 end
 
 # For help in making your deploy script, see the Mina documentation:
