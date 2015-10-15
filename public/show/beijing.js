@@ -7,9 +7,9 @@ function ifArrow(event){
   }
 }
 
-var init_panel = 1;
+var init_panel = 0;
 function switchPage(num){
-  var count = 5;
+  var count = 3;
   init_panel += num;
   current_panel = Math.abs(init_panel % count);
 
@@ -25,39 +25,116 @@ jQuery(document).ready(function($){
     radius: 30,
     maxOpacity: 1,
     minOpacity: 0,
-    blur: .85,
+    blur: .55,
     gradient: {
       '.2': 'yellow',
       '.8': 'orange',
       '1': 'red'
     }
   };
-  var heatmapInstance = h337.create(beijing_heat_config);
 
-  function getRandPointY(){
-    var y =  Math.random() * (300 - 110) + 110;
-    var x = Math.random() * (150 - 130) + 130;
-    var value = Math.random() * 50;
-    return {x: x, y: y, value: value}
+  var beijing_heat_cold_config = {
+    container: document.getElementById('beijing_heat'),
+    radius: 30,
+    maxOpacity: 1,
+    minOpacity: 0,
+    blur: .85,
+    gradient: {
+      '.2': '#13AD67',
+      '.8': '#00A29A',
+      '1': '#036eb8'
+    }
+  };
+
+  var hotmap = h337.create(beijing_heat_config);
+  var coldmap = h337.create(beijing_heat_cold_config);
+
+  var mapUrl = '/beijing_show'
+
+  var current_map = "hum";
+  var current_data = {};
+
+  function updateMap(){
+    $.ajax({
+        url: mapUrl,
+        dataType: 'json',
+        type: 'GET',
+        success: function (data) {
+          current_data = data;
+          if(current_map == "hum"){
+            renderMap(current_data["beijing_as"].concat(current_data["beijing_bs"]), current_data["beijing_cs"], current_data["beijing_ds"], 20, 5, 30);
+          }else if (current_map == "temp") {
+            renderMap(current_data["beijing_a"].concat(current_data["beijing_b"]), current_data["beijing_c"], current_data["beijing_d"], 50, 20, 30);
+          }else if (current_map == "pm25") {
+            renderMap(current_data["beijing_apm"].concat(current_data["beijing_bpm"]), current_data["beijing_cpm"], current_data["beijing_dpm"], 20, 40, 10);
+          }else if (current_map == "voice") {
+            renderMap(current_data["beijing_av"].concat(current_data["beijing_bv"]), current_data["beijing_cv"], current_data["beijing_dv"], 40, 30, 10);
+          }
+        }
+    });
+
+    setTimeout(updateMap, 3000);
   }
 
-  function getRandPointX(){
-    var y =  Math.random() * (140 - 120) + 120;
-    var x = Math.random() * (300 - 120) + 120;
-    var value = Math.random() * 50;
-    return {x: x, y: y, value: value}
-  }
-  
-  var points= [];
-  for (i = 0; i < 20; i++) {
-      points.push(getRandPointY());
+  updateMap();
+
+  $('#humidityRound').click(function(){
+
+    current_map = "hum";
+    renderMap(current_data["beijing_as"].concat(current_data["beijing_bs"]), current_data["beijing_cs"], current_data["beijing_ds"], 20, 5, 50);
+  });
+
+  $('#tmperRound').click(function(){
+    current_map = "temp";
+    renderMap(current_data["beijing_a"].concat(current_data["beijing_b"]), current_data["beijing_c"], current_data["beijing_d"], 50, 20, 30);
+  });
+  $('#pm25Round').click(function(){
+    current_map = "pm25";
+    renderMap(current_data["beijing_apm"].concat(current_data["beijing_bpm"]), current_data["beijing_cpm"], current_data["beijing_dpm"], 20, 40, 10);
+  });
+
+  $('#voiceRound').click(function(){
+    current_map = "voice";
+    renderMap(current_data["beijing_av"].concat(current_data["beijing_bv"]), current_data["beijing_cv"], current_data["beijing_dv"], 40, 30, 10);
+  });
+
+  // render humidity heatmap by default
+
+  function renderMap(data1, data2, data3, value1, value2, value3){
+
+    var mapData = data1;
+    $.each(mapData, function(p) {
+      mapData[p]['value'] = value1;
+    });
+
+    var doorData = data2;
+    $.each(doorData, function(p) {
+      doorData[p]['value'] = value2;
+    });
+
+    var coldData = data3;
+    $.each(coldData, function(p) {
+      coldData[p]['value'] = value3;
+    });
+
+    var finalData = mapData.concat(doorData);
+    var set_data = {
+      max: 150,
+      min: 0,
+      data: finalData
+    }
+
+    var set_cold_data = {
+      max: 30,
+      min: 0,
+      data: coldData
+    }
+
+    hotmap.setData(set_data);
+    coldmap.setData(set_cold_data);
   }
 
-  for (i = 0; i < 20; i++) {
-      points.push(getRandPointX());
-  }
 
-  heatmapInstance.addData(points);
 
   // var data = {
   //   max: 100,

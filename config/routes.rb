@@ -4,6 +4,7 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   root 'static#index'
   get 'static/shengmaodou', to: 'static#shengmaodou'
+  get 'beijing_show', to: 'show#index'
   ActiveAdmin.routes(self)
   mount Sidekiq::Web => '/sidekiq'
   devise_for :users, :controllers => {:confirmations => "devise_overrides/confirmations", :registrations=> "devise_overrides/registrations"}

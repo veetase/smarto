@@ -23,7 +23,18 @@
 	</head>
 	<!-- <body onkeydown="ifArrow(event)" onclick="switchPage(1)" > -->
 	<body onkeydown="ifArrow(event)" >
-		<div id="0" class="panel map" style="display: none;">
+		<div id="0" class="panel heat">
+			<div id="beijing_heat" class="building beijing"></div>
+			<!-- <div class="tooltip"></div> -->
+			<div class="data_mode">
+				<div id='humidityRound' class="mode humidity"></div>
+				<div id='pm25Round' class="mode pm25"></div>
+				<div id='tmperRound' class="mode temp"></div>
+				<div id='voiceRound' class="mode voice"></div>
+			</div>
+		</div>
+
+		<div id="1" class="panel map"  style="display: none;">
 			<div class="city beijing"></div>
 			<div class="floor"></div>
 			<div class="back_left"></div>
@@ -33,16 +44,7 @@
 			<div class="front_right"></div>
 		</div>
 
-		<div id="1" class="panel heat">
-			<div id="beijing_heat" class="building beijing"></div>
-			<div class="tooltip"></div>
-			<div class="data_mode">
-				<div class="mode humidity"></div>
-				<div class="mode pm25"></div>
-				<div class="mode temp"></div>
-				<div class="mode voice"></div>
-			</div>
-		</div>
+
 
 		<div id="2" class="panel charts" style="display: none;">
 			<div class="building">

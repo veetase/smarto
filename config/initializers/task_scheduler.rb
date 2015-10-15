@@ -6,6 +6,11 @@ s.every '60m' do
   StationTemperJob.perform_async
 end
 
+#beijing show heapmap data
+s.every '3s' do
+  BeijingShowJob.perform_async
+end
+
 #backup database
 s.cron '0 2 * * *' do
   `backup perform -t bixuange_backup`
