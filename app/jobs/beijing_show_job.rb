@@ -33,7 +33,7 @@ class BeijingShowJob
   end
 
   def zone_init_maps
-    {beijing_a: set_position(130...220, 180...350), beijing_b: set_position(120...320, 30...150), beijing_c: set_position(400...500, 80...150), beijing_d: set_position(300...420, 250...300)}
+    {beijing_a: set_position(130...220, 180...350), beijing_b: set_position(120...320, 30...150), beijing_c: set_position(400...480, 80...150), beijing_d: set_position(300...420, 250...300)}
   end
 
   def update_map(name)
