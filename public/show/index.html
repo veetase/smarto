@@ -25,9 +25,17 @@
 	<body onkeydown="ifArrow(event)" >
 		<div id="0" class="panel heat">
 			<div id="beijing_heat" class="building beijing"></div>
-			<!-- <div class="tooltip"></div> -->
+			<div class="compare">
+				<div class="com">生毛豆实测： <span id="douHum">loading</span> <span id="douPm25" style="display: none;">loading</span><span id="douTemper" style="display: none;">loading</span><span id="douVoice" style="display: none;">loading</span> </div>
+				<div class="com">中国天气网： <span id="weatherHum">loading</span><span id="weatherTemper" style="display: none;">loading</span><span id="weatherPm25" style="display: none;">loading</span><span id="weatherVoice" style="display: none;">臣妾做不到～</span></div>
+			</div>
+			<div class="tooltip">
+				<div class="tip">湿</div>
+				<div class="tip">中</div>
+				<div class="tip">干</div>
+			</div>
 			<div class="data_mode">
-				<div id='humidityRound' class="mode humidity"></div>
+				<div id='humidityRound' class="mode humidity active"></div>
 				<div id='pm25Round' class="mode pm25"></div>
 				<div id='tmperRound' class="mode temp"></div>
 				<div id='voiceRound' class="mode voice"></div>

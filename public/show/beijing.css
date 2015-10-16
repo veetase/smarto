@@ -1,7 +1,10 @@
 html, body, .page {
   width: 100%;
-  height: 100%; }
-
+  height: 100%;
+}
+body{
+  font-family: Kaiti TC,"楷体","楷体_GB2312",KaiTi_GB2312,KaiTi,STKaiti Regular,Adobe Kaiti Std R;
+}
 .city {
   height: 80px;
   width: 50px;
@@ -24,11 +27,11 @@ html, body, .page {
   margin-left: -250px; }
 
 .heat {
-  width: 500px;
+  width: 400px;
   position: absolute;
-  top: 60px;
+  top: 40px;
   left: 50%;
-  margin-left: -250px; }
+  margin-left: -200px; }
 
 .charts {
   width: 800px;
@@ -50,16 +53,42 @@ html, body, .page {
 
 #chart {
   height: 300px;
-  width: 800px; }
+  width: 800px;
+}
+
+.compare{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px auto;
+  height: 40px;
+}
+
+.com{
+  height: 20px;
+}
 
 .tooltip {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
   width: 80%;
-  margin: 25px auto;
+  margin: 20px auto;
+  margin-top: 40px;
   height: 3px;
   background: -webkit-linear-gradient(left, #036eb8, #ebd678, #d8234e);
   background: -o-linear-gradient(left, #036eb8, #ebd678, #d8234e);
   background: -moz-linear-gradient(left, #036eb8, #ebd678, #d8234e);
-  background: linear-gradient(to right, #036eb8, #ebd678, #d8234e); }
+  background: linear-gradient(to right, #036eb8, #ebd678, #d8234e);
+}
+
+.tip{
+  width: 50px;
+  height: 25px;
+  text-align: center;
+  font-size: 12px;
+  color: grey;
+}
 
 .data_mode {
   width: 80%;
@@ -155,19 +184,39 @@ html, body, .page {
 
 .humidity {
   background: url("images/3.png");
-  background-size: 100% 100%; }
+  background-size: 100% 100%;
+}
+
+.humidity.active {
+    background: url("images/7.png");
+    background-size: 100% 100%;
+}
 
 .temp {
   background: url("images/5.png");
-  background-size: 100% 100%; }
+  background-size: 100% 100%;
+}
+.temp.active {
+  background: url("images/9.png");
+  background-size: 100% 100%;
+}
 
 .pm25 {
   background: url("images/4.png");
-  background-size: 100% 100%; }
-
+  background-size: 100% 100%;
+}
+.pm25.active {
+  background: url("images/8.png");
+  background-size: 100% 100%;
+}
+.voice.active {
+  background: url("images/10.png");
+  background-size: 100% 100%;
+}
 .voice {
   background: url("images/6.png");
-  background-size: 100% 100%; }
+  background-size: 100% 100%;
+}
 
 @-webkit-keyframes rota {
   0% {

@@ -18,6 +18,44 @@ function switchPage(num){
 }
 
 jQuery(document).ready(function($){
+  function updateDouInfo(){
+    //compare shengmaodou and china weather info
+    $.ajax({
+        url: "http://wissea.eicp.net:6002/OEairService.asmx/GetData?Code=FFFFFFFF00120000&Key=",
+        dataType: 'json',
+        type: 'GET',
+        success: function (data) {
+          $('#douHum').html((data['Content'][0]['Humidity'] + "%"));
+          $('#douTemper').html(data['Content'][0]['Temperature']);
+          $('#douPm25').html(data['Content'][0]['PM2.5']);
+          $('#douVoice').html(data['Content'][0]['Voice']);
+        }
+    });
+
+    setTimeout(updateDouInfo, 5000);
+  }
+  updateDouInfo();
+
+  // get Weather info from internet
+  function fetchWeather(area_id){
+    $.ajax({
+        url: ("http://wthrcdn.etouch.cn/WeatherApi?citykey=" + area_id),
+        dataType: 'json',
+        type: 'GET',
+        complete: function (data) {
+          var parsedXml = $.parseXML(data["responseText"]);
+          var weather = $(parsedXml);
+          $('#weatherHum').html(weather.find( "shidu" ).text());
+          $('#weatherTemper').html(weather.find( "wendu" ).text());
+          $('#weatherPm25').html(weather.find( "pm25" ).text());
+        }
+    });
+  }
+
+  //Beijing weather info
+  fetchWeather('101010100');
+  //Beijing weather info
+ //  fetchWeather('101280601');
 
   //draw heat map in beijing
   var beijing_heat_config = {
@@ -54,7 +92,30 @@ jQuery(document).ready(function($){
   var current_map = "hum";
   var current_data = {};
 
+  var humidityTip = ["湿", "中", "干"];
+  var temperTip = ["冷", "中", "热"];
+  var pm25Tip = ["低", "中", "高"];
+  var voiceTip = ["小", "中", "大"];
+
+  function setTip(tips){
+    $('.tip:nth-of-type(1)').html(tips[0]);
+    $('.tip:nth-of-type(2)').html(tips[1]);
+    $('.tip:nth-of-type(3)').html(tips[2]);
+  }
+
+  function setCompare(node){
+    node.siblings().hide(function(){
+      node.show();
+    });
+  }
+
+  $('.data_mode .mode').click(function(){
+    $(this).siblings('.mode').removeClass('active');
+    $(this).addClass('active');
+  })
+
   function updateMap(){
+    //draw map
     $.ajax({
         url: mapUrl,
         dataType: 'json',
@@ -62,40 +123,51 @@ jQuery(document).ready(function($){
         success: function (data) {
           current_data = data;
           if(current_map == "hum"){
-            renderMap(current_data["beijing_as"].concat(current_data["beijing_bs"]), current_data["beijing_cs"], current_data["beijing_ds"], 20, 5, 30);
+            renderMap(current_data["beijing_as"].concat(current_data["beijing_bs"]), current_data["beijing_cs"], current_data["beijing_ds"], 40, 20, 6);
           }else if (current_map == "temp") {
-            renderMap(current_data["beijing_a"].concat(current_data["beijing_b"]), current_data["beijing_c"], current_data["beijing_d"], 50, 20, 30);
+            renderMap(current_data["beijing_a"].concat(current_data["beijing_b"]), current_data["beijing_c"], current_data["beijing_d"], 60, 20, 3);
           }else if (current_map == "pm25") {
-            renderMap(current_data["beijing_apm"].concat(current_data["beijing_bpm"]), current_data["beijing_cpm"], current_data["beijing_dpm"], 20, 40, 10);
+            renderMap(current_data["beijing_apm"].concat(current_data["beijing_bpm"]), current_data["beijing_cpm"], current_data["beijing_dpm"], 30, 40, 5);
           }else if (current_map == "voice") {
-            renderMap(current_data["beijing_av"].concat(current_data["beijing_bv"]), current_data["beijing_cv"], current_data["beijing_dv"], 40, 30, 10);
+            renderMap(current_data["beijing_av"].concat(current_data["beijing_bv"]), current_data["beijing_cv"], current_data["beijing_dv"], 40, 30, 5);
           }
         }
     });
 
-    setTimeout(updateMap, 3000);
+    setTimeout(updateMap, 5000);
   }
 
   updateMap();
 
   $('#humidityRound').click(function(){
-
     current_map = "hum";
-    renderMap(current_data["beijing_as"].concat(current_data["beijing_bs"]), current_data["beijing_cs"], current_data["beijing_ds"], 20, 5, 50);
+    setTip(humidityTip); //set top label
+    setCompare($('#douHum'));
+    setCompare($('#weatherHum'));
+    renderMap(current_data["beijing_as"].concat(current_data["beijing_bs"]), current_data["beijing_cs"], current_data["beijing_ds"], 40, 20, 6);
   });
 
   $('#tmperRound').click(function(){
+    setTip(temperTip);
     current_map = "temp";
-    renderMap(current_data["beijing_a"].concat(current_data["beijing_b"]), current_data["beijing_c"], current_data["beijing_d"], 50, 20, 30);
+    setCompare($('#douTemper'));
+    setCompare($('#weatherTemper'));
+    renderMap(current_data["beijing_a"].concat(current_data["beijing_b"]), current_data["beijing_c"], current_data["beijing_d"], 60, 20, 3);
   });
   $('#pm25Round').click(function(){
+    setTip(pm25Tip);
     current_map = "pm25";
-    renderMap(current_data["beijing_apm"].concat(current_data["beijing_bpm"]), current_data["beijing_cpm"], current_data["beijing_dpm"], 20, 40, 10);
+    setCompare($('#douPm25'));
+    setCompare($('#weatherPm25'));
+    renderMap(current_data["beijing_apm"].concat(current_data["beijing_bpm"]), current_data["beijing_cpm"], current_data["beijing_dpm"], 30, 40, 5);
   });
 
   $('#voiceRound').click(function(){
+    setTip(voiceTip);
     current_map = "voice";
-    renderMap(current_data["beijing_av"].concat(current_data["beijing_bv"]), current_data["beijing_cv"], current_data["beijing_dv"], 40, 30, 10);
+    setCompare($('#douVoice'));
+    setCompare($('#weatherVoice'));
+    renderMap(current_data["beijing_av"].concat(current_data["beijing_bv"]), current_data["beijing_cv"], current_data["beijing_dv"], 40, 30, 5);
   });
 
   // render humidity heatmap by default
@@ -133,8 +205,6 @@ jQuery(document).ready(function($){
     hotmap.setData(set_data);
     coldmap.setData(set_cold_data);
   }
-
-
 
   // var data = {
   //   max: 100,
