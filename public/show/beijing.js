@@ -21,7 +21,7 @@ jQuery(document).ready(function($){
     switchPage(1);
   });
 
-  $(document).click(function() {
+  $(document).tap(function() {
     switchPage(1);
   });
 
