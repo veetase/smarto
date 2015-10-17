@@ -17,6 +17,13 @@ body{
   margin: 0 auto;
 }
 
+.panel{
+  display: none;
+}
+
+.panel.first{
+  display: block;
+}
 .beijing {
   background: url(images/beijing_5.png) no-repeat;
   background-size: 100% 100%; }
@@ -664,5 +671,90 @@ body{
   height: 25%;
   position: absolute;
   bottom: 0; }
+  .cd-vertical-nav {
+      position: fixed;
+      z-index: 2;
+      right: 3%;
+      top: 40%;
+      bottom: auto;
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      transform: translateY(-50%);
+      list-style: none;
+}
+
+.cd-vertical-nav a {
+    display: block;
+    height: 40px;
+    width: 40px;
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+    background: transparent url(//7xj6xc.com2.z0.glb.qiniucdn.com/assets/static_page/cd-icon-arrow-162e3620ecc7b0eafda29ea496bc0b0e.png) center center;
+    background-size: 40px 40px;
+    -webkit-transition: opacity 0.2s 0s, visibility 0.2s 0s;
+    -moz-transition: opacity 0.2s 0s, visibility 0.2s 0s;
+    transition: opacity 0.2s 0s, visibility 0.2s 0s;
+}
+
+.cd-vertical-nav a.cd-prev {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+    margin-bottom: 10px;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .panel .footer{
+    display: none;
+    height: 500px;
+  }
+
+  .heat {
+    width: 100%;
+    min-width: 400px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -50%;
+  }
+
+  .charts {
+    width: 100%;
+    top: 0;
+    margin-left: -160px;
+  }
+  #chart{
+    height: 200px;
+    width: 100%;
+  }
+  .check_mode{
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .mode {
+    height: 20px;
+  }
+
+  .point {
+    height: 60px;
+  }
+
+  .compare{
+    margin: 0 auto;
+  }
+  .tooltip{
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+  .check_mode.bottom {
+    margin-bottom: 30px;
+  }
+}
 
 /*# sourceMappingURL=beijing.css.map */

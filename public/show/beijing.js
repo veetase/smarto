@@ -13,6 +13,35 @@ jQuery(document).ready(function($){
     }
   });
 
+  $(".cd-prev").click(function(){
+    switchPage(-1);
+  });
+
+  $(".cd-next").click(function(){
+    switchPage(1);
+  });
+  
+  $(document).swipe( {
+    //Generic swipe handler for all directions
+    swipeUp:function(event, direction, distance, duration, fingerCount) {
+      switchPage(1);
+    },
+    swipeDown:function(event, direction, distance, duration, fingerCount) {
+      switchPage(-1);
+    },
+    //Default is 75px, set to 0 for demo so any distance triggers swipe
+    threshold:0
+  });
+
+  $(document).click(function(event) {
+    event.preventDefault();
+    if( event.which=='38') {
+      switchPage(-1);
+    }else if (event.which=='40') {
+      switchPage(1);
+    }
+  });
+
   var init_panel = 0;
   function switchPage(num){
     var count = 7;
@@ -22,14 +51,6 @@ jQuery(document).ready(function($){
     $(".panel").hide();
     switch(current_panel)
     {
-    case 0:
-      $(".footer").hide();
-      $(".panel:nth-of-type(" + (current_panel + 1) + ")").show();
-      break;
-    case 1:
-      $(".footer").show();
-      $(".panel:nth-of-type(" + (current_panel + 1) + ")").show();
-      break;
     case 2:
       $(".panel:nth-of-type(" + (current_panel + 1) + ")").show(function(){
         if(startingMap == false){
@@ -62,10 +83,6 @@ jQuery(document).ready(function($){
         fetchWeather('101280601');
       });
 
-      break;
-    case 6:
-      $(".footer").show();
-      $(".panel:nth-of-type(" + (current_panel + 1) + ")").show();
       break;
     default:
       $(".panel:nth-of-type(" + (current_panel + 1) + ")").show();

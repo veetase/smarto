@@ -23,7 +23,7 @@
 	</head>
 	<!-- <body onkeydown="ifArrow(event)" onclick="switchPage(1)" > -->
 	<body >
-		<div class="panel cover">
+		<div class="panel cover first">
 			<div class="shengmaodou word"></div>
 			<div class="logoes">
 				<div class="bixuange"></div>
@@ -31,7 +31,7 @@
 			</div>
 		</div>
 
-		<div class="panel " style="display: none;">
+		<div class="panel ">
 			<div class="map">
 				<div class="city beijing"></div>
 				<div class="floor"></div>
@@ -41,9 +41,13 @@
 				<div class="front_left"></div>
 				<div class="front_right"></div>
 			</div>
+			<div class="footer">
+				<div class="dou"></div>
+				<div class="lemeike"></div>
+			</div>
 		</div>
 
-		<div class="panel" style="display: none;">
+		<div class="panel">
 			<div class="heat">
 				<div id="beijing_heat" class="building beijing"></div>
 				<div class="compare">
@@ -62,9 +66,13 @@
 					<div id='voiceRound' class="mode voice"></div>
 				</div>
 			</div>
+			<div class="footer">
+				<div class="dou"></div>
+				<div class="lemeike"></div>
+			</div>
 		</div>
 
-		<div class="panel" style="display: none;">
+		<div class="panel">
 			<div class="charts">
 				<div class="building">
 					<div id="chart"></div>
@@ -77,11 +85,11 @@
 						<div class="mode"><input type="checkbox" id="co2" name="co2" checked="checked"> <label for="pm10">CO₂</label></div>
 					</div>
 					<div class="check_mode bottom">
-						<div class="mode"><input type="checkbox" id="CH2O" name="CH2O" checked="false" disabled="disabled"> <label for="CH2O">CH2O</label></div>
-						<div class="mode"><input type="checkbox" id="ultraviolet" name="ultraviolet" check="false" disabled="disabled" > <label for="ultraviolet">紫外线</label></div>
-						<div class="mode"><input type="checkbox" id="kongtiao" name="kongtiao" check="false" disabled="disabled" > <label for="kongtiao">空调设定</label></div>
-						<div class="mode"><input type="checkbox" id="flow" name="flow" check="false" disabled="disabled" > <label for="flow">气流量</label></div>
-						<div class="mode"><input type="checkbox" id="duty" name="duty" check="false" disabled="disabled" > <label for="duty">排班情况</label></div>
+						<div class="mode"><input type="checkbox" id="CH2O" name="CH2O" disabled="disabled"> <label for="CH2O">CH2O</label></div>
+						<div class="mode"><input type="checkbox" id="ultraviolet" name="ultraviolet" disabled="disabled" > <label for="ultraviolet">紫外线</label></div>
+						<div class="mode"><input type="checkbox" id="kongtiao" name="kongtiao" disabled="disabled" > <label for="kongtiao">空调设定</label></div>
+						<div class="mode"><input type="checkbox" id="flow" name="flow" disabled="disabled" > <label for="flow">气流量</label></div>
+						<div class="mode"><input type="checkbox" id="duty" name="duty" disabled="disabled" > <label for="duty">排班情况</label></div>
 					</div>
 					<div class="points_containter">
 						<div class="point temper">
@@ -141,9 +149,13 @@
 					</div>
 				</div>
 			</div>
+			<div class="footer">
+				<div class="dou"></div>
+				<div class="lemeike"></div>
+			</div>
 		</div>
 
-		<div class="panel" style="display: none;">
+		<div class="panel">
 			<div class="map">
 				<div class="city shenzhen"></div>
 				<div class="floor"></div>
@@ -152,6 +164,10 @@
 				<div class="tower"></div>
 				<div class="sz_fl"></div>
 				<div class="sz_fr"></div>
+			</div>
+			<div class="footer">
+				<div class="dou"></div>
+				<div class="lemeike"></div>
 			</div>
 		</div>
 		<div class="panel" style="display: none;">
@@ -173,23 +189,36 @@
 					<div id='voiceShenzhen' class="mode voice"></div>
 				</div>
 			</div>
+			<div class="footer">
+				<div class="dou"></div>
+				<div class="lemeike"></div>
+			</div>
 		</div>
 
-		<div class="panel cover" style="display: none;">
+		<div class="panel cover">
 			<div class="shengmaodou hardware"></div>
 			<div class="description">
 				<div class="left">让你过有温度的生活</div>
 				<div class="right">生毛豆</div>
 			</div>
+			<div class="footer">
+				<div class="dou"></div>
+				<div class="lemeike"></div>
+			</div>
 		</div>
-		<div class="footer" style="display:none;">
-			<div class="dou"></div>
-			<div class="lemeike"></div>
-		</div>
+
+		<nav>
+			<ul class="cd-vertical-nav white">
+				<li><a href="#0" class="cd-prev">Next</a></li>
+				<li><a href="#0" class="cd-next">Prev</a></li>
+			</ul> <!-- cd-vertical-nav -->
+		</nav>
+
 		<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
 		<script src="//cdn.bootcss.com/highcharts/4.1.9/highcharts.js"></script>
 		<script src="//cdn.bootcss.com/moment.js/2.10.6/moment.min.js"></script>
 		<script src="heatmap.min.js" charset="utf-8"></script>
+		<script src="jquery.touchSwipe.min.js" charset="utf-8"></script>
 		<script src="beijing.js" charset="utf-8"></script>
   </body>
 </html>
