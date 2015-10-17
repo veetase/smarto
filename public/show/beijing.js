@@ -20,17 +20,9 @@ jQuery(document).ready(function($){
   $(".cd-next").click(function(){
     switchPage(1);
   });
-  
-  $(document).swipe( {
-    //Generic swipe handler for all directions
-    swipeUp:function(event, direction, distance, duration, fingerCount) {
-      switchPage(1);
-    },
-    swipeDown:function(event, direction, distance, duration, fingerCount) {
-      switchPage(-1);
-    },
-    //Default is 75px, set to 0 for demo so any distance triggers swipe
-    threshold:0
+
+  $(document).click(function() {
+    switchPage(1);
   });
 
   $(document).click(function(event) {

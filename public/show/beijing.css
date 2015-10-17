@@ -719,14 +719,14 @@ body{
     width: 100%;
     min-width: 400px;
     position: absolute;
-    top: 0;
+    top: 60px;
     left: 50%;
     margin-left: -50%;
   }
 
   .charts {
     width: 100%;
-    top: 0;
+    top: 60px;
     margin-left: -160px;
   }
   #chart{
@@ -734,6 +734,7 @@ body{
     width: 100%;
   }
   .check_mode{
+    margin: 10px auto;
     flex-wrap: wrap;
     justify-content: flex-start;
   }
@@ -753,7 +754,12 @@ body{
     margin-bottom: 10px;
   }
   .check_mode.bottom {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+  }
+  nav{display: none;}
+
+  .logoes{
+    margin-bottom: 10px;
   }
 }
 
