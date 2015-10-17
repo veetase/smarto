@@ -22,135 +22,173 @@
 		<title>生毛豆 | 贔玄阁</title>
 	</head>
 	<!-- <body onkeydown="ifArrow(event)" onclick="switchPage(1)" > -->
-	<body onkeydown="ifArrow(event)" >
-		<div id="0" class="panel heat">
-			<div id="beijing_heat" class="building beijing"></div>
-			<div class="compare">
-				<div class="com">生毛豆实测： <span id="douHum">loading</span> <span id="douPm25" style="display: none;">loading</span><span id="douTemper" style="display: none;">loading</span><span id="douVoice" style="display: none;">loading</span> </div>
-				<div class="com">中国天气网： <span id="weatherHum">loading</span><span id="weatherTemper" style="display: none;">loading</span><span id="weatherPm25" style="display: none;">loading</span><span id="weatherVoice" style="display: none;">臣妾做不到～</span></div>
-			</div>
-			<div class="tooltip">
-				<div class="tip">湿</div>
-				<div class="tip">中</div>
-				<div class="tip">干</div>
-			</div>
-			<div class="data_mode">
-				<div id='humidityRound' class="mode humidity active"></div>
-				<div id='pm25Round' class="mode pm25"></div>
-				<div id='tmperRound' class="mode temp"></div>
-				<div id='voiceRound' class="mode voice"></div>
+	<body >
+		<div class="panel cover">
+			<div class="shengmaodou word"></div>
+			<div class="logoes">
+				<div class="bixuange"></div>
+				<div class="lemeike"></div>
 			</div>
 		</div>
 
-		<div id="1" class="panel map"  style="display: none;">
-			<div class="city beijing"></div>
-			<div class="floor"></div>
-			<div class="back_left"></div>
-			<div class="back_right"></div>
-			<div class="tiananmen"></div>
-			<div class="front_left"></div>
-			<div class="front_right"></div>
+		<div class="panel " style="display: none;">
+			<div class="map">
+				<div class="city beijing"></div>
+				<div class="floor"></div>
+				<div class="back_left"></div>
+				<div class="back_right"></div>
+				<div class="tiananmen"></div>
+				<div class="front_left"></div>
+				<div class="front_right"></div>
+			</div>
 		</div>
 
-
-
-		<div id="2" class="panel charts" style="display: none;">
-			<div class="building">
-				<div id="chart"></div>
-				<div class="check_mode">
-					<div class="mode"><input type="checkbox" id="humidity" name="humidity" checked="checked"> <label for="humidity">湿度</label></div>
-					<div class="mode"><input type="checkbox" id="pm25" name="pm25" checked="checked"> <label for="pm25">PM2.5</label></div>
-					<div class="mode"><input type="checkbox" id="temper" name="temper" checked="checked"> <label for="temper">温度</label></div>
-					<div class="mode"><input type="checkbox" id="voice" name="voice" checked="checked"> <label for="voice">噪声</label></div>
-					<div class="mode"><input type="checkbox" id="pm10" name="pm10" checked="checked"> <label for="pm10">PM10</label></div>
-					<div class="mode"><input type="checkbox" id="co2" name="co2" checked="checked"> <label for="pm10">CO₂</label></div>
-					<div class="mode"><input type="checkbox" id="ultraviolet" name="ultraviolet" check="false" disabled="disabled" > <label for="ultraviolet">紫外线</label></div>
-					<div class="mode"><input type="checkbox" id="pressure" name="pressure" check="false" disabled="disabled"> <label for="pressure">气压</label></div>
-					<div class="mode"><input type="checkbox" id="people_count" name="people_count" check="false" disabled="disabled"> <label for="pressure">人流量</label></div>
+		<div class="panel" style="display: none;">
+			<div class="heat">
+				<div id="beijing_heat" class="building beijing"></div>
+				<div class="compare">
+					<div class="com">生毛豆实测： <span id="douHum">loading</span> <span id="douPm25" style="display: none;">loading</span><span id="douTemper" style="display: none;">loading</span><span id="douVoice" style="display: none;">loading</span> </div>
+					<div class="com">中国天气网： <span id="weatherHum">loading</span><span id="weatherTemper" style="display: none;">loading</span><span id="weatherPm25" style="display: none;">loading</span><span id="weatherVoice" style="display: none;">臣妾做不到～</span></div>
 				</div>
-				<div class="points_containter">
-					<div class="point temper">
-						<div class="round">
-							温度
-						</div>
-						<div class="labelCont">
-							<div class="label">Max: <span id="temperMax"></span></div>
-							<div class="label">Min: <span id="temperMin"></span></div>
-						</div>
-					</div>
-					<div class="point hum">
-						<div class="round">
-							湿度
-						</div>
-						<div class="labelCont">
-							<div class="label">Max: <span id="humMax"></span></div>
-							<div class="label">Min: <span id="humMin"></span></div>
-						</div>
-					</div>
-					<div class="point pm_25">
-						<div class="round">
-							PM2.5
-						</div>
-						<div class="labelCont">
-							<div class="label">Max: <span id="pm25Max"></span></div>
-							<div class="label">Min: <span id="pm25Min"></span></div>
-						</div>
-					</div>
-					<div class="point pm10">
-						<div class="round">
-							PM10
-						</div>
-						<div class="labelCont">
-							<div class="label">Max: <span id="pm10Max"></span></div>
-							<div class="label">Min: <span id="pm10Min"></span></div>
-						</div>
-					</div>
-					<div class="point voice_round">
-						<div class="round">
-							噪声
-						</div>
-						<div class="labelCont">
-							<div class="label">Max: <span id="voiceMax"></span></div>
-							<div class="label">Min: <span id="voiceMin"></span></div>
-						</div>
-					</div>
-					<div class="point co2">
-						<div class="round">
-							CO₂
-						</div>
-						<div class="labelCont">
-							<div class="label">Max: <span id="co2Max"></span></div>
-							<div class="label">Min: <span id="co2Min"></span></div>
-						</div>
-					</div>
+				<div class="tooltip">
+					<div class="tip">湿</div>
+					<div class="tip">中</div>
+					<div class="tip">干</div>
+				</div>
+				<div class="data_mode">
+					<div id='humidityRound' class="mode humidity active"></div>
+					<div id='pm25Round' class="mode pm25"></div>
+					<div id='tmperRound' class="mode temp"></div>
+					<div id='voiceRound' class="mode voice"></div>
 				</div>
 			</div>
 		</div>
 
-		<div id="3" class="panel map" style="display: none;">
-			<div class="city shenzhen"></div>
-			<div class="floor"></div>
-			<div class="sz_bl"></div>
-			<div class="world_window"></div>
-			<div class="tower"></div>
-			<div class="sz_fl"></div>
-			<div class="sz_fr"></div>
-		</div>
-
-		<div id="4" class="panel heat" style="display: none;">
-			<div class="building shenzhen"></div>
-			<div class="tooltip"></div>
-			<div class="data_mode">
-				<div class="mode humidity"></div>
-				<div class="mode pm25"></div>
-				<div class="mode temp"></div>
-				<div class="mode voice"></div>
+		<div class="panel" style="display: none;">
+			<div class="charts">
+				<div class="building">
+					<div id="chart"></div>
+					<div class="check_mode">
+						<div class="mode"><input type="checkbox" id="humidity" name="humidity" checked="checked"> <label for="humidity">湿度</label></div>
+						<div class="mode"><input type="checkbox" id="pm25" name="pm25" checked="checked"> <label for="pm25">PM2.5</label></div>
+						<div class="mode"><input type="checkbox" id="temper" name="temper" checked="checked"> <label for="temper">温度</label></div>
+						<div class="mode"><input type="checkbox" id="voice" name="voice" checked="checked"> <label for="voice">噪声</label></div>
+						<div class="mode"><input type="checkbox" id="pm10" name="pm10" checked="checked"> <label for="pm10">PM10</label></div>
+						<div class="mode"><input type="checkbox" id="co2" name="co2" checked="checked"> <label for="pm10">CO₂</label></div>
+					</div>
+					<div class="check_mode bottom">
+						<div class="mode"><input type="checkbox" id="CH2O" name="CH2O" checked="false" disabled="disabled"> <label for="CH2O">CH2O</label></div>
+						<div class="mode"><input type="checkbox" id="ultraviolet" name="ultraviolet" check="false" disabled="disabled" > <label for="ultraviolet">紫外线</label></div>
+						<div class="mode"><input type="checkbox" id="kongtiao" name="kongtiao" check="false" disabled="disabled" > <label for="kongtiao">空调设定</label></div>
+						<div class="mode"><input type="checkbox" id="flow" name="flow" check="false" disabled="disabled" > <label for="flow">气流量</label></div>
+						<div class="mode"><input type="checkbox" id="duty" name="duty" check="false" disabled="disabled" > <label for="duty">排班情况</label></div>
+					</div>
+					<div class="points_containter">
+						<div class="point temper">
+							<div class="round">
+								温度
+							</div>
+							<div class="labelCont">
+								<div class="label">Max: <span id="temperMax"></span>℃</div>
+								<div class="label">Min: <span id="temperMin"></span>℃</div>
+							</div>
+						</div>
+						<div class="point hum">
+							<div class="round">
+								湿度
+							</div>
+							<div class="labelCont">
+								<div class="label">Max: <span id="humMax"></span>%</div>
+								<div class="label">Min: <span id="humMin"></span>%</div>
+							</div>
+						</div>
+						<div class="point pm_25">
+							<div class="round">
+								PM2.5
+							</div>
+							<div class="labelCont">
+								<div class="label">Max: <span id="pm25Max"></span></div>
+								<div class="label">Min: <span id="pm25Min"></span></div>
+							</div>
+						</div>
+						<div class="point pm10">
+							<div class="round">
+								PM10
+							</div>
+							<div class="labelCont">
+								<div class="label">Max: <span id="pm10Max"></span></div>
+								<div class="label">Min: <span id="pm10Min"></span></div>
+							</div>
+						</div>
+						<div class="point voice_round">
+							<div class="round">
+								噪声
+							</div>
+							<div class="labelCont">
+								<div class="label">Max: <span id="voiceMax"></span></div>
+								<div class="label">Min: <span id="voiceMin"></span></div>
+							</div>
+						</div>
+						<div class="point co2">
+							<div class="round">
+								CO₂
+							</div>
+							<div class="labelCont">
+								<div class="label">Max: <span id="co2Max"></span></div>
+								<div class="label">Min: <span id="co2Min"></span></div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 
-		<script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js" charset="utf-8"></script>
-		<script src="http://cdn.staticfile.org/highcharts/4.0.4/highcharts.js" charset="utf-8"></script>
-		<script src="http://cdn.staticfile.org/moment.js/2.8.3/moment.min.js" charset="utf-8"></script>
+		<div class="panel" style="display: none;">
+			<div class="map">
+				<div class="city shenzhen"></div>
+				<div class="floor"></div>
+				<div class="sz_bl"></div>
+				<div class="world_window"></div>
+				<div class="tower"></div>
+				<div class="sz_fl"></div>
+				<div class="sz_fr"></div>
+			</div>
+		</div>
+		<div class="panel" style="display: none;">
+			<div class="heat">
+				<div id="shenzhen_heat" class="building shenzhen"></div>
+				<div class="compare">
+					<div class="com">生毛豆实测： <span id="shenzhenDouHum">loading</span> <span id="shenzhendouPm25" style="display: none;">loading</span><span id="shenzhendouTemper" style="display: none;">loading</span><span id="shenzhendouVoice" style="display: none;">loading</span> </div>
+					<div class="com">中国天气网： <span id="shenzhenWeatherHum">loading</span><span id="shenzhenWeatherTemper" style="display: none;">loading</span><span id="shenzhenWeatherPm25" style="display: none;">loading</span><span id="shenzhenWeatherVoice" style="display: none;">臣妾做不到～</span></div>
+				</div>
+				<div class="tooltip">
+					<div class="tip">湿</div>
+					<div class="tip">中</div>
+					<div class="tip">干</div>
+				</div>
+				<div class="data_mode">
+					<div id='humidityShenzhen' class="mode humidity active"></div>
+					<div id='pm25Shenzhen' class="mode pm25"></div>
+					<div id='tmperShenzhen' class="mode temp"></div>
+					<div id='voiceShenzhen' class="mode voice"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel cover" style="display: none;">
+			<div class="shengmaodou hardware"></div>
+			<div class="description">
+				<div class="left">让你过有温度的生活</div>
+				<div class="right">生毛豆</div>
+			</div>
+		</div>
+		<div class="footer" style="display:none;">
+			<div class="dou"></div>
+			<div class="lemeike"></div>
+		</div>
+		<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+		<script src="//cdn.bootcss.com/highcharts/4.1.9/highcharts.js"></script>
+		<script src="//cdn.bootcss.com/moment.js/2.10.6/moment.min.js"></script>
 		<script src="heatmap.min.js" charset="utf-8"></script>
 		<script src="beijing.js" charset="utf-8"></script>
   </body>
