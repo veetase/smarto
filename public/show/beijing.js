@@ -21,8 +21,14 @@ jQuery(document).ready(function($){
     switchPage(1);
   });
 
-  $(document).tap(function() {
-    switchPage(1);
+  $(document).swipe( {
+    //Generic swipe handler for all directions
+    swipeUp:function(event, direction, distance, duration, fingerCount) {
+      switchPage(1);
+    },
+    swipeDown:function(event, direction, distance, duration, fingerCount) {
+      switchPage(-1);
+    }
   });
 
   $(document).click(function(event) {

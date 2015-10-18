@@ -25,11 +25,11 @@ body{
   display: block;
 }
 .beijing {
-  background: url(images/beijing_5.png) no-repeat;
+  background: url(images/Beijing_5.png) no-repeat;
   background-size: 100% 100%; }
 
 .shenzhen {
-  background: url(images/shenzhen_6.png) no-repeat;
+  background: url(images/Shenzhen_6.png) no-repeat;
   background-size: 100% 100%;
 }
 
@@ -55,15 +55,15 @@ body{
 }
 
 .description{
-  width: 60px;
+  width: 70px;
   height: 300px;
-  margin-top: 30px;
-  margin-left: 80px;
+  margin-left: 90px;
   position: absolute;
   left: 50%;
   top: 50%;
   display: flex;
   align-items: flex-start;
+  font-size: 25px;
 }
 
 .description div{
@@ -71,11 +71,11 @@ body{
 }
 .logoes{
   position: absolute;
-  width: 220px;
-  height: 30px;
+  width: 440px;
+  height: 60px;
   left: 50%;
   margin-bottom: 50px;
-  margin-left: -105px;
+  margin-left: -220px;
   bottom: 0;
 }
 
@@ -85,14 +85,14 @@ body{
 
 .lemeike{
   height: 100%;
-  width: 105px;
+  width: 222px;
   background: url(images/lemeike.png) no-repeat;
   background-size: 100% 100%;
 }
 
 .bixuange{
   height: 100%;
-  width: 100px;
+  width: 210px;
   background: url(images/bixuange.png) no-repeat;
   background-size: 100% 100%;
 }
@@ -195,9 +195,10 @@ body{
 
 .data_mode {
   margin: 0 auto;
-  height: 40px;
+  height: 90px;
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+}
 
 .check_mode {
   width: 90%;
@@ -708,7 +709,76 @@ body{
     margin-bottom: 10px;
 }
 
+@media only screen and (min-width: 1178px) {
+  .map {
+    height: 350px;
+    width: 800px;
+    top: 200px;
+    left: 50%;
+    margin-left: -400px;
+  }
 
+  .city{
+    margin-top: -120px;
+  }
+
+  .back_left {
+    height: 45%;
+    width: 40%;
+    left: 13%;
+  }
+
+  .back_right {
+    height: 80%;
+    width: 50%;
+    right: 8%;
+  }
+
+  .front_left {
+    height: 40%;
+    width: 25%;
+    left: 4%;
+  }
+
+  .front_right {
+    height: 40%;
+    width: 25%;
+    right: 4%;
+  }
+
+  .tiananmen {
+    height: 60%;
+    width: 55%;
+    margin-left: -225px;
+  }
+
+  .sz_bl {
+    height: 200px;
+    width: 300px;
+    left: 132px;
+  }
+
+  .world_window {
+    height: 200px;
+    width: 400px;
+    margin-left: -200px;
+  }
+  .tower {
+    height: 300px;
+    width: 150px;
+    right: 170px;
+  }
+  .sz_fl {
+      height: 150px;
+      width: 200px;
+      left: 80px;
+    }
+  .sz_fr {
+      height: 160px;
+      width: 300px;
+      right: 70px;
+    }
+}
 @media only screen and (max-width: 768px) {
   .panel .footer{
     display: none;
@@ -727,7 +797,7 @@ body{
   .charts {
     width: 100%;
     top: 60px;
-    margin-left: -160px;
+    margin-left: -50%;
   }
   #chart{
     height: 200px;
