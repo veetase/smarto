@@ -1,14 +1,13 @@
 ActiveAdmin.register TemperTip do
+  active_admin_importable
+  actions :all
 
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
+  before_create do |tip|
+    tip.user = current_user
+  end
+
   permit_params do
-    permitted = [:temper, :tip, :created_at, :updated_at]
+    permitted = [:temper, :tip, :month_related_to, :location_related_to, :tags, :user_id]
     permitted
   end
 end

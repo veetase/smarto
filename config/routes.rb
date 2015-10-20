@@ -55,6 +55,11 @@ Rails.application.routes.draw do
     end
 
     scope module: :v2, constraints: ApiConstraints.new(version: 2) do
+      resources :temper_tips, only: [:index] do
+        collection do
+          get 'updated_at', action: :updated_at
+        end
+      end
       resources :spots, :only => [:create, :destroy] do
         member do
           get ':type', :action => :show

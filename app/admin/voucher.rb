@@ -1,5 +1,5 @@
 ActiveAdmin.register Voucher do
-  actions :all, :except => [:new, :destroy, :create]
+  actions :all
   filter :name
   filter :code
   filter :status, as: :select, collection: I18n.t("admin.voucher.statuses")

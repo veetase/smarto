@@ -28,6 +28,7 @@ gem 'activeadmin', github: 'activeadmin'
 gem 'cancancan', '~> 1.10'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'pingpp'
+gem 'active_admin_importable'
 # Use Uglifier as compressor for JavaScript assets
 # Use CoffeeScript for .coffee assets and views
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes

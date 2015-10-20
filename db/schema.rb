@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150916094046) do
+ActiveRecord::Schema.define(version: 20151020072126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -163,10 +163,14 @@ ActiveRecord::Schema.define(version: 20150916094046) do
   add_index "tel_attributions", ["user_id"], name: "index_tel_attributions_on_user_id", using: :btree
 
   create_table "temper_tips", force: :cascade do |t|
-    t.float    "temper",     null: false
-    t.text     "tip",        null: false
+    t.float    "temper",                           null: false
+    t.text     "tip",                              null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "month_related_to",                 null: false
+    t.string   "location_related_to",              null: false
+    t.string   "tags",                default: [],              array: true
+    t.integer  "user_id"
   end
 
   create_table "user_vouchers", id: false, force: :cascade do |t|
