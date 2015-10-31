@@ -55,7 +55,7 @@ class Api::V2::SpotsController < ApplicationController
 		spots = Spot.includes(:comments, :user).near(longitude, latitude, distance).where("created_at > ?", limit_days.days.ago ).order("created_at DESC").limit(limit_count)
 		station_spots = nil
 		if params[:area_id] == "101280601"
-			station_spots = StationSpot.near(longitude, latitude, distance).where("created_at >= ?", 15.minutes.ago).order("created_at DESC").limit(limit_count)
+			station_spots = StationSpot.near(longitude, latitude, distance).where("created_at >= ?", 60.minutes.ago).order("created_at DESC").limit(limit_count)
 		end
 
 		render json: {spots: spot_public_list(spots), station_spots: station_spots}
