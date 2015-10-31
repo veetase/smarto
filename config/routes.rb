@@ -10,6 +10,29 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {:confirmations => "devise_overrides/confirmations", :registrations=> "devise_overrides/registrations"}
   resources :subscribers
   namespace :api, defaults: {format: :json}, path: '/', constraints: { subdomain: 'api' } do
+    scope module: :v2, constraints: ApiConstraints.new(version: 2) do
+      resources :temper_tips, only: [:index] do
+        collection do
+          get 'updated_at', action: :updated_at
+        end
+      end
+      resources :spots, :only => [:create, :destroy] do
+        member do
+          get ':type', :action => :show
+          post 'like/:type', :action => :like
+          post 'unlike/:type', :action => :unlike
+        end
+        collection do
+          get 'around/:area_id/:lon/:lat/:distance', :action => 'around', :constraints => {:lon => /\-*\d+.\d+/ , :lat => /\-*\d+.\d+/}
+        end
+        resources :comments do
+          collection do
+            get ':type/page/:page', :action => :index
+            post ':type', :action => :create
+          end
+        end
+      end
+    end
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       resources :passwords, :only => [:create] do
         put 'reset', on: :collection
@@ -50,30 +73,6 @@ Rails.application.routes.draw do
           get 'get_charge'
           post 'complete_order'
           post 'cancel'
-        end
-      end
-    end
-
-    scope module: :v2, constraints: ApiConstraints.new(version: 2) do
-      resources :temper_tips, only: [:index] do
-        collection do
-          get 'updated_at', action: :updated_at
-        end
-      end
-      resources :spots, :only => [:create, :destroy] do
-        member do
-          get ':type', :action => :show
-          post 'like/:type', :action => :like
-          post 'unlike/:type', :action => :unlike
-        end
-        collection do
-          get 'around/:area_id/:lon/:lat/:distance', :action => 'around', :constraints => {:lon => /\-*\d+.\d+/ , :lat => /\-*\d+.\d+/}
-        end
-        resources :comments do
-          collection do
-            get ':type/page/:page', :action => :index
-            post ':type', :action => :create
-          end
         end
       end
     end
