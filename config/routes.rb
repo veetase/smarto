@@ -66,7 +66,9 @@ Rails.application.routes.draw do
           post 'like/:type', :action => :like
           post 'unlike/:type', :action => :unlike
         end
-
+        collection do
+          get 'around/:area_id/:lon/:lat/:distance', :action => 'around', :constraints => {:lon => /\-*\d+.\d+/ , :lat => /\-*\d+.\d+/}
+        end
         resources :comments do
           collection do
             get ':type/page/:page', :action => :index

@@ -5,6 +5,12 @@ class ApiConstraints
   end
 
   def matches?(req)
-    @default || req.headers['Accept'].include?("application/vnd.smarto.v#{@version}")
+    if req.headers['Accept'].include?("application/vnd.smarto.v")
+      req.headers['Accept'].include?("application/vnd.smarto.v#{@version}")
+    elsif @default
+      true
+    else
+      false
+    end
   end
 end
