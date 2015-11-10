@@ -1,10 +1,10 @@
 class ApiConstraints
   def initialize(options)
     @version = options[:version]
-    @default = options[:default]
   end
 
   def matches?(req)
-    @default || req.headers['Accept'].include?("application/vnd.smarto.v#{@version}")
+    request_version = req.headers['Accept'].split("application/vnd.smarto.v").last.to_i
+    request_version >= @version
   end
 end

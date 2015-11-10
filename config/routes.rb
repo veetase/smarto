@@ -7,9 +7,18 @@ Rails.application.routes.draw do
   get 'beijing_show', to: 'show#index'
   ActiveAdmin.routes(self)
   mount Sidekiq::Web => '/sidekiq'
-  devise_for :users, :controllers => {:confirmations => "devise_overrides/confirmations", :registrations=> "devise_overrides/registrations"}
   resources :subscribers
+
   namespace :api, defaults: {format: :json}, path: '/', constraints: { subdomain: 'api' } do
+    scope module: :v3, constraints: ApiConstraints.new(version: 3) do
+      resources :users, :only => [:create] do
+        collection do
+          get 'check_phone/:phone', :action => 'check_phone'
+          post 'verify_confirm', action: :verify_confirm
+        end
+      end
+    end
+
     scope module: :v2, constraints: ApiConstraints.new(version: 2) do
       resources :temper_tips, only: [:index] do
         collection do
@@ -33,11 +42,11 @@ Rails.application.routes.draw do
         end
       end
     end
-    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
+    scope module: :v1, constraints: ApiConstraints.new(version: 1) do
       resources :passwords, :only => [:create] do
         put 'reset', on: :collection
       end
-      resources :users, :only => [:update, :show] do
+      resources :users, :only => [:create, :update, :show] do
         collection do
           get 'change_phone'
           put 'reset_phone'
@@ -77,4 +86,6 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  devise_for :users, :controllers => {:confirmations => "devise_overrides/confirmations", :registrations=> "devise_overrides/registrations"}
 end

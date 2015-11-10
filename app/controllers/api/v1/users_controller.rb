@@ -9,12 +9,12 @@ class Api::V1::UsersController < ApplicationController
 
   def check_phone
     phone = params[:phone]
+    registed = false
     raise Api::ParameterInvalid unless phone.present? && User.valid_phone_format.match(phone)
     sign = nil
     if User.where(phone: phone).first
       registed = true
     else
-      registed = false
       sms = UcSms.new
       sign = sms.create_sign(phone)
     end
@@ -22,15 +22,19 @@ class Api::V1::UsersController < ApplicationController
     render json: { registed: registed, sign: sign }
   end
 
-  # def create
-  #   #logger.info("subdomain:  #{request.subdomain}")
-  #   user = User.new(user_params)
-  #   if user.save
-  #     render json: user.json_show_to_self, status: 201, location: [:api, user]
-  #   else
-  #     render json: { errors: user.errors }, status: 422
-  #   end
-  # end
+  def create
+    user = User.new
+    user.phone = params[:user][:phone]
+    user.password = params[:user][:password]
+
+    user.confirmed_at = Time.now
+    if user.save
+      render json: user.json_show_to_self, status: 201, location: [:api, user]
+    else
+      render json: { errors: user.errors }, status: 422
+    end
+  end
+
   def update
     if current_app_user.update(user_params)
       head :ok

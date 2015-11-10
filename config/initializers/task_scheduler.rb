@@ -7,7 +7,7 @@ s.every '60m' do
 end
 
 #beijing show heapmap data
-s.every '3s' do
+s.every '300s' do
   BeijingShowJob.perform_async
 end
 

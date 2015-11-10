@@ -3,13 +3,13 @@ defaults: &defaults
   user:
     login_expire_days: 30
     reset_password_expire_secondes: 600
-    confirmation_expire_secondes: 600
+    confirmation_expire_secondes: 180
   uc_sms:
     base_url: "https://api.ucpaas.com"
     soft_version: "2014-06-30"
     account_sid: "177ae633bc7ea067fed4143c1fde4f8f"
     app_id: "104a84f3cdaf45ac9bcd9cb764447164"
-    register_tmplate_id: "6615"
+    register_tmplate_id: "16156"
     reset_password_tmplate_id: "6617"
   pingpp:
     app_id: "app_bfXXz58W1Cy1CyTK"

@@ -107,7 +107,8 @@ namespace :prepare do
   end
 
   task :do_copy do
-    queue %[cd #{deploy_to}/#{current_path}/public && for d in assets/dou-*.html; do cp $d dou.html; done]
+    queue! %[cd #{deploy_to}/#{current_path}/public && for d in assets/dou-*.html; do cp $d dou.html; done]
+    queue  %[echo "-----> copy public html done"]
   end
 end
 

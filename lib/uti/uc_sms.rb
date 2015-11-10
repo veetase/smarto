@@ -27,10 +27,9 @@ class UcSms
     result['resp']
   end
 
-  def register_sms(phone_number)
+  def register_sms(phone_number, code, expire_seconds)
     register_sms = lambda do
-      code = [*0..9].sample(4).join
-      {templateSMS: {appId: @app_id, templateId: BxgConfig.uc_sms.register_tmplate_id, to: phone_number, param: code}}
+      {templateSMS: {appId: @app_id, templateId: BxgConfig.uc_sms.register_tmplate_id, to: phone_number, param: "#{code},#{(expire_seconds.to_i - 60)}"}}
     end
     register_sms
   end
