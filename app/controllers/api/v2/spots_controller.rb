@@ -43,7 +43,7 @@ class Api::V2::SpotsController < ApplicationController
 		longitude = params[:lon].to_f
 		latitude = params[:lat].to_f
 		limit_count = 100
-		limit_days = 7
+		limit_days = 70
 
 		case distance
 		when 0..5000
