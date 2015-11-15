@@ -1,84 +1,83 @@
 class BeijingShowJob
   include Sidekiq::Worker
   def perform
-    heat_map_names = ["beijing_a", "beijing_as", "beijing_apm", "beijing_av",
-                      "beijing_b", "beijing_bs", "beijing_bpm", "beijing_bv",
-                      "beijing_c", "beijing_cs", "beijing_cpm", "beijing_cv",
-                      "beijing_d", "beijing_ds", "beijing_dpm", "beijing_dv",
-                      "shenzhen_a", "shenzhen_as", "shenzhen_apm", "shenzhen_av",
-                      "shenzhen_b", "shenzhen_bs", "shenzhen_bpm", "shenzhen_bv",
-                      "shenzhen_c", "shenzhen_cs", "shenzhen_cpm", "shenzhen_cv"]
-    heat_map_names.each do |h|
-      #  clear_map(h)
-      if current_map(h)
-        update_map(h)
+    hot_names = ["hot_temp", "hot_hum", "hot_pm", "hot_v"]
+    cold_names = ["cold_temp", "cold_hum", "cold_pm", "cold_v"]
+
+    hot_names.each do |h|
+      if current_dots(h)
+        update_dots(h, "hot")
       else
-        create_heatmap(h)
+        create_dots(h, "hot")
+      end
+    end
+
+    cold_names.each do |c|
+      if current_dots(c)
+        update_dots(c, "cold")
+      else
+        create_dots(c, "cold")
       end
     end
   end
 
-  def create_heatmap(name)
-    zone_name = get_zone_name(name)
+  def full_map
+    {x: 20...380, y: 30...380}
+  end
 
-    map = []
-    30.times do
-      map << zone_init_maps[zone_name.to_sym]
+  def cold_map
+    {x: 90...320, y: 20...220}
+  end
+
+  def cold_visual_map
+    {x: 130...250, y: 50...180}
+  end
+
+  def create_dots(name, type)
+    dots = []
+    if type == "hot"
+      100.times do
+        dots << set_hot_dots
+      end
+    else
+      20.times do
+        dots << set_cold_dots
+      end
     end
-    $redis.set(name, map.to_json)
+    $redis.set(name, dots.to_json)
   end
 
-  def set_position(x, y)
-    {x: rand(x), y: rand(y)}
+  def set_hot_dots
+    begin
+      x = rand(full_map[:x])
+      y = rand(full_map[:y])
+    end while(cold_map[:x].include?(x) && cold_map[:y].include?(y))
+    {x: x, y: y}
   end
 
-  def current_map(name)
-    map = $redis.get(name)
-    format_map = JSON.load(map)
-    return format_map
+  def set_cold_dots
+    {x: rand(cold_visual_map[:x]), y: rand(cold_visual_map[:y])}
   end
 
-  def zone_init_maps
-    {
-      beijing_a: set_position(80...160, 160...320),
-      beijing_b: set_position(100...230, 40...155),
-      beijing_c: set_position(320...380, 100...150),
-      beijing_d: set_position(250...350, 250...300),
-      shenzhen_a: set_position(280...360, 40...80),
-      shenzhen_b: set_position(130...190, 230...340),
-      shenzhen_c: set_position(250...320, 300...350)
-   }
+  def current_dots(name)
+    dots = $redis.get(name)
+    format_dots = JSON.load(dots)
+    return format_dots
   end
 
-  def update_map(name)
-    zone_name = get_zone_name(name)
-    map = current_map(name)
-    map.shift(2)
-    2.times do
-      map << zone_init_maps[zone_name.to_sym]
+  def update_dots(name, type)
+    dots = current_dots(name)
+    dots.shift(2)
+    if type == "hot"
+      2.times do
+        dots << set_hot_dots
+      end
+    else
+      2.times do
+        dots << set_cold_dots
+      end
     end
-    $redis.set(name, map.to_json)
-  end
-
-  def get_zone_name(name)
-    final_name  = nil
-    if name.include?("beijing_a")
-      final_name = "beijing_a"
-    elsif name.include?("beijing_b")
-      final_name = "beijing_b"
-    elsif name.include?("beijing_c")
-      final_name = "beijing_c"
-    elsif name.include?("beijing_d")
-      final_name = "beijing_d"
-    elsif name.include?("shenzhen_a")
-      final_name = "shenzhen_a"
-    elsif name.include?("shenzhen_b")
-      final_name = "shenzhen_b"
-    elsif name.include?("shenzhen_c")
-      final_name = "shenzhen_c"
-    end
-
-    final_name
+    $redis.set(name, dots.to_json)
   end
 
   def clear_map(name)

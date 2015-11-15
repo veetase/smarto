@@ -25,13 +25,13 @@
 	<body >
 		<div class="panel cover first">
 			<div class="shengmaodou word"></div>
-			<div class="logoes">
+			<!-- <div class="logoes">
 				<div class="bixuange"></div>
 				<div class="lemeike"></div>
-			</div>
+			</div> -->
 		</div>
 
-		<div class="panel ">
+		<!-- <div class="panel ">
 			<div class="map">
 				<div class="city beijing"></div>
 				<div class="floor"></div>
@@ -45,8 +45,49 @@
 				<div class="dou"></div>
 				<div class="lemeike"></div>
 			</div>
+		</div> -->
+		<div class="panel">
+			<div class="map">
+				<div class="city shenzhen"></div>
+				<div class="floor"></div>
+				<div class="sz_bl"></div>
+				<div class="world_window"></div>
+				<div class="tower"></div>
+				<div class="sz_fl"></div>
+				<div class="sz_fr"></div>
+			</div>
+			<div class="footer">
+				<div class="dou"></div>
+				<div class="lemeike"></div>
+			</div>
 		</div>
 
+
+		<div class="panel" style="display: none;">
+			<div class="heat">
+				<div id="shenzhen_heat" class="building shenzhen"></div>
+				<div class="compare">
+					<div class="com">生毛豆实测： <span id="shenzhenDouHum">loading</span> <span id="shenzhendouPm25" style="display: none;">loading</span><span id="shenzhendouTemper" style="display: none;">loading</span><span id="shenzhendouVoice" style="display: none;">loading</span> </div>
+					<div class="com">中国天气网： <span id="shenzhenWeatherHum">loading</span><span id="shenzhenWeatherTemper" style="display: none;">loading</span><span id="shenzhenWeatherPm25" style="display: none;">loading</span><span id="shenzhenWeatherVoice" style="display: none;">臣妾做不到～</span></div>
+				</div>
+				<div class="tooltip">
+					<div class="tip">湿</div>
+					<div class="tip">中</div>
+					<div class="tip">干</div>
+				</div>
+				<div class="data_mode">
+					<div id='humidityShenzhen' class="mode humidity active"></div>
+					<div id='pm25Shenzhen' class="mode pm25"></div>
+					<div id='tmperShenzhen' class="mode temp"></div>
+					<div id='voiceShenzhen' class="mode voice"></div>
+				</div>
+			</div>
+			<div class="footer">
+				<div class="dou"></div>
+				<div class="lemeike"></div>
+			</div>
+		</div>
+<!--
 		<div class="panel">
 			<div class="heat">
 				<div id="beijing_heat" class="building beijing"></div>
@@ -70,7 +111,7 @@
 				<div class="dou"></div>
 				<div class="lemeike"></div>
 			</div>
-		</div>
+		</div> -->
 
 		<div class="panel">
 			<div class="charts">
@@ -155,46 +196,6 @@
 			</div>
 		</div>
 
-		<div class="panel">
-			<div class="map">
-				<div class="city shenzhen"></div>
-				<div class="floor"></div>
-				<div class="sz_bl"></div>
-				<div class="world_window"></div>
-				<div class="tower"></div>
-				<div class="sz_fl"></div>
-				<div class="sz_fr"></div>
-			</div>
-			<div class="footer">
-				<div class="dou"></div>
-				<div class="lemeike"></div>
-			</div>
-		</div>
-		<div class="panel" style="display: none;">
-			<div class="heat">
-				<div id="shenzhen_heat" class="building shenzhen"></div>
-				<div class="compare">
-					<div class="com">生毛豆实测： <span id="shenzhenDouHum">loading</span> <span id="shenzhendouPm25" style="display: none;">loading</span><span id="shenzhendouTemper" style="display: none;">loading</span><span id="shenzhendouVoice" style="display: none;">loading</span> </div>
-					<div class="com">中国天气网： <span id="shenzhenWeatherHum">loading</span><span id="shenzhenWeatherTemper" style="display: none;">loading</span><span id="shenzhenWeatherPm25" style="display: none;">loading</span><span id="shenzhenWeatherVoice" style="display: none;">臣妾做不到～</span></div>
-				</div>
-				<div class="tooltip">
-					<div class="tip">湿</div>
-					<div class="tip">中</div>
-					<div class="tip">干</div>
-				</div>
-				<div class="data_mode">
-					<div id='humidityShenzhen' class="mode humidity active"></div>
-					<div id='pm25Shenzhen' class="mode pm25"></div>
-					<div id='tmperShenzhen' class="mode temp"></div>
-					<div id='voiceShenzhen' class="mode voice"></div>
-				</div>
-			</div>
-			<div class="footer">
-				<div class="dou"></div>
-				<div class="lemeike"></div>
-			</div>
-		</div>
-
 		<div class="panel cover">
 			<div class="shengmaodou hardware"></div>
 			<div class="description">
@@ -214,9 +215,9 @@
 			</ul> <!-- cd-vertical-nav -->
 		</nav>
 
-		<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-		<script src="//cdn.bootcss.com/highcharts/4.1.9/highcharts.js"></script>
-		<script src="//cdn.bootcss.com/moment.js/2.10.6/moment.min.js"></script>
+		<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+		<script src="http://cdn.bootcss.com/highcharts/4.1.9/highcharts.js"></script>
+		<script src="http://cdn.bootcss.com/moment.js/2.10.6/moment.min.js"></script>
 		<script src="jquery.touchSwipe.min.js" charset="utf-8"></script>
 		<script src="heatmap.min.js" charset="utf-8"></script>
 		<script src="beijing.js" charset="utf-8"></script>

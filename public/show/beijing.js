@@ -4,6 +4,15 @@ jQuery(document).ready(function($){
   var gotMachineInfo = false;
   var startingMap = false;
 
+  var weatherTemper;
+  var weatherHum;
+  var weatherPm25;
+
+  //determine if weatherCn info is better than real info measured by shengmaodou, default is true.
+  var betterTemper = true;
+  var betterHum = true;
+  var betterPm25 = true;
+
   $(document).keydown(function(event) {
     event.preventDefault();
     if( event.which=='38') {
@@ -42,7 +51,7 @@ jQuery(document).ready(function($){
 
   var init_panel = 0;
   function switchPage(num){
-    var count = 7;
+    var count = 5;
     init_panel += num;
     current_panel = Math.abs(init_panel % count);
 
@@ -51,15 +60,14 @@ jQuery(document).ready(function($){
     {
     case 2:
       $(".panel:nth-of-type(" + (current_panel + 1) + ")").show(function(){
-        if(startingMap == false){
-          getMapData(updateMap);
-          updateDouInfo();
-          updateShenzhenDouInfo();
-        }else{
-          updateMap();
-        }
+        fetchWeather('101280601');
+        updateShenzhenDouInfo();
 
-        fetchWeather('101010100');
+        if(startingMap == false){
+          getMapData(updateShenzhenMap);
+        }else{
+          updateShenzhenMap();
+        }
       });
       break;
     case 3:
@@ -70,18 +78,18 @@ jQuery(document).ready(function($){
         }
       });
       break;
-    case 5:
-      //shenzhen map
-      $(".panel:nth-of-type(" + (current_panel + 1) + ")").show(function(){
-        if(startingMap == false){
-          getMapData(updateShenzhenMap);
-        }else{
-          updateShenzhenMap();
-        }
-        fetchWeather('101280601');
-      });
-
-      break;
+    // case 5:
+    //   //shenzhen map
+    //   $(".panel:nth-of-type(" + (current_panel + 1) + ")").show(function(){
+    //     if(startingMap == false){
+    //       getMapData(updateShenzhenMap);
+    //     }else{
+    //       updateShenzhenMap();
+    //     }
+    //     fetchWeather('101280601');
+    //   });
+    //
+    //   break;
     default:
       $(".panel:nth-of-type(" + (current_panel + 1) + ")").show();
     }
@@ -94,9 +102,13 @@ jQuery(document).ready(function($){
         dataType: 'json',
         type: 'GET',
         success: function (data) {
-          $('#douHum').html((data['Content'][0]['Humidity'] + "%"));
-          $('#douTemper').html((data['Content'][0]['Temperature'] + "℃"));
-          $('#douPm25').html(data['Content'][0]['PM2.5']);
+          var douHum = data['Content'][0]['Humidity'];
+          var douTemper = data['Content'][0]['Temperature'];
+          var douPm25 = data['Content'][0]['PM2.5'];
+
+          $('#douHum').html((douHum + "%"));
+          $('#douTemper').html((douTemper + "℃"));
+          $('#douPm25').html(douPm25);
           $('#douVoice').html(data['Content'][0]['Voice']);
         }
     });
@@ -111,9 +123,17 @@ jQuery(document).ready(function($){
         dataType: 'json',
         type: 'GET',
         success: function (data) {
-          $('#shenzhenDouHum').html((data['Content'][0]['Humidity'] + "%"));
-          $('#shenzhendouTemper').html((data['Content'][0]['Temperature'] + "℃"));
-          $('#shenzhendouPm25').html(data['Content'][0]['PM2.5']);
+          douHum = data['Content'][0]['Humidity'];
+          douTemper = data['Content'][0]['Temperature'];
+          douPm25 = data['Content'][0]['PM2.5'];
+
+          betterHum = weatherHum >= douHum;
+          betterTemper = weatherTemper <= douTemper;
+          betterPm25 = weatherPm25 <= douPm25;
+
+          $('#shenzhenDouHum').html((douHum + "%"));
+          $('#shenzhendouTemper').html((douTemper + "℃"));
+          $('#shenzhendouPm25').html(douPm25);
           $('#shenzhendouVoice').html(data['Content'][0]['Voice']);
         }
     });
@@ -135,9 +155,12 @@ jQuery(document).ready(function($){
             $('#weatherTemper').html((weather.find( "wendu" ).text() + '℃'));
             $('#weatherPm25').html(weather.find( "pm25" ).text());
           }else{
-            $('#shenzhenWeatherHum').html(weather.find( "shidu" ).text());
-            $('#shenzhenWeatherTemper').html((weather.find( "wendu" ).text() + '℃'));
-            $('#shenzhenWeatherPm25').html(weather.find( "pm25" ).text());
+            weatherHum = weather.find( "shidu" ).text();
+            weatherTemper = weather.find( "wendu" ).text();
+            weatherPm25 = weather.find( "pm25" ).text();
+            $('#shenzhenWeatherHum').html(weatherHum);
+            $('#shenzhenWeatherTemper').html((weatherTemper + '℃'));
+            $('#shenzhenWeatherPm25').html(weatherPm25);
           }
         }
     });
@@ -188,13 +211,15 @@ jQuery(document).ready(function($){
   function updateShenzhenMap(){
     //draw map
     if(current_shenzhen_map == "hum"){
-      renderShenzhenMap(current_data["shenzhen_cs"].concat(current_data["shenzhen_bs"]), current_data["shenzhen_as"], 40, 6);
+      renderShenzhenMap(current_data["hot_hum"], current_data["cold_hum"], 60, 10, betterHum);
     }else if (current_shenzhen_map == "temp") {
-      renderShenzhenMap(current_data["shenzhen_c"].concat(current_data["shenzhen_b"]), current_data["shenzhen_a"], 40, 3);
+      var use_cold_drawer = weatherTemper <= douTemper;
+      renderShenzhenMap(current_data["hot_temp"], current_data["cold_temp"], 70, 10, betterTemper);
     }else if (current_shenzhen_map == "pm25") {
-      renderShenzhenMap(current_data["shenzhen_cpm"].concat(current_data["shenzhen_bpm"]), current_data["shenzhen_apm"],  30, 5);
+      var use_cold_drawer = weatherPm25 <= douPm25;
+      renderShenzhenMap(current_data["hot_pm"], current_data["cold_pm"],  50, 10, betterPm25);
     }else if (current_shenzhen_map == "voice") {
-      renderShenzhenMap(current_data["shenzhen_cv"].concat(current_data["shenzhen_bv"]), current_data["shenzhen_av"], 40, 5);
+      renderShenzhenMap(current_data["hot_v"], current_data["cold_v"], 60, 10, true);
     }
     setTimeout(updateShenzhenMap, 5000);
   }
@@ -252,7 +277,7 @@ jQuery(document).ready(function($){
     setTip(humidityTip); //set top label
     setCompare($('#shenzhenDouHum'));
     setCompare($('#shenzhenWeatherHum'));
-    renderShenzhenMap(current_data["shenzhen_cs"].concat(current_data["shenzhen_bs"]), current_data["shenzhen_as"], 40, 6);
+    renderShenzhenMap(current_data["hot_hum"], current_data["cold_hum"], 60, 10, betterHum);
   });
 
   $('#tmperShenzhen').click(function(){
@@ -260,7 +285,7 @@ jQuery(document).ready(function($){
     current_shenzhen_map = "temp";
     setCompare($('#shenzhendouTemper'));
     setCompare($('#shenzhenWeatherTemper'));
-    renderShenzhenMap(current_data["shenzhen_c"].concat(current_data["shenzhen_b"]), current_data["shenzhen_a"], 40, 3);
+    renderShenzhenMap(current_data["hot_temp"], current_data["cold_temp"], 70, 10, betterTemper);
   });
 
   $('#pm25Shenzhen').click(function(){
@@ -268,7 +293,7 @@ jQuery(document).ready(function($){
     current_shenzhen_map = "pm25";
     setCompare($('#shenzhendouPm25'));
     setCompare($('#shenzhenWeatherPm25'));
-    renderShenzhenMap(current_data["shenzhen_cpm"].concat(current_data["shenzhen_bpm"]), current_data["shenzhen_apm"], 30, 5);
+    renderShenzhenMap(current_data["hot_pm"], current_data["cold_pm"], 50, 10, betterPm25);
   });
 
   $('#voiceShenzhen').click(function(){
@@ -276,7 +301,7 @@ jQuery(document).ready(function($){
     current_shenzhen_map = "voice";
     setCompare($('#shenzhendouVoice'));
     setCompare($('#shenzhenWeatherVoice'));
-    renderShenzhenMap(current_data["shenzhen_cv"].concat(current_data["shenzhen_bv"]), current_data["shenzhen_av"], 40, 5);
+    renderShenzhenMap(current_data["hot_v"], current_data["cold_v"], 60, 10);
   });
 
   // render humidity heatmap by default
@@ -377,7 +402,7 @@ jQuery(document).ready(function($){
     coldmap.setData(set_cold_data);
   }
 
-  function renderShenzhenMap(data1, data2, value1, value2){
+  function renderShenzhenMap(data1, data2, value1, value2, use_cold_drawer){
     //draw heat map in shenzhen
 
     if(shenzhenhotmap == false){
@@ -411,7 +436,11 @@ jQuery(document).ready(function($){
     }
 
     shenzhenhotmap.setData(set_data);
-    shenzhencoldmap.setData(set_cold_data);
+    if (use_cold_drawer){
+      shenzhencoldmap.setData(set_cold_data);
+    }else{
+      shenzhenhotmap.addData(coldData);
+    }
   }
 
   // var data = {
@@ -434,7 +463,7 @@ jQuery(document).ready(function($){
   function getMachineInfo(){
     var d = new Date();
     var date = String(d.getFullYear()) + "-" + (d.getMonth() + 1) + "-" + d.getDate();
-    var url = "http://wissea.eicp.net:6002/OEairService.asmx/GetHistory?Code=FFFFFFFF00120000&Count=10000&Date=" + date + "&Key="
+    var url = "http://wissea.eicp.net:6002/OEairService.asmx/GetHistory?Code=FFFFFFFF00100000&Count=10000&Date=" + date + "&Key="
 
     $.ajax({
         url: url,
