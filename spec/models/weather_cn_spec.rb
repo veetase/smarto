@@ -1,6 +1,6 @@
 require 'rails_helper'
-require 'grab/weather_cn'
-RSpec.describe WeatherCn, :type => :model do
+require 'grab/weather'
+RSpec.describe Weather, :type => :model do
   before { @weather = WeatherCn.new("101010100") }
 
   subject { @weather }
@@ -15,5 +15,5 @@ RSpec.describe WeatherCn, :type => :model do
         expect(ret).not_to eql nil
       end
     end
-  end  
+  end
 end

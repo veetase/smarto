@@ -17,6 +17,8 @@ Rails.application.routes.draw do
           post 'verify_confirm', action: :verify_confirm
         end
       end
+
+      get 'weather/realtime/:area_id', to: 'weather#realtime'
     end
 
     scope module: :v2, constraints: ApiConstraints.new(version: 2) do

@@ -1,4 +1,3 @@
-require 'grab/weather_cn'
 class Api::V1::SpotsController < ApplicationController
 	before_action :authenticate_with_token, only: [:destroy]
 	before_action :get_spot, only: [:like, :unlike, :show]

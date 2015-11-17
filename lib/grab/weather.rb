@@ -7,8 +7,35 @@ class WeatherCnSetting < Settingslogic
   load!
 end
 
-class WeatherCn
+class Etouch
   include HTTParty
+  def self.fetch_weather(areaid)
+    url = WeatherCnSetting.etouch.url + areaid
+    weather = JSON.load($redis.get(url))
+    unless weather
+      ret = get(url).force_encoding('UTF-8')
+      pure_weather = Hash.from_xml(ret)
+      weather = reformat(pure_weather)
+
+      $redis.set(url, weather.to_json)
+      $redis.expire(url, WeatherCnSetting.etouch.cache_peroid)
+    end
+
+    weather
+  end
+
+  def self.reformat(weather)
+    formated_weather = {}
+    content = weather["resp"]
+    formated_weather["city"] = content["city"]
+    formated_weather["content"] = content["environment"].merge({temper: content["wendu"], humidity: content["shidu"], wind: content["fengli"], UV: nil, indexes: content["zhishus"]["zhishu"], sunrise: content["sunrise_1"], sunset: content["sunset_1"]})
+    formated_weather["updated_at"] = content["updatetime"]
+    formated_weather
+  end
+end
+
+class WeatherCn
+
   def initialize(areaid)
     @areaid = areaid
     @date = Time.now.to_s(:number).chop.chop #subtract the last two number

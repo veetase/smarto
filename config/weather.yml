@@ -6,6 +6,9 @@ defaults: &defaults
     app_id_param: "e67078"
     private_key: <%= ENV['WEATHER_CN_SECRET_KEY']%>
     cache_peroid: 1800
+  etouch:
+    url: "http://wthrcdn.etouch.cn/WeatherApi?citykey="
+    cache_peroid: 3600
 
 development:
   <<: *defaults
