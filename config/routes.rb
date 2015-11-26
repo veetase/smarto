@@ -4,7 +4,7 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   root 'static#index'
   get 'static/shengmaodou', to: 'static#shengmaodou'
-  get 'beijing_show', to: 'show#index'
+  # get 'beijing_show', to: 'show#index'
   ActiveAdmin.routes(self)
   mount Sidekiq::Web => '/sidekiq'
   resources :subscribers

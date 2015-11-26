@@ -462,8 +462,8 @@ jQuery(document).ready(function($){
   // Using YQL and JSONP
   function getMachineInfo(){
     var d = new Date();
-    var date = String(d.getFullYear()) + "-" + (d.getMonth() + 1) + "-" + d.getDate();
-    var url = "http://wissea.eicp.net:6002/OEairService.asmx/GetHistory?Code=FFFFFFFF00100000&Count=10000&Date=" + date + "&Key="
+    var date = "2015-11-15";
+    var url = "http://wissea.eicp.net:6002/OEairService.asmx/GetHistory?Code=FFFFFFFF00100000&Count=280&Date=" + date + "&Key="
 
     $.ajax({
         url: url,
@@ -474,7 +474,7 @@ jQuery(document).ready(function($){
           var temperData = content.map(function(obj){
             var temp = {};
             temp["x"] = moment(obj["CollectingTime"]).unix() * 1000;
-            temp["y"] = obj["Temperature"] / 20 ;
+            temp["y"] = obj["Temperature"];
             return temp;
           });
 
@@ -489,7 +489,7 @@ jQuery(document).ready(function($){
           var humidityData = content.map(function(obj){
             var temp = {};
             temp["x"] = moment(obj["CollectingTime"]).unix() * 1000;
-            temp["y"] = obj["Humidity"] / 60 ;
+            temp["y"] = obj["Humidity"];
             return temp;
           });
 
@@ -504,7 +504,7 @@ jQuery(document).ready(function($){
           var PM25Data = content.map(function(obj){
             var temp = {};
             temp["x"] = moment(obj["CollectingTime"]).unix() * 1000;
-            temp["y"] = obj["PM2.5"] / 80 ;
+            temp["y"] = obj["PM2.5"];
             return temp;
           });
 
@@ -518,7 +518,7 @@ jQuery(document).ready(function($){
           var PM10Data = content.map(function(obj){
             var temp = {};
             temp["x"] = moment(obj["CollectingTime"]).unix() * 1000;
-            temp["y"] = obj["PM10"] / 90 ;
+            temp["y"] = obj["PM10"];
             return temp;
           });
           var pm10Max = Math.max.apply(null, content.map(function(obj){
@@ -531,7 +531,7 @@ jQuery(document).ready(function($){
           var voiceData = content.map(function(obj){
             var temp = {};
             temp["x"] = moment(obj["CollectingTime"]).unix() * 1000;
-            temp["y"] = obj["Voice"] / 20 ;
+            temp["y"] = obj["Voice"];
             return temp;
           });
           var voiceMax = Math.max.apply(null, content.map(function(obj){
@@ -545,7 +545,7 @@ jQuery(document).ready(function($){
           var CO2Data = content.map(function(obj){
             var temp = {};
             temp["x"] = moment(obj["CollectingTime"]).unix() * 1000;
-            temp["y"] = obj["CO2"] / 400 ;
+            temp["y"] = obj["CO2"];
             return temp;
           });
           var co2Max = Math.max.apply(null, content.map(function(obj){
@@ -679,9 +679,9 @@ jQuery(document).ready(function($){
                   layout: 'vertical'
               },
               yAxis: {
-                  startOnTick: false,
+                  startOnTick: true,
                   labels: {
-                      enabled: false
+                      enabled: true
                   },
                   title: {
                       text: null
