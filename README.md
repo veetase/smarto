@@ -545,3 +545,15 @@ body:
 
 地址：/spots/\(spot_id)/\(type).json
 身份验证: 否
+## 检查Splash
+### 请求
+方式：GET
+版本：2
+
+### 结果说明
+begin_at, end_at 有效时间范围
+picture_url: 图片地址
+url: 活动的外链地址
+
+地址：/splash.json
+身份验证: 否

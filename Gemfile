@@ -2,6 +2,7 @@ source 'https://ruby.taobao.org/'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'qiniu'
 gem 'dotenv-rails'
 gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record
@@ -22,6 +23,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails'
 gem 'jquery-rails'
 #gem 'turbolinks'
+
 gem 'sidekiq'
 gem 'sinatra', :require => nil
 gem 'activeadmin', github: 'activeadmin'
@@ -29,6 +31,8 @@ gem 'cancancan', '~> 1.10'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'pingpp'
 gem 'active_admin_importable'
+gem "paperclip"
+gem 'paperclip-qiniu', github: "veetase/paperclip-qiniu", branch: "master"
 # Use Uglifier as compressor for JavaScript assets
 # Use CoffeeScript for .coffee assets and views
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -47,7 +51,6 @@ gem 'puma'
 gem 'mina'
 gem 'mina-sidekiq', :require => false
 gem 'mina-puma', :require => false
-gem 'qiniu'
 gem 'kaminari'
 gem 'actionpack-page_caching'
 # Use ActiveModel has_secure_password

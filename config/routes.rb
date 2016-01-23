@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     end
 
     scope module: :v2, constraints: ApiConstraints.new(version: 2) do
+      get 'splash', to: 'splash#current'
       resources :temper_tips, only: [:index] do
         collection do
           get 'updated_at', action: :updated_at
