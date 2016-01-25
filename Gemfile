@@ -2,7 +2,7 @@ source 'https://ruby.taobao.org/'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'qiniu'
+gem 'qiniu', '~> 6.2.1'
 gem 'dotenv-rails'
 gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record
