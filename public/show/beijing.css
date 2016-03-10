@@ -2,7 +2,7 @@ html, body {
   margin: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow: scroll;;
 }
 
 body{
@@ -10,6 +10,11 @@ body{
 }
 .cover{
   height: 100%;
+}
+.coverImg{
+  height: 100%;
+  background: url("http://7xji8z.com2.z0.glb.qiniucdn.com/last%202.png");
+  background-size: 100% 100%;
 }
 .city {
   height: 80px;
@@ -209,16 +214,34 @@ body{
   display: flex;
   justify-content: space-between; }
 
+.tip_mode{
+  width: 90%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .mode {
-  width: 90px;
+  width: 80px;
   /* Or whatever */
-  height: 10px;
+  height: 80px;
   cursor: pointer;
   /* Or whatever */
 }
 
+.mode_word{
+  width: 500px;
+  /* Or whatever */
+  font-size: 20pt;
+}
+
+.mode_word span{
+  color: #00A29A;
+}
+
 .data_mode .mode{
-  height: 90px;
+  height: 80px;
+  width: 80px;
 }
 
 .check_mode.bottom{

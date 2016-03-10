@@ -12,88 +12,89 @@ jQuery(document).ready(function($){
   var betterTemper = true;
   var betterHum = true;
   var betterPm25 = true;
-
-  $(document).keydown(function(event) {
-    event.preventDefault();
-    if( event.which=='38') {
-      switchPage(-1);
-    }else if (event.which=='40') {
-      switchPage(1);
-    }
-  });
-
-  $(".cd-prev").click(function(){
-    switchPage(-1);
-  });
-
-  $(".cd-next").click(function(){
-    switchPage(1);
-  });
-
-  $(document).swipe( {
-    //Generic swipe handler for all directions
-    swipeUp:function(event, direction, distance, duration, fingerCount) {
-      switchPage(1);
-    },
-    swipeDown:function(event, direction, distance, duration, fingerCount) {
-      switchPage(-1);
-    }
-  });
-
-  $(document).click(function(event) {
-    event.preventDefault();
-    if( event.which=='38') {
-      switchPage(-1);
-    }else if (event.which=='40') {
-      switchPage(1);
-    }
-  });
-
-  var init_panel = 0;
-  function switchPage(num){
-    var count = 5;
-    init_panel += num;
-    current_panel = Math.abs(init_panel % count);
-
-    $(".panel").hide();
-    switch(current_panel)
-    {
-    case 2:
-      $(".panel:nth-of-type(" + (current_panel + 1) + ")").show(function(){
-        fetchWeather('101280601');
-        updateShenzhenDouInfo();
-
-        if(startingMap == false){
-          getMapData(updateShenzhenMap);
-        }else{
-          updateShenzhenMap();
-        }
-      });
-      break;
-    case 3:
-      $(".panel:nth-of-type(" + (current_panel + 1) + ")").show(function(){
-        if(gotMachineInfo == false){
-          getMachineInfo();
-          gotMachineInfo = true;
-        }
-      });
-      break;
-    // case 5:
-    //   //shenzhen map
-    //   $(".panel:nth-of-type(" + (current_panel + 1) + ")").show(function(){
-    //     if(startingMap == false){
-    //       getMapData(updateShenzhenMap);
-    //     }else{
-    //       updateShenzhenMap();
-    //     }
-    //     fetchWeather('101280601');
-    //   });
-    //
-    //   break;
-    default:
-      $(".panel:nth-of-type(" + (current_panel + 1) + ")").show();
-    }
-  }
+  getMachineInfo();
+  //
+  // $(document).keydown(function(event) {
+  //   event.preventDefault();
+  //   if( event.which=='38') {
+  //     switchPage(-1);
+  //   }else if (event.which=='40') {
+  //     switchPage(1);
+  //   }
+  // });
+  //
+  // $(".cd-prev").click(function(){
+  //   switchPage(-1);
+  // });
+  //
+  // $(".cd-next").click(function(){
+  //   switchPage(1);
+  // });
+  //
+  // $(document).swipe( {
+  //   //Generic swipe handler for all directions
+  //   swipeUp:function(event, direction, distance, duration, fingerCount) {
+  //     switchPage(1);
+  //   },
+  //   swipeDown:function(event, direction, distance, duration, fingerCount) {
+  //     switchPage(-1);
+  //   }
+  // });
+  //
+  // $(document).click(function(event) {
+  //   event.preventDefault();
+  //   if( event.which=='38') {
+  //     switchPage(-1);
+  //   }else if (event.which=='40') {
+  //     switchPage(1);
+  //   }
+  // });
+  //
+  // var init_panel = 0;
+  // function switchPage(num){
+  //   var count = 5;
+  //   init_panel += num;
+  //   current_panel = Math.abs(init_panel % count);
+  //
+  //   $(".panel").hide();
+  //   switch(current_panel)
+  //   {
+  //   case 2:
+  //     $(".panel:nth-of-type(" + (current_panel + 1) + ")").show(function(){
+  //       fetchWeather('101280601');
+  //       updateShenzhenDouInfo();
+  //
+  //       if(startingMap == false){
+  //         getMapData(updateShenzhenMap);
+  //       }else{
+  //         updateShenzhenMap();
+  //       }
+  //     });
+  //     break;
+  //   case 3:
+  //     $(".panel:nth-of-type(" + (current_panel + 1) + ")").show(function(){
+  //       if(gotMachineInfo == false){
+  //         getMachineInfo();
+  //         gotMachineInfo = true;
+  //       }
+  //     });
+  //     break;
+  //   // case 5:
+  //   //   //shenzhen map
+  //   //   $(".panel:nth-of-type(" + (current_panel + 1) + ")").show(function(){
+  //   //     if(startingMap == false){
+  //   //       getMapData(updateShenzhenMap);
+  //   //     }else{
+  //   //       updateShenzhenMap();
+  //   //     }
+  //   //     fetchWeather('101280601');
+  //   //   });
+  //   //
+  //   //   break;
+  //   default:
+  //     $(".panel:nth-of-type(" + (current_panel + 1) + ")").show();
+  //   }
+  // }
 
   function updateDouInfo(){
     //compare shengmaodou and china weather info

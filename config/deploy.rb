@@ -13,7 +13,7 @@ require 'mina/rvm'    # for rvm support. (http://rvm.io)
 
 set :domain, 'bixuange.com'
 set :deploy_to, '/alidata/www/api'
-set :repository, 'git@github.com:Bixuange/ShengMaoDou-server.git'
+set :repository, 'git@gitlab.com:HiBug/ShengMaoDou-server.git'
 set :branch, 'master'
 set :term_mode, nil
 
