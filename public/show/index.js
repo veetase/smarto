@@ -53,7 +53,7 @@ jQuery(document).ready(function($){
     current_panel = Math.abs(init_panel % count);
     switch(current_panel)
     {
-    case 1:
+    case 0:
       $(".panel:nth-of-type(" + (current_panel + 1) + ")").show(function(){
         fetchWeather('101280601');
 
@@ -64,7 +64,7 @@ jQuery(document).ready(function($){
         }
       });
       break;
-    case 0:
+    case 1:
       $(".panel:nth-of-type(" + (current_panel + 1) + ")").show(function(){
         if(gotMachineInfo == false){
           getMachineInfo();
