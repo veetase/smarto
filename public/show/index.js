@@ -115,15 +115,15 @@ jQuery(document).ready(function($){
   function updateShenzhenMap(){
     //draw map
     if(current_shenzhen_map == "hum"){
-      renderShenzhenMap(current_data["hot_hum"], current_data["cold_hum"], 60, 10, betterHum);
+      renderShenzhenMap(current_data["hot_hum"], current_data["cold_hum"], 7, 10, betterHum);
     }else if (current_shenzhen_map == "temp") {
       var use_cold_drawer = weatherTemper <= douTemper;
-      renderShenzhenMap(current_data["hot_temp"], current_data["cold_temp"], 70, 10, betterTemper);
+      renderShenzhenMap(current_data["hot_temp"], current_data["cold_temp"], 12, 10, betterTemper);
     }else if (current_shenzhen_map == "pm25") {
       var use_cold_drawer = weatherPm25 <= douPm25;
-      renderShenzhenMap(current_data["hot_pm"], current_data["cold_pm"],  50, 10, betterPm25);
+      renderShenzhenMap(current_data["hot_pm"], current_data["cold_pm"],  5, 10, betterPm25);
     }else if (current_shenzhen_map == "voice") {
-      renderShenzhenMap(current_data["hot_v"], current_data["cold_v"], 60, 10, true);
+      renderShenzhenMap(current_data["hot_v"], current_data["cold_v"], 10, 10, true);
     }
     setTimeout(updateShenzhenMap, 5000);
   }
@@ -177,7 +177,7 @@ jQuery(document).ready(function($){
     setTip(humidityTip); //set top label
     setCompare($('#shenzhenDouHum'));
     setCompare($('#shenzhenWeatherHum'));
-    renderShenzhenMap(current_data["hot_hum"], current_data["cold_hum"], 60, 10, betterHum);
+    renderShenzhenMap(current_data["hot_hum"], current_data["cold_hum"], 7, 10, betterHum);
   });
 
   $('#tmperShenzhen').click(function(){
@@ -185,7 +185,7 @@ jQuery(document).ready(function($){
     current_shenzhen_map = "temp";
     setCompare($('#shenzhendouTemper'));
     setCompare($('#shenzhenWeatherTemper'));
-    renderShenzhenMap(current_data["hot_temp"], current_data["cold_temp"], 70, 10, betterTemper);
+    renderShenzhenMap(current_data["hot_temp"], current_data["cold_temp"], 12, 10, betterTemper);
   });
 
   $('#pm25Shenzhen').click(function(){
@@ -193,7 +193,7 @@ jQuery(document).ready(function($){
     current_shenzhen_map = "pm25";
     setCompare($('#shenzhendouPm25'));
     setCompare($('#shenzhenWeatherPm25'));
-    renderShenzhenMap(current_data["hot_pm"], current_data["cold_pm"], 50, 10, betterPm25);
+    renderShenzhenMap(current_data["hot_pm"], current_data["cold_pm"], 5, 10, betterPm25);
   });
 
   $('#voiceShenzhen').click(function(){
@@ -201,7 +201,7 @@ jQuery(document).ready(function($){
     current_shenzhen_map = "voice";
     setCompare($('#shenzhendouVoice'));
     setCompare($('#shenzhenWeatherVoice'));
-    renderShenzhenMap(current_data["hot_v"], current_data["cold_v"], 60, 10);
+    renderShenzhenMap(current_data["hot_v"], current_data["cold_v"], 10, 10);
   });
 
   var shenzhen_heat_config = {
@@ -302,7 +302,7 @@ jQuery(document).ready(function($){
                 {
                   data: temperData["temp2"],
                   enableMouseTracking: false,
-                  name: '学校',
+                  name: '先进院',
                   color: '#172987',
                   lineWidth: 1
                 }
@@ -322,7 +322,7 @@ jQuery(document).ready(function($){
                 {
                     data: pm25Data["temp2"],
                     enableMouseTracking: false,
-                    name: '学校',
+                    name: '先进院',
                     color: '#172987',
                     lineWidth: 1
                 }
@@ -342,7 +342,7 @@ jQuery(document).ready(function($){
                 {
                   data: CO2Data["temp2"],
                   enableMouseTracking: false,
-                  name: '学校',
+                  name: '先进院',
                   color: '#172987',
                   lineWidth: 1
                 }
@@ -362,7 +362,7 @@ jQuery(document).ready(function($){
                 {
                   data: VoiceData["temp2"],
                   enableMouseTracking: false,
-                  name: '学校',
+                  name: '先进院',
                   color: '#172987',
                   lineWidth: 1
                 }

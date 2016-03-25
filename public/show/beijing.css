@@ -29,14 +29,6 @@ body{
 .panel.first{
   display: block;
 }
-.beijing {
-  background: url(images/Beijing_5.png) no-repeat;
-  background-size: 100% 100%; }
-
-.shenzhen {
-  background: url(images/Shenzhen_6.png) no-repeat;
-  background-size: 100% 100%;
-}
 
 .shengmaodou{
   position: absolute;
@@ -138,11 +130,11 @@ body{
   margin-left: -250px; }
 
 .heat {
-  width: 400px;
+  width: 540px;
   position: absolute;
   top: 40px;
   left: 50%;
-  margin-left: -200px; }
+  margin-left: -270px; }
 
 .charts {
   width: 800px;
@@ -152,15 +144,22 @@ body{
   margin-left: -400px; }
 
 .building {
-  height: 400px; }
+  height: 400px;
+}
 
 .building.beijing {
   background: url("images/building_beijing.png");
-  background-size: 100% 100%; }
+  background-size: 100% 100%;
+}
 
 .building.shenzhen {
   background: url("images/building_shenzhen.png");
-  background-size: 100% 100%; }
+  background-size: 100% 100%;
+}
+.building.siat {
+  background: url(images/siat.png) no-repeat;
+  background-size: 100% 100%;
+}
 
 #chart {
   height: 300px;

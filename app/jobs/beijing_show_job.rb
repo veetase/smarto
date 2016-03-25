@@ -22,21 +22,21 @@ class BeijingShowJob
   end
 
   def full_map
-    {x: 20...380, y: 30...380}
+    {x: 100...280, y: 210...217}
   end
 
   def cold_map
-    {x: 90...320, y: 20...220}
+    {x: 380...480, y: 50...150}
   end
 
   def cold_visual_map
-    {x: 130...250, y: 50...180}
+    {x: 380...480, y: 50...150}
   end
 
   def create_dots(name, type)
     dots = []
     if type == "hot"
-      100.times do
+      50.times do
         dots << set_hot_dots
       end
     else

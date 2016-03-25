@@ -434,7 +434,7 @@ http请求方式（以下简称方式）：POST
 ### 请求
 方式：GET
 
-地址：/user/check_phone/\(phone).json
+地址：/users/check_phone/\(phone).json
 
 身份验证: 否
 
