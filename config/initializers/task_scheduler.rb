@@ -7,9 +7,9 @@ s.every '60m' do
 end
 
 #beijing show heapmap data
-s.every '5s' do
-  BeijingShowJob.perform_async
-end
+# s.every '5s' do
+#   BeijingShowJob.perform_async
+# end
 
 #backup database
 s.cron '0 2 * * *' do
