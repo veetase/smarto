@@ -115,13 +115,11 @@ jQuery(document).ready(function($){
   function updateShenzhenMap(){
     //draw map
     if(current_shenzhen_map == "hum"){
-      renderShenzhenMap(current_data["hot_hum"], current_data["cold_hum"], 7, 10, betterHum);
+      renderShenzhenMap(current_data["hot_hum"], current_data["cold_hum"], 7, 10, true);
     }else if (current_shenzhen_map == "temp") {
-      var use_cold_drawer = weatherTemper <= douTemper;
-      renderShenzhenMap(current_data["hot_temp"], current_data["cold_temp"], 12, 10, betterTemper);
+      renderShenzhenMap(current_data["hot_temp"], current_data["cold_temp"], 12, 10, true);
     }else if (current_shenzhen_map == "pm25") {
-      var use_cold_drawer = weatherPm25 <= douPm25;
-      renderShenzhenMap(current_data["hot_pm"], current_data["cold_pm"],  5, 10, betterPm25);
+      renderShenzhenMap(current_data["hot_pm"], current_data["cold_pm"],  5, 10, true);
     }else if (current_shenzhen_map == "voice") {
       renderShenzhenMap(current_data["hot_v"], current_data["cold_v"], 10, 10, true);
     }

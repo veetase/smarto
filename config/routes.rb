@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root 'static#index'
   get 'static/shengmaodou', to: 'static#shengmaodou'
   get 'beijing_show', to: 'show#index'
+  get 'latest_spot/:phone', to: 'show#latest_spot'
   ActiveAdmin.routes(self)
   mount Sidekiq::Web => '/sidekiq'
   resources :subscribers

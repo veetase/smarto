@@ -11,5 +11,6 @@
  * file per style scope.
  *= require bootstrap.min
  *= require login
+  *= require show/latest_spot
  *= require_self
  */

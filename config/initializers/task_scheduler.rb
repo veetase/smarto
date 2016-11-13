@@ -6,7 +6,7 @@ s.every '60m' do
   StationTemperJob.perform_async
 end
 
-#beijing show heapmap data
+# beijing show heapmap data
 # s.every '5s' do
 #   BeijingShowJob.perform_async
 # end

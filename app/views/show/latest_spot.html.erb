@@ -1,0 +1,16 @@
+<div class="spot_show">
+  <div class="spot_image">
+    <img src="<%= @latest_spot.image %>" alt="" />
+  </div>
+  <div class="spot_image_footer">
+    <div class="value">
+      <%= @latest_spot.mid_temperature %> ℃
+    </div>
+    <div class="time">
+      <div class="">
+        <%= @latest_spot.created_at.strftime("%H:%M") %>
+      </div>
+      <%= @latest_spot.created_at.strftime("%Y/%m/%d") %>
+    </div>
+  </div>
+</div>
