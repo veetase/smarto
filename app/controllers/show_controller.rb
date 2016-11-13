@@ -13,7 +13,6 @@ class ShowController < ApplicationController
     user = User.where(phone: params[:phone]).first
     raise Api::ParameterInvalid unless user
 
-    # @latest_spot = Spot.where(user_id: user.id).order("created_at DESC").first
-    @latest_spot = Spot.first
+    @latest_spot = Spot.where(user_id: user.id).order("created_at DESC").first
   end
 end
