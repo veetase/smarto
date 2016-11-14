@@ -12,14 +12,13 @@ html, body{
 .spot_show .spot_image img{
   height: 1000px;
   width: 1000px;
+  filter: progid:DXImageTransform.Microsoft.Matrix(M11=0, M12=1, M21=1, M22=0, DX=0, DY=0, SizingMethod='auto expand');
 }
 
 .spot_show .spot_image_footer{
   width: 1000px;
   height: 400px;
   background: url("<%= asset_path 'static_page/spot_show.jpg' %>") no-repeat;
-  background-position: center;
-  background-size: contain;
 }
 
 /*.spot_show .spot_image_footer .logo{
@@ -50,7 +49,7 @@ html, body{
 .spot_show .value{
   height: 280px;
   text-align: center;
-  font-size: 55px;
+  font-size: 50px;
   line-height: 280px;
 }
 

@@ -1,0 +1,16 @@
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.wrap{
+	font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+}
+.wrap .num .num-stars{
+	font-size: 6em;
+	color: white;
+}
+
+html{
+  background-color: #77889B;
+}
