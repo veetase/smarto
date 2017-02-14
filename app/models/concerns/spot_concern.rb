@@ -1,12 +1,12 @@
 module SpotConcern
   extend ActiveSupport::Concern
-  included do
-    has_many :comments, as: :commentable, after_add: :add_count
-    set_rgeo_factory_for_column(:location, RGeo::Geographic.spherical_factory(:srid => 4326))
-    scope :near, lambda { |longitude, latitude, distance|
-      where("ST_Distance(location,"+"'POINT(#{longitude} #{latitude})') < #{distance}")
-    }
-  end
+#   included do
+#     has_many :comments, as: :commentable, after_add: :add_count
+#     set_rgeo_factory_for_column(:location, RGeo::Geographic.spherical_factory(:srid => 4326))
+#     scope :near, lambda { |longitude, latitude, distance|
+#       where("ST_Distance(location,"+"'POINT(#{longitude} #{latitude})') < #{distance}")
+#     }
+#   end
 
   def add_view_count
     cache_name = view_count_cache
