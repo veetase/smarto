@@ -22,7 +22,7 @@ set :term_mode, nil
 
 # Manually create these paths in shared/ (eg: shared/config/mongoid.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
-set :shared_paths, ['.env', 'log', 'config/puma.rb', 'public/uploads', 'tmp/pids']
+set :shared_paths, ['.env', 'log', 'config/puma.rb', 'config/database.yml', 'public/uploads', 'tmp/pids']
 
 # Optional settings:
 set :user, 'root'    # Username in the server to SSH to.
