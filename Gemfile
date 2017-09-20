@@ -38,7 +38,7 @@ gem 'paperclip-qiniu', github: "veetase/paperclip-qiniu", branch: "master"
 # Use Uglifier as compressor for JavaScript assets
 # Use CoffeeScript for .coffee assets and views
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', git: 'https://github.com/cowboyd/therubyracer.git'
 gem 'jbuilder'
 # Use jquery as the JavaScript library
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
