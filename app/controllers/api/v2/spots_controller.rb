@@ -52,7 +52,9 @@ class Api::V2::SpotsController < ApplicationController
 			limit_count = 50
 		end
 
-		spots = Spot.includes(:comments, :user).near(longitude, latitude, distance).where("created_at > ?", limit_days.days.ago ).order("created_at DESC").limit(limit_count)
+		# spots = Spot.includes(:comments, :user).near(longitude, latitude, distance).where("created_at > ?", limit_days.days.ago ).order("created_at DESC").limit(limit_count)
+
+		spots = Spot.includes(:comments, :user).near(longitude, latitude, distance).order("created_at DESC").limit(limit_count)
 		station_spots = nil
 		if params[:area_id] == "101280601"
 			station_spots = StationSpot.near(longitude, latitude, distance).where("created_at >= ?", 60.minutes.ago).order("created_at DESC").limit(limit_count)
