@@ -7,7 +7,7 @@ gem 'dotenv-rails'
 gem 'rails', '4.2.0'
 gem 'json', github: 'flori/json', branch: 'v1.8'
 # Use sqlite3 as the database for Active Record
-#gem 'pg'
+gem 'pg'
 gem "sqlite3"
 gem 'activerecord-postgis-adapter', '3.0.0.beta2'
 gem 'redis'
